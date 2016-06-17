@@ -1,0 +1,18 @@
+﻿.body {
+    background-color: #FFFFFF;
+    margin: 0px;
+    border-top: solid;
+    border-top-color: #097ABF;
+    border-top-width: 10px;
+}
+
+
+.footer {
+    width: 100%;
+    height: 200px;
+    margin: 0px;
+    background-color: #10284C;
+    border-bottom: solid;
+    border-bottom-color: #097ABF;
+    border-bottom-width: 10px;
+ }
