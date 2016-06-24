@@ -1,11 +1,21 @@
 .btn {
     background-color: #FFFFFF;
     border: none;
-    color: #097ABF;
-  }
+    color: #097ABF; 
+    font-size: 25px;
+    padding: 5px;
+    margin: 5px;
+    top: 100px;
 
-a:hover {
+}
+
+.btn:hover {
     background-color: #FFFFFF;
+    border: solid;
     border-color: #10284C;
     border-width: 2px;
+    border-radius: 4px;
+    color: #097ABF; 
+    padding: 5px;
+    margin: 5px;
 }
