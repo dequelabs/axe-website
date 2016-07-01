@@ -5,17 +5,16 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7413870-7586-48C8-921D-6FAA39BE5309}"
 	ProjectSection(SolutionItems) = preProject
-		_site\about.html = _site\about.html
-		_site\community.html = _site\community.html
+		about.html = about.html
+		community.html = community.html
 		Bootstrap\css\custom.css = Bootstrap\css\custom.css
-		_site\docs.html = _site\docs.html
+		docs.html = docs.html
 		_includes\footer.html = _includes\footer.html
-		_site\getting started.html = _site\getting started.html
+		getting started.html = getting started.html
 		_includes\head.html = _includes\head.html
 		_includes\header.html = _includes\header.html
-		_site\home.html = _site\home.html
-		_site\index.html = _site\index.html
-		_site\integrations.html = _site\integrations.html
+		index.html = index.html
+		integrations.html = integrations.html
 		Style.css = Style.css
 	EndProjectSection
 EndProject
