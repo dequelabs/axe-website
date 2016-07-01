@@ -8,7 +8,7 @@
     top: 150px;
 }
 
-.btn:hover {
+btn:hover {
     background-color: #FFFFFF;
     border: solid;
     border-color: #10284C;
