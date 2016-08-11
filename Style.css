@@ -5,6 +5,9 @@
     border-top: solid;
     border-top-color: #097ABF;
     border-top-width: 10px;
+    border-bottom: solid;
+    border-bottom-color: #097ABF;
+    border-bottom-width: 10px;
     text-align: center;
 }
 
@@ -13,9 +16,7 @@
     height: 200px;
     margin: 0px;
     background-color: #10284C;
-    border-bottom: solid;
-    border-bottom-color: #097ABF;
-    border-bottom-width: 10px;
+
  }
 
 .minheader {
@@ -23,19 +24,8 @@
 }
 
 
-@media (min-width: 600px)  
-{
-.minheader {
-    display: none;
-}
-.header{
-    padding-left: 50px;
-}
-}
 
-
-@media (max-width: 600px)
-{
+@media (max-width: 767px) { 
 .body {
     border-top-width: 6px;
     text-align: left;
@@ -49,7 +39,30 @@
 
 .header {
     display: none;
+}  
 }
+
+/* 768px and up */
+@media (min-width: 768px) { 
+
+}
+
+/* 992px and up */
+@media (min-width: 992px) { 
+.minheader {
+    display: none;
+}
+.header{
+    padding-left: 50px;
+}
+.container {
+    width: 1000px;
+} 
+}
+
+/* 1200px and up */
+@media (min-width: 1200px) { 
+
 }
 
 
