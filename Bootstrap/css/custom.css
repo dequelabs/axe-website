@@ -8,3 +8,13 @@
     top: 150px;
   }
 
+.container-fluid {
+    margin: 0px;
+    padding-left: 100px;
+    height: 300px;
+
+}
+
+.navbar-header{
+    align-items: center;
+}
