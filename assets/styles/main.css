@@ -5,14 +5,14 @@
  }
 
 * {
-  font-family: roboto, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 18px;
 }
 
-ul, li {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
+.dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img, .dqpl-item-text.dqpl-branding a .dqpl-logo img {
+    padding-left: 0px;
+    width: 100%;
+    height: 85px;
 }
 
 /*wordt in default aangehaald*/
