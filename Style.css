@@ -1,99 +1,36 @@
 .body {
-    background-color: #FFFFFF;
+    background-color: #FDFDFE;
     margin: 0px;
     padding: 0px;
-    border-top: solid;
-    border-top-color: #097ABF;
-    border-top-width: 10px;
-    border-bottom: solid;
-    border-bottom-color: #097ABF;
-    border-bottom-width: 10px;
  }
 
-
-.col1 {
-    float: left;
-    width: 20%;
-    padding-left: 30px;
+* {
+  font-family: roboto, sans-serif;
+  font-size: 18px;
 }
 
-.col2 {
-    float: left;
-    width: 80%;
-    padding: 200px;
+ul, li {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .footer {
-    width: 100%;
-    height: 200px;
-    margin: 0px;
-    background-color: #10284C;
- }
+}
 
-        /*wordt in default aangehaald*/
+        /*Komt uit Default*/
 .container {
     width: 80%;
-    text-align:center;
 }
 
-li {
-    display: inline;
-    margin: 20px;
- }
-
-
-a {
-    font-size: 25px;
-    text-align: center;
- }
-
-li:hover {
-    border: solid;
-    border-color: #10284C;
-    border-width: 2px;
-    border-radius: 3px;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
- }
-
-.paraline{
-    border-bottom: solid;
-    border-bottom-color: #097ABF;
-    border-bottom-width: 5px; 
-}
 
 /* smartphone */
 @media (max-width: 767px) { 
-.body {
-    border-top-width: 6px;
-    text-align: left;
-}
-.footer {
-       height: 100px;
-       border-top-width: 6px;
-  }
-#logo {
-    display: none;
-}
-li {
-    display: none;
-}
 }
 
 /* Tablet */
-@media (min-width: 768px) and (max-width: 991px) { 
-.body {
-    border-top-width: 6px;
-    text-align: left;
-}
+@media (min-width: 768px) and (max-width: 991px) {
 .footer {
-       height: 100px;
-       border-top-width: 6px;
-  }
-#logo {
-    display: none;
 }
 }
 
@@ -102,9 +39,6 @@ li {
 .container {
     width: 1000px;
 } 
-#logosmall {
-    display: none;
-}
 }
 
 /* big screen desktop */
@@ -112,7 +46,4 @@ li {
 .container {
     width: 1000px;
 } 
-#logosmall {
-    display: none;
-}
 }
