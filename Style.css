@@ -15,35 +15,41 @@ ul, li {
     margin: 0px;
 }
 
-.footer {
-}
-
-        /*Komt uit Default*/
+/*wordt in default aangehaald*/
 .container {
     width: 80%;
+    text-align: center;
 }
 
 
 /* smartphone */
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
 }
 
+@media (max-width: 767px) {
+}
+
+
 /* Tablet */
+
 @media (min-width: 768px) and (max-width: 991px) {
-.footer {
 }
+
+
+@media (min-width: 768px) and (max-width: 991px) {
 }
+
 
 /* normal screen desktop */
 @media (min-width: 992px) and (max-width: 1199px) { 
-.container {
-    width: 1000px;
 } 
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
 }
+
 
 /* big screen desktop */
 @media (min-width: 1200px) { 
-.container {
-    width: 1000px;
-} 
 }
+
