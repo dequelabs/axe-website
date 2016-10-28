@@ -6,6 +6,8 @@ layout: default
 
 ## Table of Contents
 
+1. [Section 1: Introduction](#section-1-introduction)
+    1. [Get Started](#getting-started)
 1. [Section 2: API Reference](#section-2-api-reference)
     1. [Overview](#overview)
     1. [API Notes](#api-notes)
@@ -23,6 +25,28 @@ layout: default
     1. [API Name: axe.registerPlugin](#api-name-axeregisterplugin)
     1. [API Name: axe.cleanup](#api-name-axecleanup)
     1. [API Name: axe.a11yCheck](#api-name-axea11ycheck)
+1. [Section 3: Example Reference](#section-3-example-reference)
+
+## Section 1: Introduction
+
+The aXe API is designed to be an improvement over the previous generation of accessibility APIs. It provides the following benefits:
+
+* Runs in any modern browser
+* Designed to work with existing testing infrastructure
+* Runs locally, no connection to a third-party server is necessary
+* Performs violation checking on multiple levels of nested iframes
+* Provides list of rules and elements that passed accessibility checking, ensuring rules have been run against entire document
+
+### Getting Started
+This section gives a quick description of how to use the aXe APIs to analyze web page content and return a JSON object that lists any accessibility violations found.
+
+The aXe API can be used as part of a broader process that is performed on many, if not all, pages of a website. The API is used to analyze web page content and return a JSON object that lists any accessibility violations found. Here is how to get started:
+
+1. Load page in testing system
+2. Optionally, set configuration options for the javascript API (`axe.configure`)
+3. Call analyze javascript API (`axe.run`)
+4. Either assert against results or save them for later processing
+
 
 ## Section 2: API Reference
 
@@ -527,3 +551,7 @@ Returns a list of all rules with their ID and description
                 - .a11yCheck requires a context object, and so will not fall back to the document root.
                 - .a11yCheck does not return a Promise.
 
+
+## Section 3: Example Reference
+
+This package contains examples for [jasmine](examples/jasmine), [mocha](examples/mocha), [phantomjs](examples/phantomjs), [qunit](examples/qunit), [selenium using javascript](examples/selenium), and [generating HTML from the violations array](examples/html-handlebars.md). Each of these examples is in the [doc/examples](examples) folder. In each folder, there is a README.md file which contains specific information about each example.
