@@ -1,8 +1,8 @@
 .body {
     background-color: #FDFDFE;
     margin: 0px;
-    padding: 0px;
- }
+    padding-left 0px;
+  }
 
 * {
   font-family: Roboto, sans-serif;
@@ -26,28 +26,14 @@
 @media (max-width: 767px) {
 }
 
-@media (max-width: 767px) {
-}
-
-
 /* Tablet */
 
 @media (min-width: 768px) and (max-width: 991px) {
 }
 
-
-@media (min-width: 768px) and (max-width: 991px) {
-}
-
-
 /* normal screen desktop */
 @media (min-width: 992px) and (max-width: 1199px) { 
 } 
-
-
-@media (min-width: 992px) and (max-width: 1199px) {
-}
-
 
 /* big screen desktop */
 @media (min-width: 1200px) { 
