@@ -1,6 +1,9 @@
 ---
 layout: default
+title: Getting Started with Axe-core
 ---
+
+<!-- including screencasts, links to Deque U. examples with aXe analysis -->
 
 <h1>Getting Started</h1>
 
