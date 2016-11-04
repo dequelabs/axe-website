@@ -1,4 +1,4 @@
-body {
+.body {
     background-color: #FDFDFE;
     margin: 0px;
     padding: 0px;
@@ -7,12 +7,6 @@ body {
 * {
   font-family: Roboto, sans-serif;
   font-size: 18px;
-}
-
-.dqpl-main-content{
-    overflow: auto;
-    position: fixed;
-    height: 100%;
 }
 
 .dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img, .dqpl-item-text.dqpl-branding a .dqpl-logo img {
@@ -32,7 +26,8 @@ body {
 @media (max-width: 767px) {
 }
 
-
+@media (max-width: 767px) {
+}
 
 
 /* Tablet */
@@ -41,23 +36,20 @@ body {
 }
 
 
-
+@media (min-width: 768px) and (max-width: 991px) {
+}
 
 
 /* normal screen desktop */
 @media (min-width: 992px) and (max-width: 1199px) { 
-.dqpl-main-content {
-    margin-top: 80px;    
-}
 } 
 
 
+@media (min-width: 992px) and (max-width: 1199px) {
+}
 
 
 /* big screen desktop */
 @media (min-width: 1200px) { 
-.dqpl-main-content {
-    margin-top: 80px;    
-}
 }
 
