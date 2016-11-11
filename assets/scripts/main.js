@@ -1,10 +1,11 @@
 jQuery(function ($) {
   // Check if any links in the menu is the current page
-  $('.dqpl-main-nav a').each(function () {
-    if (this.href === window.location.href) {
-      $(this.parent)
+  $('.dqpl-main-nav a[href]').each(function () {
+    if (this.href.toUpperCase() === window.location.href.split(/[#]/)[0].toUpperCase()) {
+      var nav = buildSubnav()
+      $(this).parent()
       .addClass('dqpl-subnav')
-      .append(buildSubnav())
+      .append(nav)
     }
   })
 
@@ -25,7 +26,7 @@ jQuery(function ($) {
       }
     })
 
-    return $('<ul />').append(structure.map(function (item) {
+    return $('<ul style="display:block" />').append(structure.map(function (item) {
       var a = $('<a href="#' + item.h2.id + '">' +
         item.h2.textContent +
       '</a>')
@@ -38,7 +39,7 @@ jQuery(function ($) {
       } else {
         var subUl = $('<ul />').append(
           item.h3s.map(function (h3) {
-            return $('<li><a href="' + h3.id + '">' +
+            return $('<li><a href="#' + h3.id + '">' +
               h3.textContent +
             '</a></li>')
           })
