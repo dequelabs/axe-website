@@ -4,17 +4,18 @@
         {% include head.html %}
     </head>
 
-<div class="container">
+<div>
 
     <body class="body" class="row" class="col-md-12">
-        {% include header.html %}
+      {% include header.html %}
 
-        <div class="page-content">
-            {% include navbar.html %}
-          <div class="wrapper">
-                {{ content }}            
-          </div>
-        </div>
+      <div class="page-content">
+        {% include navbar.html %}
+          
+      <div class="dqpl-main-content dqpl-collapsed"">
+         {{ content }}
+      </div><
+      </div>
         
         {% include footer.html %}
     </body>
