@@ -11,22 +11,7 @@ jQuery(function ($) {
 
   // Build ul list of all h2s, with h3s as sublists
   function buildSubnav () {
-    var structure = []
-    $('.dqpl-main-content h2, .dqpl-main-content h3').each(function () {
-      if (
-        this.tagName.toUpperCase() === 'H2' &&
-        this.id !== 'table-of-contents'
-      ) {
-        structure.push({
-          h2: this,
-          h3s: []
-        })
-      } else if (this.tagName.toUpperCase() === 'H3') {
-        structure[structure.length-1].h3s.push(this)
-      }
-    })
-
-    return $('<ul style="display:block" />').append(structure.map(function (item) {
+    var lis = getStructure().map(function (item) {
       var a = $('<a href="#' + item.h2.id + '">' +
         item.h2.textContent +
       '</a>')
@@ -46,7 +31,26 @@ jQuery(function ($) {
         )
         return $('<li class="dqpl-subnav">').append(a, subUl)
       }
-    }))
-  }
-})
+    })
 
+    return $('<ul style="display:block" />').append(lis)
+  }
+
+  function getStructure() {
+    var structure = []
+    $('.dqpl-main-content h2, .dqpl-main-content h3').each(function () {
+      if (
+        this.tagName.toUpperCase() === 'H2' &&
+        this.id !== 'table-of-contents'
+      ) {
+        structure.push({
+          h2: this,
+          h3s: []
+        })
+      } else if (this.tagName.toUpperCase() === 'H3') {
+        structure[structure.length-1].h3s.push(this)
+      }
+    })
+  }
+  return structure
+})
