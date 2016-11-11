@@ -1,15 +1,27 @@
-<nav> 
-<ul class="dqpl-side-bar dqpl-main-nav" id="dqpl-side-bar" role="menu" aria-expanded="false">
+<nav>
+<ul class="dqpl-side-bar dqpl-main-nav">
+    <li class="dqpl-subnav"><a href="/"> Docs </a>
+      <ul>
+        <li><a href="">0. iets</a></li>
+        <li class="dqpl-subnav">
+          <a href="#h2"> 1. Subkop item </a>
+          <ul class="dqpl-submenu" style="display:block">
+            <li><a href="#h3">1.1 Item</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
 
     <li class="dqpl-branding" role="menuitem" tabindex="0">
       <a href="/" tabindex="-1">
-        <div class="dqpl-logo"><img src="/assets/images/logo-small.png" alt="Logo AXE" /></div>  
+        <div class="dqpl-logo"><img src="/assets/images/logo-small.png" alt="Logo AXE" /></div>
       </a>
     </li>
 
+
     <li role="menuitem" tabindex="0"><a href="/getting-started/index.html" tabindex="0">Getting Started</a></li>
     <li role="menuitem" tabindex="-1"><a href="/integrations/index.html" tabindex="-1">Integrations</a></li>
-    
+
     <li class="dqpl-weight-bold" role="menuitem" aria-controls="dqpl-components" aria-haspopup="true" tabindex="-1" >
      <div class="dqpl-item-text"><a href="/docs/index.html">Docs</a></div>
        <ul class="dqpl-submenu" role="menu" id="dqpl-components" aria-expanded="true" style="display: block;">
