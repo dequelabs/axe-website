@@ -1,4 +1,8 @@
-# aXe Javascript Accessibility API
+---
+layout: default
+title: Axe API Documentation
+---
+
 
 ## Table of Contents
 
