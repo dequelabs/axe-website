@@ -1,13 +1,29 @@
 ---
-layout: default
-title: Using Axe with PhantomJS
+layout: page
+title: Example Phantomjs
 ---
 
-Test file `spec/a11y.js`
-------------------------
 
-```javascript
-/*global window, phantom */
+This example demonstrates how to use aXe with PhantomJS.
+
+## To configure the example ##
+
+* PhantomJS must be installed; please follow the directions at http://phantomjs.org/
+  to install it.
+* Run `npm install axe-core`
+
+## To run the example ##
+
+* Move to the `doc/examples/phantomjs` directory
+* `phantomjs axe-phantom.js http://www.deque.com` to run aXe in PhantomJS
+  against http://www.deque.com and output results to the terminal
+* `phantomjs axe-phantom.js http://www.deque.com results.json` to run aXe in PhantomJS
+  against http://www.deque.com and save results to `results.json`
+
+
+## axe-phantom.js
+<pre><code class="highlight language-javascript">
+/*global phantom */
 var PATH_TO_AXE = 'node_modules/axe-core/axe.min.js';
 
 var args = require('system').args;
@@ -33,11 +49,8 @@ page.open(args[1], function (status) {
 	});
 	page.switchToMainFrame();
 	page.evaluateAsync(function () {
-		/*global axe */
-		axe.run(function (err, results) {
-			if (err)  {
-				throw err;
-			}
+		/*global window, axe */
+		axe.a11yCheck(window.document, null, function (results) {
 			window.callPhantom(results);
 		});
 	});
@@ -53,17 +66,5 @@ page.open(args[1], function (status) {
 	};
 });
 
-```
+</code></pre>
 
-Install And Run
------------------------
-
-To Install:
-
-*
-
-To Run:
-
-*
-
-[Download this example on Github]()

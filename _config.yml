@@ -8,3 +8,7 @@ url: "http://axe-core.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
+
+exclude:
+  - node_modules
+  - build
