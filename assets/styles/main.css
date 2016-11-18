@@ -93,7 +93,7 @@ body {
 /* normal screen desktop */
 @media (min-width: 992px) and (max-width: 1199px) {
 .dqpl-main-content {
-    margin-top: 69px;
+    margin-top: 80px;
 }
 }
 
@@ -103,7 +103,7 @@ body {
 /* big screen desktop */
 @media (min-width: 1200px) {
 .dqpl-main-content {
-    margin-top: 69px;
+    margin-top: 80px;
 }
 }
 

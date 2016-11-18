@@ -51,6 +51,6 @@ jQuery(function ($) {
         structure[structure.length-1].h3s.push(this)
       }
     })
-  return structure
   }
+  return structure
 })
