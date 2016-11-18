@@ -20,9 +20,9 @@ aXe runs on your local development server in the same browser as your functional
 * All modern browsers
 * Dynamically created DOM fixtures inside unit tests
 * Integration and acceptance testing
-* Cross-domain iframes of infinite depth (constrained only by memory)
+* Cross-domain iframes of infinite depth (constrained only by memory)  
 
-**This means…** you can be sure that aXe will support your needs and your infrastructure as it is today and as it evolves over time.
+  **This means…** you can be sure that aXe will support your needs and your infrastructure as it is today and as it evolves over time.
 
 ## aXe integrates with:
 * Chrome developer tools extension
@@ -35,39 +35,44 @@ aXe runs on your local development server in the same browser as your functional
 * Selenium Java
 * Selenium JavaScript
 * PhantomJS
-* and any testing framework that supports JavaScript execution
+* and any testing framework that supports JavaScript execution  
 
-**This means…** you can integrate accessibility testing into your existing functional tests and catch accessibility issues before they make it into your code master.
+  **This means…** you can integrate accessibility testing into your existing functional tests and catch accessibility issues before they make it into your code master.
 
 ## What aXe doesn’t have:
 * Network connection latency – zero!
 * Failure modes due to connectivity or cloud server performance issues – none!
-* Monthly, or daily usage limits – nada!
+* Monthly, or daily usage limits – nada!  
 
-**This means…** you can run your accessibility tests instantly with gulp watch, grunt watch or testem and integrate them into your Travis.ci pull request builds.
+  **This means…** you can run your accessibility tests instantly with gulp watch, grunt watch or testem and integrate them into your Travis.ci pull request builds.
 
 ## How easy is aXe to use?
 To download the module, make sure you have Node.js installed and are sitting in the root directory of your project, and execute the following command:
 
->npm install axe-core --save-dev
+```javascript
+npm install axe-core --save-dev
+```
 
 Then include the JavaScript file in your test fixtures:
 
-> <script src="node_modules/axe-core/axe.min.js"></script>
+```javascript
+<script src="node_modules/axe-core/axe.min.js"></script>
+```
 
 Finally, make calls to the accessibility checker function at the appropriate points in your functional tests:
 
->axe.a11yCheck(document, function (results) {
-ok(results.violations.length === 0, 'Should be no accessibility issues');
-// complete the async call
-...
+```javascript
+axe.a11yCheck(document, function (results) {
+  ok(results.violations.length === 0, 'Should be no accessibility issues');
+  // complete the async call
+  ...
 });
+```
 
 ## How do I get started?
 If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar ‘Creating Accessible Web Applications with aXe’.
 
-(https://www.youtube.com/e12a783f-3b1f-4980-9085-15ffade15b0b)
-
+<iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen></iframe>
 
 ## aXe Repository
 You can download the source code from our [GitHub repository](https://github.com/dequelabs/axe-core) where you can also fork, customize, extend and contribute.

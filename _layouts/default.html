@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% include head.html %}
+      {% include head.html %}
     </head>
 
-<div>
+    <div>
+        <body class="body" class="row" class="col-md-12">
+          {% include header.html %}
 
-    <body class="body" class="row" class="col-md-12">
-      {% include header.html %}
-
-      <div class="page-content">
-        {% include navbar.html %}
+          <div class="page-content">
+            {% include navbar.html %}
           
-      <div class="dqpl-main-content dqpl-collapsed"">
-         {{ content }}
-      </div>
-      </div>
-        
-        {% include footer.html %}
-    </body>
-
-</div>
+          <div class="dqpl-main-content dqpl-collapsed"">
+             {{ content }}
+          </div>
+          </div>
+            {% include footer.html %}
+        </body>
+    </div>
 </html>

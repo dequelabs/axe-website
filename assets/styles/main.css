@@ -9,6 +9,10 @@ body {
   font-size: 18px;
 }
 
+ul {
+    margin-left: 100px;
+}
+
 .dqpl-main-content{
     overflow: auto;
     position: fixed;
