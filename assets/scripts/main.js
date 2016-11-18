@@ -9,6 +9,22 @@ jQuery(function ($) {
     }
   })
 
+  $('.dqpl-menu-trigger').on('click', function () {
+    var menu = $('.dqpl-main-nav')
+    if (menu.hasClass('dqpl-show')) {
+      menu.addClass('dqpl-show')
+      setTimeout(function () {
+        menu.addClass('dqpl-active')
+      })
+    } else {
+      menu.removeClass('dqpl-active')
+      setTimeout(function () {
+        menu.removeClass('dqpl-show')
+      }, 400)
+    }
+
+  })
+
   // Build ul list of all h2s, with h3s as sublists
   function buildSubnav () {
     var lis = getStructure().map(function (item) {
