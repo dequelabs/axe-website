@@ -1,7 +1,8 @@
 ---
-layout: default
-title: Using Axe With Jasmine
+layout: page
+title: Example Jasmine
 ---
+
 
 This example demonstrates how to use aXe with the Jasmine unit testing framework.
 
@@ -31,19 +32,17 @@ failures.
 To run the example on your own HTML, such as widgets or controls, insert the
 HTML into the document, retrieve the root element of your widget (with e.g.,
 `document.getElementById()`), and pass that as the first argument into a call
-to `axe.run`.
+to `axe.a11yCheck`.  
 
-The third argument to the `axe.run` call should be the function to test
+The third argument to the `axe.a11yCheck` call should be the function to test
 the results. The example is simply looking at the count of violations, but much
 more detailed information is available if desired.  The aXe documentation
 should be consulted for more details on customizing and analyzing calls to
-`axe.run`.
+`axe.a11yCheck`.
 
 
-`package.json`
---------------
-
-```javascript
+## package.json
+<pre><code class="highlight language-javascript">
 {
   "name": "axe-jasmine-example",
   "description": "aXe Jasmine Example",
@@ -64,11 +63,11 @@ should be consulted for more details on customizing and analyzing calls to
     "grunt-contrib-jasmine": "~0.9.2"
   }
 }
-```
 
-Gruntfile.js
-------------
-```javascript
+</code></pre>
+
+## Gruntfile.js
+<pre><code class="highlight language-javascript">
 module.exports = function (grunt) {
 	'use strict';
 
@@ -85,12 +84,11 @@ module.exports = function (grunt) {
 		}
 	});
 };
-```
 
+</code></pre>
 
-spec/a11y.js
-------------
-```javascript
+## spec/a11y.js
+<pre><code class="highlight language-javascript">
 /* global describe, it, expect, axe, document */
 
 describe('axe', function () {
@@ -107,8 +105,7 @@ describe('axe', function () {
 
 	it('should report that good HTML is good', function (done) {
 		var n = document.getElementById('working');
-		axe.run(n, function (err, result) {
-			expect(err).toBe(null);
+		axe.a11yCheck(n, null, function (result) {
 			expect(result.violations.length).toBe(0);
 			done();
 		});
@@ -116,11 +113,12 @@ describe('axe', function () {
 
 	it('should report that bad HTML is bad', function (done) {
 		var n = document.getElementById('broken');
-		axe.run(n, function (err, result) {
-			expect(err).toBe(null);
+		axe.a11yCheck(n, null, function (result) {
 			expect(result.violations.length).toBe(1);
 			done();
 		});
 	});
 });
-```
+
+</code></pre>
+
