@@ -17,11 +17,11 @@ body {
   overflow: auto;
   position: fixed;
   height: 100%;
-  margin: 5px;
+  margin: 16px;
 }
 
 .dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img, .dqpl-item-text.dqpl-branding a .dqpl-logo img {
-  padding-left: 0px;
+  padding-left: 
   width: 100%;
   height: 85px;
 }
@@ -64,6 +64,7 @@ body {
 .dqpl-main-nav li.dqpl-subnav > a {
   margin: 0;
   border-left: solid 8px transparent;
+  border-bottom: none;
   display: block;
 }
 
