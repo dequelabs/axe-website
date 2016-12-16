@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: page
+title: About Axe
 ---
 <!-- Manifesto, About Deque and Deque products -->
 
