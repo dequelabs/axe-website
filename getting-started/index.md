@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: page
 title: Getting Started with Axe-core
 ---
 
 <!-- including screencasts, links to Deque U. examples with aXe analysis -->
-
-Getting Started
 
 ## Lorem?
 
