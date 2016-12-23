@@ -324,12 +324,12 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 
 	There are certain standards defined that can be used to select a set of rules. The defined standards and tag string are defined as follows:
 
-	> | Tag Name           | Accessibility Standard                |
-	|--------------------|:-------------------------------------:|
-	| `wcag2a`           | WCAG 2.0 Level A                      |
-	| `wcag2aa`          | WCAG 2.0 Level AA                     |
-	| `section508`       | Section 508                           |
-	| `best-practice`    | Best practices endorsed by Deque      |
+	| Tag Name           | Accessibility Standard|
+	|:-------------------|:----------------------|
+	| `wcag2a`| WCAG 2.0 Level A |
+	| `wcag2aa` | WCAG 2.0 Level AA |
+	| `section508` | Section 508 |
+	| `best-practice` | Best practices endorsed by Deque |
 
 	To run only WCAG 2.0 Level A rules, specify `options` as:
 

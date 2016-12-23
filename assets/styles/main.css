@@ -30,11 +30,30 @@ h3{
 
 table th {
   border-bottom: 1px solid #cccccc ;
-  width: 60%;
+  border-width: 60%;
 }
 
 table th, table td {
   padding-left: 50px;
+  height: 25px;
+}
+
+.allblocks{
+  text-align: center;
+  padding: 0px;
+  width: 100%;
+}
+
+.allblocks a {
+  text-decoration: none; 
+}
+
+.block {
+  border: 1px solid #cccccc;
+  float: left;
+  width: 30%;
+  margin: 8px;
+  padding: 10px;
 }
 
 body .dqpl-main-content.dqpl-collapsed {
@@ -44,6 +63,7 @@ body .dqpl-main-content.dqpl-collapsed {
 .post-content{
   border-left: 6px solid #0b0e11;
   padding-left: 25px;
+
 }
 
 .dqpl-main-content ul{

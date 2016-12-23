@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Example Qunit
+title: Example QUnit
 ---
 
 
