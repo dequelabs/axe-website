@@ -24,9 +24,7 @@ title: Axe API Documentation
 	1. [API Name: axe.cleanup](#api-name-axecleanup)
 1. [Section 3: Example Reference](#section-3-example-reference)
 
-
 ## Section 1: Introduction
-
 The aXe API is designed to be an improvement over the previous generation of accessibility APIs. It provides the following benefits:
 
 * Runs in any modern browser
@@ -46,8 +44,7 @@ The aXe API can be used as part of a broader process that is performed on many, 
 4. Either assert against results or save them for later processing
 
 
-## Section 2: API Reference
-
+## Section 2: API Reference 
 
 ### Overview
 
@@ -99,9 +96,9 @@ The current set of tags supported are listed in the following table:
 
 In this example, we pass in the WCAG 2 A and AA tags into `axe.getRules` to retrieve only those rules. The function call returns an array of rules.
 
-**Call:** `axe.getRules(['wcag2aa', 'wcag2a']);`
+_Call:_ `axe.getRules(['wcag2aa', 'wcag2a']);`
 
-**Returned Data:**
+_Returned Data:_
 
 ```javascript
 [
@@ -158,21 +155,21 @@ axe.configure({
   	 	* `options` - mixed(optional). This is the options structure that is passed to the evaluate function and is intended to be used to configure checks. It is the most common property that is intended to be overridden for existing checks.
   	 	* `matches` - string(optional). This string will filter the nodes that are passed into the evaluate function. It is a CSS selector.
   	 	* `enabled` - boolean(optional, default `true`). This is used to indicate whether the check is on or off by default. Checks that are off are not evaluated, even when included in a rule. Overriding this is a common way to disable a particular check across multiple rules.
-  * `rules` - Used to add rules to the existing set of rules, or to override the properties of existing rules
-  	* The rules attribute is an Array of rule objects
-  	* each rule object can contain the following attributes
-  	 	* `id` - string(required). This uniquely identifies the rule. If the rule already exists, it will be overridden with any of the attributes supplied. The attributes below that are marked required, are only required for new rules.
-  	 	* `selector` - string(optional, default `*`). A CSS selector used to identify the elements that are passed into the rule for evaluation.
-  	 	* `excludeHidden` - boolean(optional, default `true`). This indicates whether elements that are hidden from all users are to be passed into the rule for evaluation.
-  	 	* `enabled` - boolean(optional, default `true`). Whether the rule is turned on. This is a common attribute for overriding.
-  	 	* `pageLevel` - boolean(optional, default `false`). This indicates whether the page operates only when the scope is the entire page. An example of a rule like this is the skip link rule. It is not recommended to override this property unless also changing the implementation.
-  	 	* `any` -  array(optional, default `[]`). This is the list of checks that must all "pass" or else there is a violation.
-  	 	* `all` - array(optional, default `[]`). This is the list of checks that, if any "fails", will generate a violation.
-  	 	* `none` - array(optional, default `[]`). This is a list of the checks that, if none "pass", will generate a violation.
-  	 	* `tags` - array(optional, default `[]`). A list if the tags that "classify" the rule. In practice, you must supply some valid tags or the default evaluation will not invoke the rule. The convention is to include the standard (WCAG 2 and/or section 508), the WCAG 2 level, Section 508 paragraph, and the WCAG 2 success criteria. Tags are constructed by converting all letters to lower case, removing spaces and periods and concatinating the result. E.g. WCAG 2 A success criteria 1.1.1 would become ["wcag2a", "wcag111"]
-  	 	* `matches` - string(optional, default `*`). A filtering CSS selector that will exclude elements that do not match the CSS selector.
+* `rules` - Used to add rules to the existing set of rules, or to override the properties of existing rules
+	* The rules attribute is an Array of rule objects
+	* Each rule object can contain the following attributes: 
+		* `id` - string(required). This uniquely identifies the rule. If the rule already exists, it will be overridden with any of the attributes supplied. The attributes below that are marked required, are only required for new rules.
+		* `selector` - string(optional, default `*`). A CSS selector used to identify the elements that are passed into the rule for evaluation.
+		* `excludeHidden` - boolean(optional, default `true`). This indicates whether elements that are hidden from all users are to be passed into the rule for evaluation.
+		* `enabled` - boolean(optional, default `true`). Whether the rule is turned on. This is a common attribute for overriding.
+		* `pageLevel` - boolean(optional, default `false`). This indicates whether the page operates only when the scope is the entire page. An example of a rule like this is the skip link rule. It is not recommended to override this property unless also changing the implementation.
+		* `any` -  array(optional, default `[]`). This is the list of checks that must all "pass" or else there is a violation.
+		* `all` - array(optional, default `[]`). This is the list of checks that, if any "fails", will generate a violation.
+		* `none` - array(optional, default `[]`). This is a list of the checks that, if none "pass", will generate a violation.
+		* `tags` - array(optional, default `[]`). A list if the tags that "classify" the rule. In practice, you must supply some valid tags or the default evaluation will not invoke the rule. The convention is to include the standard (WCAG 2 and/or section 508), the WCAG 2 level, Section 508 paragraph, and the WCAG 2 success criteria. Tags are constructed by converting all letters to lower case, removing spaces and periods and concatinating the result. E.g. WCAG 2 A success criteria 1.1.1 would become ["wcag2a", "wcag111"]
+		* `matches` - string(optional, default `*`). A filtering CSS selector that will exclude elements that do not match the CSS selector.
 
-**Returns:** Nothing
+__Returns:__ Nothing
 
 
 ### API Name: axe.reset

@@ -23,7 +23,7 @@ aXe runs on your local development server in the same browser as your functional
 * Integration and acceptance testing
 * Cross-domain iframes of infinite depth (constrained only by memory)  
 
-  **This means…** you can be sure that aXe will support your needs and your infrastructure as it is today and as it evolves over time.
+_This means…_ you can be sure that aXe will support your needs and your infrastructure as it is today and as it evolves over time.
 
 ## aXe integrates with:
 * Chrome developer tools extension
@@ -38,14 +38,14 @@ aXe runs on your local development server in the same browser as your functional
 * PhantomJS
 * and any testing framework that supports JavaScript execution  
 
-  **This means…** you can integrate accessibility testing into your existing functional tests and catch accessibility issues before they make it into your code master.
+_This means…_ you can integrate accessibility testing into your existing functional tests and catch accessibility issues before they make it into your code master.
 
 ## What aXe doesn’t have:
 * Network connection latency – zero!
 * Failure modes due to connectivity or cloud server performance issues – none!
 * Monthly, or daily usage limits – nada!  
 
-  **This means…** you can run your accessibility tests instantly with gulp watch, grunt watch or testem and integrate them into your Travis.ci pull request builds.
+_This means…_ you can run your accessibility tests instantly with gulp watch, grunt watch or testem and integrate them into your Travis.ci pull request builds.
 
 ## How easy is aXe to use?
 To download the module, make sure you have Node.js installed and are sitting in the root directory of your project, and execute the following command:
