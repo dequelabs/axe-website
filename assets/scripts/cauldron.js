@@ -439,6 +439,9 @@ var _ = _self.Prism = {
 		_.hooks.run('before-sanity-check', env);
 
 		if (!env.code || !env.grammar) {
+			if (env.code) {
+				env.element.textContent = env.code;
+			}
 			_.hooks.run('complete', env);
 			return;
 		}
@@ -516,9 +519,16 @@ var _ = _self.Prism = {
 					lookbehindLength = 0,
 					alias = pattern.alias;
 
+				if (greedy && !pattern.pattern.global) {
+					// Without the global flag, lastIndex won't work
+					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
+					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+				}
+
 				pattern = pattern.pattern || pattern;
 
-				for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+				// Don’t cache length as it changes during the loop
+				for (var i=0, pos = 0; i<strarr.length; pos += strarr[i].length, ++i) {
 
 					var str = strarr[i];
 
@@ -538,40 +548,38 @@ var _ = _self.Prism = {
 
 					// Greedy patterns can override/remove up to two previously matched tokens
 					if (!match && greedy && i != strarr.length - 1) {
-						// Reconstruct the original text using the next two tokens
-						var nextToken = strarr[i + 1].matchedStr || strarr[i + 1],
-						    combStr = str + nextToken;
-
-						if (i < strarr.length - 2) {
-							combStr += strarr[i + 2].matchedStr || strarr[i + 2];
-						}
-
-						// Try the pattern again on the reconstructed text
-						pattern.lastIndex = 0;
-						match = pattern.exec(combStr);
+						pattern.lastIndex = pos;
+						match = pattern.exec(text);
 						if (!match) {
-							continue;
+							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0);
-						// To be a valid candidate, the new match has to start inside of str
-						if (from >= str.length) {
+						var from = match.index + (lookbehind ? match[1].length : 0),
+						    to = match.index + match[0].length,
+						    k = i,
+						    p = pos;
+
+						for (var len = strarr.length; k < len && p < to; ++k) {
+							p += strarr[k].length;
+							// Move the index i to the element in strarr that is closest to from
+							if (from >= p) {
+								++i;
+								pos = p;
+							}
+						}
+
+						/*
+						 * If strarr[i] is a Token, then the match starts inside another Token, which is invalid
+						 * If strarr[k - 1] is greedy we are in conflict with another greedy pattern
+						 */
+						if (strarr[i] instanceof Token || strarr[k - 1].greedy) {
 							continue;
 						}
-						var to = match.index + match[0].length,
-						    len = str.length + nextToken.length;
 
 						// Number of tokens to delete and replace with the new match
-						delNum = 3;
-
-						if (to <= len) {
-							if (strarr[i + 1].greedy) {
-								continue;
-							}
-							delNum = 2;
-							combStr = combStr.slice(0, len);
-						}
-						str = combStr;
+						delNum = k - i;
+						str = text.slice(pos, p);
+						match.index -= pos;
 					}
 
 					if (!match) {
@@ -640,7 +648,7 @@ var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
-	this.matchedStr = matchedStr || null;
+	this.length = (matchedStr || "").length|0;
 	this.greedy = !!greedy;
 };
 
@@ -676,13 +684,11 @@ Token.stringify = function(o, language, parent) {
 
 	_.hooks.run('wrap', env);
 
-	var attributes = '';
+	var attributes = Object.keys(env.attributes).map(function(name) {
+		return name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+	}).join(' ');
 
-	for (var name in env.attributes) {
-		attributes += (attributes ? ' ' : '') + name + '="' + (env.attributes[name] || '') + '"';
-	}
-
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
 
 };
 
@@ -715,7 +721,11 @@ if (script) {
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
 		if(document.readyState !== "loading") {
-			requestAnimationFrame(_.highlightAll, 0);
+			if (window.requestAnimationFrame) {
+				window.requestAnimationFrame(_.highlightAll);
+			} else {
+				window.setTimeout(_.highlightAll, 16);
+			}
 		}
 		else {
 			document.addEventListener('DOMContentLoaded', _.highlightAll);
@@ -744,10 +754,10 @@ if (typeof global !== 'undefined') {
 Prism.languages.markup = {
 	'comment': /<!--[\w\W]*?-->/,
 	'prolog': /<\?[\w\W]+?\?>/,
-	'doctype': /<!DOCTYPE[\w\W]+?>/,
+	'doctype': /<!DOCTYPE[\w\W]+?>/i,
 	'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
 	'tag': {
-		pattern: /<\/?(?!\d)[^\s>\/=.$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		pattern: /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 		inside: {
 			'tag': {
 				pattern: /^<\/?[^\s>\/]+/i,
@@ -804,7 +814,10 @@ Prism.languages.css = {
 	},
 	'url': /url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,
 	'selector': /[^\{\}\s][^\{\};]*?(?=\s*\{)/,
-	'string': /("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,
+	'string': {
+		pattern: /("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
 	'property': /(\b|\B)[\w-]+(?=\s*:)/i,
 	'important': /\B!important\b/i,
 	'function': /[-a-z0-9]+(?=\()/i,
@@ -885,7 +898,8 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'keyword': /\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
 	'number': /\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-	'function': /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i
+	'function': /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i,
+	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*\*?|\/|~|\^|%|\.{3}/
 });
 
 Prism.languages.insertBefore('javascript', 'keyword', {
@@ -1187,761 +1201,6 @@ Prism.languages.js = Prism.languages.javascript;
 
     return this;
   };
-}());
-
-(function () {
-  'use strict';
-
-  /**
-   * Can be implemented in a few different ways...
-   * 1) provide the "Skip to" text via `data-skip-to-text` attribute in
-   * which the label (aria-label or aria-labelledby) or role will be appended
-   * to in the text of the link.
-   * 	Example (using role):
-   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
-   * 		<div role="navigation">...</div>
-   * The target element is a role="navigation" and the data-skip-to-text is
-   * "Skip to" so the link's text will be "Skip to navigation"
-   *
-   * 	Additional example (using label)
-   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
-   * 		<div role="banner" aria-label="Foo Section"></div>
-   * the link's text here would be: "Skip to Foo section"
-   *
-   * 2) In addition to the above method, you can override the role or label
-   * readout ("navigation" in the above example) by adding a `data-skip-to-name`
-   * attribute. Example:
-   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
-   * 		<div role="navigation" data-skip-to-name="Main Navigation">
-   * which would result in a skip link's text: "Skip to Main Navigation"
-   *
-   * 3) The 3rd option is much different than the above... It lets you have
-   * complete control of the link's text.  You can create your own skip links
-   * within the "dqpl-skip-container" element in which you just have to create
-   * links with the class "dqpl-skip-link" and have the href attribute point to
-   * the id of the target of the skip link
-   * 	example:
-   * 	<div class="dqpl-skip-container">
-   * 		<ul>
-   * 			<li><a class="dqpl-skip-link" href="#main-content">Skip to main content</a></li>
-   * 			<li><a class="dqpl-skip-link" href="#side-bar">Jump to side bar</a></li>
-   * 			<li><a class="dqpl-skip-link" href="#other-thing">Hop to other thing</a></li>
-   * 		</ul>
-   * 	</div>
-   * 	<div id="main-content" role="main">
-   * 		I am the target of the first skip link "Skip to main content"
-   * 	</div>
-   * 	<div id="side-bar">
-   * 		I am the target of the second skip link "Jump to side bar"
-   * 	</div>
-   * 	<div id="other-thing">
-   * 		I am the target of the third skip link "Hop to other thing"
-   * 	</div>
-   *
-   *
-   * NOTE: add `data-remove-tabindex-on-blur="true"` to the skip container
-   * if you want tabindex to be removed from a skip target on blur (so when
-   * you click inside of a container the focus ring doesn't show up)
-   */
-
-  var $skipContainer = jQuery('.dqpl-skip-container');
-
-  if ($skipContainer.length) {
-    landmarksMenu();
-  }
-
-  jQuery(document).on('dqpl:ready', function () {
-    $skipContainer = jQuery('.dqpl-skip-container');
-    landmarksMenu();
-  });
-
-  function landmarksMenu() {
-    var shouldRemove = $skipContainer.is('[data-remove-tabindex-on-blur]');
-
-    // focus management
-    $skipContainer
-        .on('focusin', function (e) {
-          var $target = jQuery(e.target);
-
-          if ($target.closest('ul').length) {
-            $skipContainer.addClass('dqpl-child-focused');
-          }
-          $skipContainer.addClass('dqpl-skip-container-active');
-          setTimeout(function () {
-            $skipContainer.addClass('dqpl-skip-fade');
-          });
-        })
-        .on('focusout', function (e) {
-          var $target = jQuery(e.target);
-
-          setTimeout(function () {
-            var activeEl = document.activeElement;
-            if (!jQuery(activeEl).closest('.dqpl-skip-container').length) {
-              if ($target.closest('ul').length) {
-                $skipContainer.removeClass('dqpl-child-focused');
-              }
-              $skipContainer.removeClass('dqpl-skip-container-active');
-              setTimeout(function () {
-                $skipContainer.removeClass('dqpl-skip-fade');
-              });
-            }
-          });
-        });
-
-    if ($skipContainer.children().length) {
-      return fixExistingLinks(shouldRemove);
-    } else {
-      return createLandmarkMenu(shouldRemove);
-    }
-  }
-
-  function fixExistingLinks(shouldRemove) {
-    jQuery(document.body).on('click', '.dqpl-skip-link', function (e) {
-      e.preventDefault();
-      var $link = jQuery(this);
-      var href = $link.attr('href');
-      var $landing = jQuery(href);
-
-      if (!href || !$landing.length) {
-        return console.warn('Please provide a valid href for the skip link: ', this);
-      }
-
-      // ensure focusability
-      $landing.prop('tabIndex', $landing.prop('tabIndex') || '-1');
-      // focus it
-      $landing.focus();
-      if (shouldRemove) {
-        $landing.off('blur.dqpl').one('blur.dqpl', function () {
-          $landing.removeAttr('tabIndex');
-        });
-      }
-    });
-  }
-
-  function createLandmarkMenu(shouldRemove) {
-    var SELECTOR = [
-      '[role="main"]',
-      '[role="banner"]',
-      '[role="navigation"]',
-      '[data-skip-target="true"]'
-    ].join(', ');
-
-    var links = [];
-
-    jQuery(SELECTOR).each(function (_, skipTarget) {
-      var $skipTarget = jQuery(skipTarget);
-      if ($skipTarget.is('[data-no-skip="true"]')) {
-        return;
-      }
-      // calculate link text
-      var linkText = calculateText(skipTarget);
-
-      if (!linkText) {
-        return console.warn('Unable to calculate text for skip link for: ', skipTarget);
-      }
-
-      var skipToText = $skipContainer.attr('data-skip-to-text') || '';
-      var linkHtml = [
-        '<span class="dqpl-skip-one">' + skipToText + '</span>',
-        '<span class="dqpl-skip-two">' + linkText + '</span>'
-      ].join('');
-
-      // create a skip link
-      var $link = jQuery('<a href="#" class="dqpl-skip-link">' + linkHtml + '</a>');
-      links.push($link);
-
-      $link.on('click', function (e) {
-        e.preventDefault();
-        // ensure its focusable
-        skipTarget.tabIndex = skipTarget.tabIndex || -1;
-        // focus it
-        skipTarget.focus();
-        // account for the 80px of top bar height
-        window.scrollTo(0, $skipTarget.offset().top - 80);
-
-        if (shouldRemove) {
-          $skipTarget.off('blur.dqpl').one('blur.dqpl', function () {
-            $skipTarget.removeAttr('tabIndex');
-          });
-        }
-      });
-    });
-
-    var $parent = (links.length > 1) ?
-      $skipContainer.append(jQuery('<ul class="dqpl-skip-list"/>')).find('.dqpl-skip-list') :
-      $skipContainer;
-
-    jQuery.each(links, function (_, $link) {
-      $parent.append($link);
-      if (links.length > 1) {
-        $link.wrap('<li />');
-      }
-    });
-  }
-
-  /**
-   * Calculate text for a skip link based on (in order of precedence)
-   * - the element's data-skip-to-name attribute's value
-   * - the element's accessible name (calculated through aria-label or aria-labelledby)
-   * - fall back to the role (if present)
-   * @param  {HTMLElement} element The target of the skip link
-   * @return {String}              The calculated text for the skip link
-   */
-  function calculateText(element) {
-    var $el = jQuery(element);
-    return $el.attr('data-skip-to-name') || getLabel($el) || $el.attr('role');
-  }
-
-  /**
-   * Gets an elements aria-label
-   * |OR|
-   * text from the element referenced to in aria-labelledby
-   */
-  function getLabel($el) {
-    return $el.attr('aria-label') || idrefsText($el.attr('aria-labelledby'));
-  }
-
-  function idrefsText(str) {
-    if (!str) { return ''; }
-    var result = [], index, length;
-    var idrefs = str.trim().replace(/\s{2,}/g, ' ').split(' ');
-    for (index = 0, length = idrefs.length; index < length; index++) {
-      result.push(document.getElementById(idrefs[index]).textContent);
-    }
-    return result.join(' ');
-  }
-
-}());
-
-(function () {
-  'use strict';
-
-  var initialState;
-  var ACTIVE_CLASS = 'dqpl-active';
-  var $topBar = jQuery('.dqpl-top-bar');
-  var $trigger = $topBar.find('.dqpl-menu-trigger');
-  var $menu = jQuery('.dqpl-side-bar');
-  var $scrim = jQuery('#dqpl-side-bar-scrim');
-  // top level menuitems
-  var $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
-
-  if (!$topBar.length) {
-    return listenForReady();
-  } else {
-    ready();
-  }
-
-  function listenForReady() {
-    jQuery(document).one('dqpl:ready', function () {
-      $topBar = jQuery('.dqpl-top-bar');
-      $trigger = $topBar.find('.dqpl-menu-trigger');
-      $menu = jQuery('.dqpl-side-bar');
-      $scrim = jQuery('#dqpl-side-bar-scrim');
-      // top level menuitems
-      $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
-      ready();
-    });
-  }
-
-  function ready() {
-    /**
-     * Listen for resize so we can configure stuff based on the locking of the menu
-     */
-    jQuery.throttle({
-      element: window,
-      event: 'resize',
-      delay: 100
-    }, onResize);
-
-    onResize();
-
-    /**
-     * Listen for refresh events
-     * (prevents menus from getting in funky states)
-     */
-    $topBar.on('dqpl:refresh', onRefresh);
-
-    /**
-     * Listen for clicks outside the menu (when
-     * its opened AND not locked) to close it
-     */
-    jQuery(document).on('click', function (e) {
-      var $target = jQuery(e.target);
-      var isWithin = $target.closest('.dqpl-side-bar').length;
-      var isHamburger = $target.is('.dqpl-menu-trigger') || !!$target.closest('.dqpl-menu-trigger').length;
-      if (isWithin || isHamburger || $menu.attr('data-locked') === 'locked') {
-        return;
-      }
-
-      if ($menu.attr('aria-expanded') === 'true') {
-        onTriggerClick();
-      }
-    });
-
-    /**
-     * Toggle menu on hamburger clicks
-     */
-    $trigger.on('click', onTriggerClick);
-
-    function onTriggerClick(e, noFocus) {
-      toggleSubmenu($trigger, function (_, done) {
-        $trigger.toggleClass(ACTIVE_CLASS);
-        var wasActive = $menu.hasClass(ACTIVE_CLASS);
-        var first = wasActive ? ACTIVE_CLASS : 'dqpl-show';
-        var second = first === ACTIVE_CLASS ? 'dqpl-show' : ACTIVE_CLASS;
-
-        $menu.toggleClass(first);
-        $scrim.toggleClass('dqpl-scrim-show');
-        setTimeout(function () {
-          $menu.toggleClass(second);
-          $scrim.toggleClass('dqpl-scrim-fade-in');
-          setTimeout(function () {
-            done(noFocus);
-          });
-        }, 100);
-      });
-    }
-
-    /**
-     * Toggle submenu on other menu items with submenus
-     */
-    $topBar.on('click', '[role="menuitem"][aria-controls]', function () {
-      var $this = jQuery(this);
-      // trigger clicks are handled separately...
-      if ($this.is($trigger)) { return; }
-
-      toggleSubmenu($this, function ($dropdown, done) {
-        $dropdown.toggleClass('dqpl-dropdown-active');
-        done(false, ($dropdown.hasClass('dqpl-dropdown-active') ? $dropdown : $this));
-      });
-    });
-
-    /**
-     * Setup for menu items
-     */
-    $topBarMenuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
-    $menu.find('[role="menu"]').each(function (_, menu) {
-      var $menuItems = jQuery(menu).find('[role="menuitem"]');
-      $menuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
-    });
-
-    /**
-     * Keyboard logic for top bar
-     */
-    $topBar
-      .on('keydown', '[role="menuitem"]', function (e) {
-        var which = e.which;
-        var $target = jQuery(e.target);
-
-        switch (which) {
-          case 37:
-          case 39:
-            e.preventDefault(); // don't scroll
-            arrowHandler(
-              findTopLevels($topBar.find('[role="menubar"]').first(), true),
-              $target, which === 39 ? 'next' : 'prev'
-            );
-            break;
-          case 38:
-          case 40:
-            e.preventDefault();
-            if ($target.attr('aria-controls')) {
-              $target.click();
-            }
-            break;
-          case 13:
-          case 32:
-            e.preventDefault();
-            $target.click();
-            break;
-        }
-      })
-      .on('click', '[role="menuitem"]', function () {
-        var $target = jQuery(this);
-        var $link = $target.find('a');
-        if ($link.length) {
-          $link[0].click();
-        }
-      })
-      .on('keydown', '.dqpl-dropdown', function (e) {
-        var which = e.which;
-        var $target = jQuery(e.target);
-        var $dropdown = jQuery(this);
-
-        switch (which) {
-          case 27:
-          case 38:
-            var id = $dropdown.prop('id');
-            var $trigger = jQuery('[aria-controls="' + id + '"]');
-            $trigger.click();
-            break;
-        }
-      });
-
-    /**
-     * Keyboard logic for menu (side bar)
-     * - up/down traverse through menu items
-     * - right (with submenu) opens submenu / focuses first item
-     * - left/escape closes submenu (if within one) OR closes menu (if at top level)
-     */
-    $menu
-      .on('keydown', '[role="menuitem"]', function (e) {
-        var which = e.which;
-        var $target = jQuery(e.target);
-
-        switch (which) {
-          case 27:
-          case 37:
-            var isOfMenu = $target.parent().is($menu);
-            if ($menu.attr('data-locked') === 'true' && isOfMenu) {
-              return;
-            }
-            e.preventDefault();
-            e.stopPropagation(); // prevent bubbling for sake of submenus
-
-            var $thisMenu = $target.closest('[role="menu"]');
-            var $thisTrigger = jQuery('[aria-controls="' + $thisMenu.prop('id') + '"]');
-
-            $thisTrigger.click();
-
-            if (!isOfMenu) { activateMenuitem($target, $thisTrigger); }
-            break;
-          case 40:
-            e.preventDefault();
-            arrowSetup($target, 'next');
-            break;
-          case 38:
-            e.preventDefault();
-            arrowSetup($target, 'prev');
-            break;
-          case 32:
-          case 13:
-            e.preventDefault();
-            $target.trigger('click');
-            if (!$target.attr('aria-controls')) {
-              var $link = $target.find('a');
-              if ($link.length) {
-                $link[0].click();
-              }
-            }
-            break;
-          case 39:
-            if ($target.attr('aria-controls')) {
-              $target.click();
-            }
-            break;
-        }
-      })
-      /**
-       * Mouse logic for expandable submenu triggers
-       */
-      .on('click', '[role="menuitem"]', function (e) {
-        e.stopPropagation();
-        var $trigger = jQuery(this);
-        if ($trigger.attr('aria-controls')) {
-          toggleSubmenu($trigger, function ($submenu, done) {
-            $submenu.slideToggle(400, function () {
-              $trigger.toggleClass('dqpl-weight-bold');
-              var $toFocus = $submenu.find('[role="menuitem"][tabindex="0"]');
-              $toFocus = $toFocus.length ? $toFocus : $submenu.find('[role="menuitem"]').first();
-              done(false, $toFocus);
-            });
-          });
-        } else {
-          var $link = $trigger.find('a');
-          if ($link.length) {
-            $link[0].click();
-          }
-        }
-      })
-      .on('keydown', function (e) {
-        var which = e.which;
-        if (which !== 9) { return; }
-        setTimeout(function () {
-          var outsideOfMenu = !$menu.has(document.activeElement).length;
-          var isExpanded = $menu.attr('aria-expanded') === 'true';
-          if (outsideOfMenu && isExpanded) {
-            onTriggerClick(null, true);
-          }
-        });
-      });
-
-
-    /**
-     * The menu is locked into visibility above 1024px viewport...
-     * - ensure aria-expanded is removed/readded properly
-     * - ensure the topbar menu isn't thrown off (in case the hamburger was the "active" item)
-     */
-    var lastSize;
-    function onResize() {
-      var width = jQuery(window).width();
-
-      if (width >= 1024) {
-        if (!lastSize || lastSize === 'narrow') {
-          lastSize = 'wide';
-          var expanded = $menu.attr('aria-expanded');
-          if (expanded) {
-            $menu.attr('data-prev-expanded', expanded);
-          }
-
-          $menu.removeAttr('aria-expanded');
-          $scrim.removeClass('dqpl-scrim-show').removeClass('dqpl-scrim-fade-in');
-
-          if ($trigger.prop('tabIndex') === 0) {
-            // since `$trigger` gets hidden (via css) "activate" something else in the menubar
-            $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
-            $topBarMenuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
-          }
-          $menu.attr('data-locked', 'true');
-        }
-      } else {
-        if (!lastSize || lastSize === 'wide') {
-          lastSize = 'narrow';
-          var expandedVal = $menu.attr('data-prev-expanded') === 'true' ? 'true' : 'false';
-          $menu.attr('aria-expanded', expandedVal);
-          $topBarMenuItems = findTopLevels($topBar.find('ul').first(), true);
-          $menu.attr('data-locked', 'false');
-          if (expandedVal === 'true') {
-            $scrim.addClass('dqpl-scrim-show').addClass('dqpl-scrim-fade-in');
-          }
-        }
-      }
-    }
-
-    /**
-     * Ensure that there is 1 item with tabindex="0"
-     */
-    function onRefresh() {
-      $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
-      var $activeOne = $topBarMenuItems.filter('[tabindex="0"]');
-      if (!$activeOne.length) {
-        $topBarMenuItems.first().prop('tabIndex', 0);
-      }
-    }
-
-    /**
-     * Activates a menuitem and deactivates the previously active
-     * by giving the previously active menuitem tabindex="-1" and
-     * giving the newly active menuitem tabindex="0"
-     */
-    function activateMenuitem($prevActive, $newlyActive) {
-      $prevActive.prop('tabIndex', -1);
-      $newlyActive.prop('tabIndex', 0).focus();
-    }
-
-    /**
-     * Handles left/right arrow navigation
-     */
-    function arrowHandler($items, $target, dir) {
-      var isNext = dir === 'next';
-      var currentIdx = $items.index($target[0]);
-      var $adjacent = $items.eq(isNext ? currentIdx + 1 : currentIdx - 1);
-
-      // circularity (first or last)
-      if (!$adjacent.length) {
-        $adjacent = $items.eq(isNext ? 0 : $items.length - 1);
-      }
-
-      activateMenuitem($target, $adjacent);
-    }
-
-    /**
-     * Setup for arrow handler...finds the top levels and calls `arrowHandler`
-     */
-    function arrowSetup($target, dir) {
-      var $items = findTopLevels($target.closest('[role="menu"]'));
-      arrowHandler($items, $target, dir);
-    }
-
-    /**
-     * toggles a menu or submenu
-     * @param  {jQuery} $trig      jQuery wrapped element ref of the trigger of the given menu
-     * @param  {function} toggleFn a function that handles the toggling of the given menu
-     */
-    function toggleSubmenu($trig, toggleFn) {
-      var $droplet = jQuery('#' + $trig.attr('aria-controls'));
-
-      if (!$droplet.length) {
-        return;
-      }
-
-      toggleFn($droplet, function (noFocus, $focus) {
-        var prevExpanded = $droplet.attr('aria-expanded');
-        var wasCollapsed = !prevExpanded || prevExpanded === 'false';
-        $droplet.attr('aria-expanded', wasCollapsed);
-        if ($focus) {
-          $focus.focus();
-        } else if (!noFocus) {
-          var $active = $droplet.find('.dqpl-menuitem-selected').filter(':visible');
-          $active = $active.length ?
-            $active :
-            $droplet.find('[role="menuitem"][tabindex="0"]').filter(':visible').first();
-          var $focusMe = wasCollapsed ?
-            $active :
-            $droplet.closest('[aria-controls][role="menuitem"]');
-
-          $focusMe = $focusMe.length ? $focusMe : $trigger;
-          $focusMe.focus();
-        }
-      });
-    }
-  }
-
-  /**
-   * Finds the top level menu items of a menu
-   */
-  function findTopLevels($ul, visible) {
-    var $chiles = $ul.children().filter('[role="menuitem"]');
-    return (visible) ? $chiles.filter(':visible') : $chiles;
-  }
-}());
-
-(function () {
-  'use strict';
-
-  var $body = jQuery(document.body);
-
-  jQuery(document)
-    .on('click', '[data-modal]', function () {
-      var $trigger = jQuery(this);
-      var modalId = $trigger.attr('data-modal');
-      var $modal = jQuery('#' + modalId);
-
-      if (!$modal.length) {
-        console.warn('No modal found with id: ' + modalId);
-      } else {
-        openModal($trigger, $modal);
-      }
-    })
-    .on('click', '.dqpl-modal-close, .dqpl-modal-cancel', function () {
-      var $button = jQuery(this);
-      var $modal = $button.closest('.dqpl-modal');
-      closeModal($modal);
-    })
-    .on('keydown', '.dqpl-modal', function (e) {
-      var $modal = jQuery(this);
-      var target = e.target;
-      var $target = jQuery(target);
-      var which = e.which;
-
-      switch (which) {
-        case 27:
-          closeModal($modal);
-          break;
-        case 9:
-          var $focusables = $modal.focusable(false, true);
-          var $first = $focusables.first();
-          var $last = $focusables.last();
-          if (e.shiftKey && $first.is(target)) {
-            e.preventDefault();
-            $last.focus();
-          } else if (!e.shiftKey && $last.is(target)) {
-            e.preventDefault();
-            $first.focus();
-          }
-          break;
-      }
-    })
-    .on('keydown', '.dqpl-modal-header h2', function (e) {
-      if (e.which === 9 && e.shiftKey) {
-        e.preventDefault();
-        var $modal = jQuery(this).closest('.dqpl-modal');
-        var $focusables = $modal.focusable(false, true);
-        $focusables.last().focus();
-      }
-    });
-
-
-  function openModal($trigger, $modal) {
-    var $heading = $modal.find('.dqpl-modal-header h2');
-    // display it
-    $modal.addClass('dqpl-modal-show');
-    $body.addClass('dqpl-modal-open');
-    var $scrim = $modal.find('.dqpl-modal-screen');
-
-    if (!$scrim.length) {
-      $scrim = jQuery('<div class="dqpl-modal-screen" />');
-      $modal.append($scrim);
-    }
-
-    $scrim.show();
-
-    $heading.prop('tabIndex', -1).focus();
-
-    // aria-hidden to everything but the modal...
-    ariaHide($modal);
-
-    // trigger open event
-    $modal.trigger('dqpl:modal-open');
-
-    sizeHandler($modal);
-    jQuery(window).on('resize.dqplModal', function () {
-      sizeHandler($modal);
-    });
-  }
-
-  function closeModal($modal) {
-    var id = $modal.prop('id');
-    var $trigger = jQuery('[data-modal="' + id + '"]');
-
-    $modal.removeClass('dqpl-modal-show');
-    $body.removeClass('dqpl-modal-open');
-    ariaShow();
-    $trigger.focus();
-
-    // trigger close event
-    $modal.trigger('dqpl:modal-close');
-
-    jQuery(window).off('resize.dqplModal');
-  }
-
-  function sizeHandler($modal) {
-    $modal
-      .find('.dqpl-modal-content')
-        .css('max-height', jQuery(window).height() - 185);
-  }
-
-  /**
-   * Apply aria-hidden="true" to everything but modal (and parents of modal),
-   * remove aria-hidden when modal is closed (unless the element already had
-   * aria-hidden="true" applied to it)
-   */
-
-  function ariaHide($modal) {
-    var modal = $modal[0];
-    if (!modal) { return; }
-
-    var parent = modal.parentNode;
-    while (parent && parent.nodeName !== 'HTML') {
-      var $children = jQuery(parent).children();
-      $children.each(childHandler);
-      parent = parent.parentNode;
-    }
-
-    function childHandler(_, child) {
-      var $thisChild = jQuery(child);
-
-      if (!$thisChild.is(modal) && !jQuery.contains(child, modal)) {
-        alreadyHidden($thisChild);
-        $thisChild.attr('aria-hidden', 'true');
-      }
-    }
-  }
-
-  function ariaShow() {
-    jQuery('[aria-hidden="true"]').each(function (_, el) {
-      var $el = jQuery(el);
-      if ($el.attr('data-already-aria-hidden') !== 'true') {
-        $el.removeAttr('aria-hidden');
-      }
-    });
-  }
-
-  function alreadyHidden($el) {
-    if ($el.attr('aria-hidden') === 'true') {
-      $el.attr('data-already-aria-hidden', 'true');
-    }
-  }
 }());
 
 (function() {
@@ -2764,6 +2023,761 @@ Prism.languages.js = Prism.languages.javascript;
     var elemBottom = elTop + $el.height();
 
     return (elTop >= 0 && elemBottom <= contHeight);
+  }
+}());
+
+(function () {
+  'use strict';
+
+  /**
+   * Can be implemented in a few different ways...
+   * 1) provide the "Skip to" text via `data-skip-to-text` attribute in
+   * which the label (aria-label or aria-labelledby) or role will be appended
+   * to in the text of the link.
+   * 	Example (using role):
+   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
+   * 		<div role="navigation">...</div>
+   * The target element is a role="navigation" and the data-skip-to-text is
+   * "Skip to" so the link's text will be "Skip to navigation"
+   *
+   * 	Additional example (using label)
+   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
+   * 		<div role="banner" aria-label="Foo Section"></div>
+   * the link's text here would be: "Skip to Foo section"
+   *
+   * 2) In addition to the above method, you can override the role or label
+   * readout ("navigation" in the above example) by adding a `data-skip-to-name`
+   * attribute. Example:
+   * 		<div class="dqpl-skip-container" data-skip-to-text="Skip to"></div>
+   * 		<div role="navigation" data-skip-to-name="Main Navigation">
+   * which would result in a skip link's text: "Skip to Main Navigation"
+   *
+   * 3) The 3rd option is much different than the above... It lets you have
+   * complete control of the link's text.  You can create your own skip links
+   * within the "dqpl-skip-container" element in which you just have to create
+   * links with the class "dqpl-skip-link" and have the href attribute point to
+   * the id of the target of the skip link
+   * 	example:
+   * 	<div class="dqpl-skip-container">
+   * 		<ul>
+   * 			<li><a class="dqpl-skip-link" href="#main-content">Skip to main content</a></li>
+   * 			<li><a class="dqpl-skip-link" href="#side-bar">Jump to side bar</a></li>
+   * 			<li><a class="dqpl-skip-link" href="#other-thing">Hop to other thing</a></li>
+   * 		</ul>
+   * 	</div>
+   * 	<div id="main-content" role="main">
+   * 		I am the target of the first skip link "Skip to main content"
+   * 	</div>
+   * 	<div id="side-bar">
+   * 		I am the target of the second skip link "Jump to side bar"
+   * 	</div>
+   * 	<div id="other-thing">
+   * 		I am the target of the third skip link "Hop to other thing"
+   * 	</div>
+   *
+   *
+   * NOTE: add `data-remove-tabindex-on-blur="true"` to the skip container
+   * if you want tabindex to be removed from a skip target on blur (so when
+   * you click inside of a container the focus ring doesn't show up)
+   */
+
+  var $skipContainer = jQuery('.dqpl-skip-container');
+
+  if ($skipContainer.length) {
+    landmarksMenu();
+  }
+
+  jQuery(document).on('dqpl:ready', function () {
+    $skipContainer = jQuery('.dqpl-skip-container');
+    landmarksMenu();
+  });
+
+  function landmarksMenu() {
+    var shouldRemove = $skipContainer.is('[data-remove-tabindex-on-blur]');
+
+    // focus management
+    $skipContainer
+        .on('focusin', function (e) {
+          var $target = jQuery(e.target);
+
+          if ($target.closest('ul').length) {
+            $skipContainer.addClass('dqpl-child-focused');
+          }
+          $skipContainer.addClass('dqpl-skip-container-active');
+          setTimeout(function () {
+            $skipContainer.addClass('dqpl-skip-fade');
+          });
+        })
+        .on('focusout', function (e) {
+          var $target = jQuery(e.target);
+
+          setTimeout(function () {
+            var activeEl = document.activeElement;
+            if (!jQuery(activeEl).closest('.dqpl-skip-container').length) {
+              if ($target.closest('ul').length) {
+                $skipContainer.removeClass('dqpl-child-focused');
+              }
+              $skipContainer.removeClass('dqpl-skip-container-active');
+              setTimeout(function () {
+                $skipContainer.removeClass('dqpl-skip-fade');
+              });
+            }
+          });
+        });
+
+    if ($skipContainer.children().length) {
+      return fixExistingLinks(shouldRemove);
+    } else {
+      return createLandmarkMenu(shouldRemove);
+    }
+  }
+
+  function fixExistingLinks(shouldRemove) {
+    jQuery(document.body).on('click', '.dqpl-skip-link', function (e) {
+      e.preventDefault();
+      var $link = jQuery(this);
+      var href = $link.attr('href');
+      var $landing = jQuery(href);
+
+      if (!href || !$landing.length) {
+        return console.warn('Please provide a valid href for the skip link: ', this);
+      }
+
+      // ensure focusability
+      $landing.prop('tabIndex', $landing.prop('tabIndex') || '-1');
+      // focus it
+      $landing.focus();
+      if (shouldRemove) {
+        $landing.off('blur.dqpl').one('blur.dqpl', function () {
+          $landing.removeAttr('tabIndex');
+        });
+      }
+    });
+  }
+
+  function createLandmarkMenu(shouldRemove) {
+    var SELECTOR = [
+      '[role="main"]',
+      '[role="banner"]',
+      '[role="navigation"]',
+      '[data-skip-target="true"]'
+    ].join(', ');
+
+    var links = [];
+
+    jQuery(SELECTOR).each(function (_, skipTarget) {
+      var $skipTarget = jQuery(skipTarget);
+      if ($skipTarget.is('[data-no-skip="true"]')) {
+        return;
+      }
+      // calculate link text
+      var linkText = calculateText(skipTarget);
+
+      if (!linkText) {
+        return console.warn('Unable to calculate text for skip link for: ', skipTarget);
+      }
+
+      var skipToText = $skipContainer.attr('data-skip-to-text') || '';
+      var linkHtml = [
+        '<span class="dqpl-skip-one">' + skipToText + '</span>',
+        '<span class="dqpl-skip-two">' + linkText + '</span>'
+      ].join('');
+
+      // create a skip link
+      var $link = jQuery('<a href="#" class="dqpl-skip-link">' + linkHtml + '</a>');
+      links.push($link);
+
+      $link.on('click', function (e) {
+        e.preventDefault();
+        // ensure its focusable
+        skipTarget.tabIndex = skipTarget.tabIndex || -1;
+        // focus it
+        skipTarget.focus();
+        // account for the 80px of top bar height
+        window.scrollTo(0, $skipTarget.offset().top - 80);
+
+        if (shouldRemove) {
+          $skipTarget.off('blur.dqpl').one('blur.dqpl', function () {
+            $skipTarget.removeAttr('tabIndex');
+          });
+        }
+      });
+    });
+
+    var $parent = (links.length > 1) ?
+      $skipContainer.append(jQuery('<ul class="dqpl-skip-list"/>')).find('.dqpl-skip-list') :
+      $skipContainer;
+
+    jQuery.each(links, function (_, $link) {
+      $parent.append($link);
+      if (links.length > 1) {
+        $link.wrap('<li />');
+      }
+    });
+  }
+
+  /**
+   * Calculate text for a skip link based on (in order of precedence)
+   * - the element's data-skip-to-name attribute's value
+   * - the element's accessible name (calculated through aria-label or aria-labelledby)
+   * - fall back to the role (if present)
+   * @param  {HTMLElement} element The target of the skip link
+   * @return {String}              The calculated text for the skip link
+   */
+  function calculateText(element) {
+    var $el = jQuery(element);
+    return $el.attr('data-skip-to-name') || getLabel($el) || $el.attr('role');
+  }
+
+  /**
+   * Gets an elements aria-label
+   * |OR|
+   * text from the element referenced to in aria-labelledby
+   */
+  function getLabel($el) {
+    return $el.attr('aria-label') || idrefsText($el.attr('aria-labelledby'));
+  }
+
+  function idrefsText(str) {
+    if (!str) { return ''; }
+    var result = [], index, length;
+    var idrefs = str.trim().replace(/\s{2,}/g, ' ').split(' ');
+    for (index = 0, length = idrefs.length; index < length; index++) {
+      result.push(document.getElementById(idrefs[index]).textContent);
+    }
+    return result.join(' ');
+  }
+
+}());
+
+(function () {
+  'use strict';
+
+  var initialState;
+  var ACTIVE_CLASS = 'dqpl-active';
+  var $topBar = jQuery('.dqpl-top-bar');
+  var $trigger = $topBar.find('.dqpl-menu-trigger');
+  var $menu = jQuery('.dqpl-side-bar');
+  var $scrim = jQuery('#dqpl-side-bar-scrim');
+  // top level menuitems
+  var $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
+
+  if (!$topBar.length) {
+    return listenForReady();
+  } else {
+    ready();
+  }
+
+  function listenForReady() {
+    jQuery(document).one('dqpl:ready', function () {
+      $topBar = jQuery('.dqpl-top-bar');
+      $trigger = $topBar.find('.dqpl-menu-trigger');
+      $menu = jQuery('.dqpl-side-bar');
+      $scrim = jQuery('#dqpl-side-bar-scrim');
+      // top level menuitems
+      $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
+      ready();
+    });
+  }
+
+  function ready() {
+    /**
+     * Listen for resize so we can configure stuff based on the locking of the menu
+     */
+    jQuery.throttle({
+      element: window,
+      event: 'resize',
+      delay: 100
+    }, onResize);
+
+    onResize();
+
+    /**
+     * Listen for refresh events
+     * (prevents menus from getting in funky states)
+     */
+    $topBar.on('dqpl:refresh', onRefresh);
+
+    /**
+     * Listen for clicks outside the menu (when
+     * its opened AND not locked) to close it
+     */
+    jQuery(document).on('click', function (e) {
+      var $target = jQuery(e.target);
+      var isWithin = $target.closest('.dqpl-side-bar').length;
+      var isHamburger = $target.is('.dqpl-menu-trigger') || !!$target.closest('.dqpl-menu-trigger').length;
+      if (isWithin || isHamburger || $menu.attr('data-locked') === 'locked') {
+        return;
+      }
+
+      if ($menu.attr('aria-expanded') === 'true') {
+        onTriggerClick();
+      }
+    });
+
+    /**
+     * Toggle menu on hamburger clicks
+     */
+    $trigger.on('click', onTriggerClick);
+
+    function onTriggerClick(e, noFocus) {
+      toggleSubmenu($trigger, function (_, done) {
+        $trigger.toggleClass(ACTIVE_CLASS);
+        var wasActive = $menu.hasClass(ACTIVE_CLASS);
+        var first = wasActive ? ACTIVE_CLASS : 'dqpl-show';
+        var second = first === ACTIVE_CLASS ? 'dqpl-show' : ACTIVE_CLASS;
+
+        $menu.toggleClass(first);
+        $scrim.toggleClass('dqpl-scrim-show');
+        setTimeout(function () {
+          $menu.toggleClass(second);
+          $scrim.toggleClass('dqpl-scrim-fade-in');
+          setTimeout(function () {
+            done(noFocus);
+          });
+        }, 100);
+      });
+    }
+
+    /**
+     * Toggle submenu on other menu items with submenus
+     */
+    $topBar.on('click', '[role="menuitem"][aria-controls]', function () {
+      var $this = jQuery(this);
+      // trigger clicks are handled separately...
+      if ($this.is($trigger)) { return; }
+
+      toggleSubmenu($this, function ($dropdown, done) {
+        $dropdown.toggleClass('dqpl-dropdown-active');
+        done(false, ($dropdown.hasClass('dqpl-dropdown-active') ? $dropdown : $this));
+      });
+    });
+
+    /**
+     * Setup for menu items
+     */
+    $topBarMenuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
+    $menu.find('[role="menu"]').each(function (_, menu) {
+      var $menuItems = jQuery(menu).find('[role="menuitem"]');
+      $menuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
+    });
+
+    /**
+     * Keyboard logic for top bar
+     */
+    $topBar
+      .on('keydown', '[role="menuitem"]', function (e) {
+        var which = e.which;
+        var $target = jQuery(e.target);
+
+        switch (which) {
+          case 37:
+          case 39:
+            e.preventDefault(); // don't scroll
+            arrowHandler(
+              findTopLevels($topBar.find('[role="menubar"]').first(), true),
+              $target, which === 39 ? 'next' : 'prev'
+            );
+            break;
+          case 38:
+          case 40:
+            e.preventDefault();
+            if ($target.attr('aria-controls')) {
+              $target.click();
+            }
+            break;
+          case 13:
+          case 32:
+            e.preventDefault();
+            $target.click();
+            break;
+        }
+      })
+      .on('click', '[role="menuitem"]', function () {
+        var $target = jQuery(this);
+        var $link = $target.find('a');
+        if ($link.length) {
+          $link[0].click();
+        }
+      })
+      .on('keydown', '.dqpl-dropdown', function (e) {
+        var which = e.which;
+        var $target = jQuery(e.target);
+        var $dropdown = jQuery(this);
+
+        switch (which) {
+          case 27:
+          case 38:
+            var id = $dropdown.prop('id');
+            var $trigger = jQuery('[aria-controls="' + id + '"]');
+            $trigger.click();
+            break;
+        }
+      });
+
+    /**
+     * Keyboard logic for menu (side bar)
+     * - up/down traverse through menu items
+     * - right (with submenu) opens submenu / focuses first item
+     * - left/escape closes submenu (if within one) OR closes menu (if at top level)
+     */
+    $menu
+      .on('keydown', '[role="menuitem"]', function (e) {
+        var which = e.which;
+        var $target = jQuery(e.target);
+
+        switch (which) {
+          case 27:
+          case 37:
+            var isOfMenu = $target.parent().is($menu);
+            if ($menu.attr('data-locked') === 'true' && isOfMenu) {
+              return;
+            }
+            e.preventDefault();
+            e.stopPropagation(); // prevent bubbling for sake of submenus
+
+            var $thisMenu = $target.closest('[role="menu"]');
+            var $thisTrigger = jQuery('[aria-controls="' + $thisMenu.prop('id') + '"]');
+
+            $thisTrigger.click();
+
+            if (!isOfMenu) { activateMenuitem($target, $thisTrigger); }
+            break;
+          case 40:
+            e.preventDefault();
+            arrowSetup($target, 'next');
+            break;
+          case 38:
+            e.preventDefault();
+            arrowSetup($target, 'prev');
+            break;
+          case 32:
+          case 13:
+            e.preventDefault();
+            $target.trigger('click');
+            if (!$target.attr('aria-controls')) {
+              var $link = $target.find('a');
+              if ($link.length) {
+                $link[0].click();
+              }
+            }
+            break;
+          case 39:
+            if ($target.attr('aria-controls')) {
+              $target.click();
+            }
+            break;
+        }
+      })
+      /**
+       * Mouse logic for expandable submenu triggers
+       */
+      .on('click', '[role="menuitem"]', function (e) {
+        e.stopPropagation();
+        var $trigger = jQuery(this);
+        if ($trigger.attr('aria-controls')) {
+          toggleSubmenu($trigger, function ($submenu, done) {
+            $submenu.slideToggle(400, function () {
+              $trigger.toggleClass('dqpl-weight-bold');
+              var $toFocus = $submenu.find('[role="menuitem"][tabindex="0"]');
+              $toFocus = $toFocus.length ? $toFocus : $submenu.find('[role="menuitem"]').first();
+              done(false, $toFocus);
+            });
+          });
+        } else {
+          var $link = $trigger.find('a');
+          if ($link.length) {
+            $link[0].click();
+          }
+        }
+      })
+      .on('keydown', function (e) {
+        var which = e.which;
+        if (which !== 9) { return; }
+        setTimeout(function () {
+          var outsideOfMenu = !$menu.has(document.activeElement).length;
+          var isExpanded = $menu.attr('aria-expanded') === 'true';
+          if (outsideOfMenu && isExpanded) {
+            onTriggerClick(null, true);
+          }
+        });
+      });
+
+
+    /**
+     * The menu is locked into visibility above 1024px viewport...
+     * - ensure aria-expanded is removed/readded properly
+     * - ensure the topbar menu isn't thrown off (in case the hamburger was the "active" item)
+     */
+    var lastSize;
+    function onResize() {
+      var width = jQuery(window).width();
+
+      if (width >= 1024) {
+        if (!lastSize || lastSize === 'narrow') {
+          lastSize = 'wide';
+          var expanded = $menu.attr('aria-expanded');
+          if (expanded) {
+            $menu.attr('data-prev-expanded', expanded);
+          }
+
+          $menu.removeAttr('aria-expanded');
+          $scrim.removeClass('dqpl-scrim-show').removeClass('dqpl-scrim-fade-in');
+
+          if ($trigger.prop('tabIndex') === 0) {
+            // since `$trigger` gets hidden (via css) "activate" something else in the menubar
+            $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
+            $topBarMenuItems.prop('tabIndex', -1).first().prop('tabIndex', 0);
+          }
+          $menu.attr('data-locked', 'true');
+        }
+      } else {
+        if (!lastSize || lastSize === 'wide') {
+          lastSize = 'narrow';
+          var expandedVal = $menu.attr('data-prev-expanded') === 'true' ? 'true' : 'false';
+          $menu.attr('aria-expanded', expandedVal);
+          $topBarMenuItems = findTopLevels($topBar.find('ul').first(), true);
+          $menu.attr('data-locked', 'false');
+          if (expandedVal === 'true') {
+            $scrim.addClass('dqpl-scrim-show').addClass('dqpl-scrim-fade-in');
+          }
+        }
+      }
+    }
+
+    /**
+     * Ensure that there is 1 item with tabindex="0"
+     */
+    function onRefresh() {
+      $topBarMenuItems = findTopLevels($topBar.find('[role="menubar"]').first(), true);
+      var $activeOne = $topBarMenuItems.filter('[tabindex="0"]');
+      if (!$activeOne.length) {
+        $topBarMenuItems.first().prop('tabIndex', 0);
+      }
+    }
+
+    /**
+     * Activates a menuitem and deactivates the previously active
+     * by giving the previously active menuitem tabindex="-1" and
+     * giving the newly active menuitem tabindex="0"
+     */
+    function activateMenuitem($prevActive, $newlyActive) {
+      $prevActive.prop('tabIndex', -1);
+      $newlyActive.prop('tabIndex', 0).focus();
+    }
+
+    /**
+     * Handles left/right arrow navigation
+     */
+    function arrowHandler($items, $target, dir) {
+      var isNext = dir === 'next';
+      var currentIdx = $items.index($target[0]);
+      var $adjacent = $items.eq(isNext ? currentIdx + 1 : currentIdx - 1);
+
+      // circularity (first or last)
+      if (!$adjacent.length) {
+        $adjacent = $items.eq(isNext ? 0 : $items.length - 1);
+      }
+
+      activateMenuitem($target, $adjacent);
+    }
+
+    /**
+     * Setup for arrow handler...finds the top levels and calls `arrowHandler`
+     */
+    function arrowSetup($target, dir) {
+      var $items = findTopLevels($target.closest('[role="menu"]'));
+      arrowHandler($items, $target, dir);
+    }
+
+    /**
+     * toggles a menu or submenu
+     * @param  {jQuery} $trig      jQuery wrapped element ref of the trigger of the given menu
+     * @param  {function} toggleFn a function that handles the toggling of the given menu
+     */
+    function toggleSubmenu($trig, toggleFn) {
+      var $droplet = jQuery('#' + $trig.attr('aria-controls'));
+
+      if (!$droplet.length) {
+        return;
+      }
+
+      toggleFn($droplet, function (noFocus, $focus) {
+        var prevExpanded = $droplet.attr('aria-expanded');
+        var wasCollapsed = !prevExpanded || prevExpanded === 'false';
+        $droplet.attr('aria-expanded', wasCollapsed);
+        if ($focus) {
+          $focus.focus();
+        } else if (!noFocus) {
+          var $active = $droplet.find('.dqpl-menuitem-selected').filter(':visible');
+          $active = $active.length ?
+            $active :
+            $droplet.find('[role="menuitem"][tabindex="0"]').filter(':visible').first();
+          var $focusMe = wasCollapsed ?
+            $active :
+            $droplet.closest('[aria-controls][role="menuitem"]');
+
+          $focusMe = $focusMe.length ? $focusMe : $trigger;
+          $focusMe.focus();
+        }
+      });
+    }
+  }
+
+  /**
+   * Finds the top level menu items of a menu
+   */
+  function findTopLevels($ul, visible) {
+    var $chiles = $ul.children().filter('[role="menuitem"]');
+    return (visible) ? $chiles.filter(':visible') : $chiles;
+  }
+}());
+
+(function () {
+  'use strict';
+
+  var $body = jQuery(document.body);
+
+  jQuery(document)
+    .on('click', '[data-modal]', function () {
+      var $trigger = jQuery(this);
+      var modalId = $trigger.attr('data-modal');
+      var $modal = jQuery('#' + modalId);
+
+      if (!$modal.length) {
+        console.warn('No modal found with id: ' + modalId);
+      } else {
+        openModal($trigger, $modal);
+      }
+    })
+    .on('click', '.dqpl-modal-close, .dqpl-modal-cancel', function () {
+      var $button = jQuery(this);
+      var $modal = $button.closest('.dqpl-modal');
+      closeModal($modal);
+    })
+    .on('keydown', '.dqpl-modal', function (e) {
+      var $modal = jQuery(this);
+      var target = e.target;
+      var $target = jQuery(target);
+      var which = e.which;
+
+      switch (which) {
+        case 27:
+          closeModal($modal);
+          break;
+        case 9:
+          var $focusables = $modal.focusable(false, true);
+          var $first = $focusables.first();
+          var $last = $focusables.last();
+          if (e.shiftKey && $first.is(target)) {
+            e.preventDefault();
+            $last.focus();
+          } else if (!e.shiftKey && $last.is(target)) {
+            e.preventDefault();
+            $first.focus();
+          }
+          break;
+      }
+    })
+    .on('keydown', '.dqpl-modal-header h2', function (e) {
+      if (e.which === 9 && e.shiftKey) {
+        e.preventDefault();
+        var $modal = jQuery(this).closest('.dqpl-modal');
+        var $focusables = $modal.focusable(false, true);
+        $focusables.last().focus();
+      }
+    });
+
+
+  function openModal($trigger, $modal) {
+    var $heading = $modal.find('.dqpl-modal-header h2');
+    // display it
+    $modal.addClass('dqpl-modal-show');
+    $body.addClass('dqpl-modal-open');
+    var $scrim = $modal.find('.dqpl-modal-screen');
+
+    if (!$scrim.length) {
+      $scrim = jQuery('<div class="dqpl-modal-screen" />');
+      $modal.append($scrim);
+    }
+
+    $scrim.show();
+
+    $heading.prop('tabIndex', -1).focus();
+
+    // aria-hidden to everything but the modal...
+    ariaHide($modal);
+
+    // trigger open event
+    $modal.trigger('dqpl:modal-open');
+
+    sizeHandler($modal);
+    jQuery(window).on('resize.dqplModal', function () {
+      sizeHandler($modal);
+    });
+  }
+
+  function closeModal($modal) {
+    var id = $modal.prop('id');
+    var $trigger = jQuery('[data-modal="' + id + '"]');
+
+    $modal.removeClass('dqpl-modal-show');
+    $body.removeClass('dqpl-modal-open');
+    ariaShow();
+    $trigger.focus();
+
+    // trigger close event
+    $modal.trigger('dqpl:modal-close');
+
+    jQuery(window).off('resize.dqplModal');
+  }
+
+  function sizeHandler($modal) {
+    $modal
+      .find('.dqpl-modal-content')
+        .css('max-height', jQuery(window).height() - 185);
+  }
+
+  /**
+   * Apply aria-hidden="true" to everything but modal (and parents of modal),
+   * remove aria-hidden when modal is closed (unless the element already had
+   * aria-hidden="true" applied to it)
+   */
+
+  function ariaHide($modal) {
+    var modal = $modal[0];
+    if (!modal) { return; }
+
+    var parent = modal.parentNode;
+    while (parent && parent.nodeName !== 'HTML') {
+      var $children = jQuery(parent).children();
+      $children.each(childHandler);
+      parent = parent.parentNode;
+    }
+
+    function childHandler(_, child) {
+      var $thisChild = jQuery(child);
+
+      if (!$thisChild.is(modal) && !jQuery.contains(child, modal)) {
+        alreadyHidden($thisChild);
+        $thisChild.attr('aria-hidden', 'true');
+      }
+    }
+  }
+
+  function ariaShow() {
+    jQuery('[aria-hidden="true"]').each(function (_, el) {
+      var $el = jQuery(el);
+      if ($el.attr('data-already-aria-hidden') !== 'true') {
+        $el.removeAttr('aria-hidden');
+      }
+    });
+  }
+
+  function alreadyHidden($el) {
+    if ($el.attr('aria-hidden') === 'true') {
+      $el.attr('data-already-aria-hidden', 'true');
+    }
   }
 }());
 
