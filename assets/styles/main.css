@@ -85,7 +85,7 @@ body .dqpl-main-content.dqpl-collapsed {
 }
 
 /*Blue border of the selected nav. button*/
-.dqpl-side-bar li:not([aria-controls]).dqpl-menuitem-selected, .dqpl-side-bar .dqpl-item-text.dqpl-menuitem-selected {
+.nav-selected {
   border-left: 8px solid #6cdaf2;
 }
 
