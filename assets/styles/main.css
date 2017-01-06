@@ -86,7 +86,7 @@ body .dqpl-main-content.dqpl-collapsed {
 
 /*Blue border of the selected nav. button*/
 .nav-selected {
-  border-left: 8px solid #6cdaf2;
+  border-left: 8px solid #6cdaf2 !important;
 }
 
 /*Comes from default*/
