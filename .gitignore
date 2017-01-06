@@ -2,8 +2,4 @@ _site
 .sass-cache
 .jekyll-metadata
 .vs
-<<<<<<< HEAD
 node_modules
-=======
-node_modules
->>>>>>> master
