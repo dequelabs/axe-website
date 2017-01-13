@@ -28,16 +28,23 @@ h3{
   font-size: 20px;
 }
 
+table {
+  text-align: left;
+  padding-left: 80px;
+}
+
 table th {
-  border-bottom: 1px solid #cccccc ;
-  border-width: 60%;
+  border-bottom: 1px solid #cccccc;
+  font-size: 23px;
+  font-weight: 300;
 }
 
 table th, table td {
-  padding-left: 50px;
   height: 25px;
+  padding-right: 100px;
 }
 
+/*allblocks & block can be find in Integrations */
 .allblocks{
   text-align: center;
   padding: 0px;
@@ -46,14 +53,15 @@ table th, table td {
 
 .allblocks a {
   text-decoration: none;
+  text-align: center;
 }
 
 .block {
   border: 1px solid #cccccc;
-  float: left;
-  width: 30%;
+  width: 25%;
   margin: 8px;
-  padding: 10px;
+  padding: 10px;  
+  display: inline-block;
 }
 
 body .dqpl-main-content.dqpl-collapsed {
@@ -63,7 +71,6 @@ body .dqpl-main-content.dqpl-collapsed {
 .post-content{
   border-left: 6px solid #0b0e11;
   padding-left: 25px;
-
 }
 
 .dqpl-main-content ul{
@@ -154,7 +161,7 @@ body .dqpl-main-content.dqpl-collapsed {
 #gitter iframe {
   width: 100%;
   min-height: 400px;
-  height: 50vh;
+  height: 70vh;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -164,28 +171,27 @@ body .dqpl-main-content.dqpl-collapsed {
 }
 
 /* smartphone */
-@media only screen and (max-width: 767px) {
-.examplelogo {
-  height: 75px;
-  width: 75px;
-}
+ @media (max-width: 460px){
+  .examplelogo {
+    height: 75px;
+    width: 75px;
+  }
 }
 
 /* Tablet */
-
 @media (min-width: 768px) and (max-width: 991px) {
-.examplelogo {
-  height: 75px;
-  width: 75px;
-}
+  .examplelogo {
+    height: 85px;
+    width: 85px;
+  }
 }
 
 /* normal screen desktop */
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 1024px){
   .dqpl-main-content {
     margin-top: 90px;
     box-sizing: border-box;
-    padding-bottom: 110px;
+    padding-bottom: 10px;
   }
 
   .examplelogo {
@@ -193,16 +199,17 @@ body .dqpl-main-content.dqpl-collapsed {
     width: 100px;
   }
 }
+
 /* big screen desktop */
 @media (min-width: 1200px) {
-.dqpl-main-content {
-  padding-top: 90px;
-  box-sizing: border-box;
-  padding-bottom: 110px;
-}
-.examplelogo {
-  height: 100px;
-  width: 100px;
-}
+  .dqpl-main-content {
+    padding-top: 90px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+  }
+  .examplelogo {
+    height: 100px;
+    width: 100px;
+  }
 }
 

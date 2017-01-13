@@ -83,14 +83,12 @@ Returns a list of all rules with their ID and description
 
 The current set of tags supported are listed in the following table:
 
-|Tag Name         |Accessibility Standard |
-|:----------------|:----------------------|
-| wcag2a          | WCAG 2.0 Level A |
-| wcag2aa         | WCAG 2.0 Level AA |
-| section508      | Section 508 |
-| best-practice   | Best practices endorsed by Deque |  
-
-
+| Tag Name           | Accessibility Standard|
+|:-------------------|:----------------------|
+| `wcag2a`| WCAG 2.0 Level A |
+| `wcag2aa` | WCAG 2.0 Level AA |
+| `section508` | Section 508 |
+| `best-practice` | Best practices endorsed by Deque |
 
 #### Example 1
 
