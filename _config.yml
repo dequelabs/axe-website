@@ -12,3 +12,6 @@ markdown: kramdown
 exclude:
   - node_modules
   - build
+
+gems:
+  - jekyll-redirect-from

@@ -158,6 +158,9 @@ body .dqpl-main-content.dqpl-collapsed {
 
 .dqpl-top-bar {
   box-shadow: transparent !important;
+
+  left: 0;
+  right: 0;
 }
 
 .page-content .dqpl-main-content.dqpl-collapsed {
@@ -185,8 +188,8 @@ body .dqpl-main-content.dqpl-collapsed {
     width: 75px;
   }
 
-.page-content .dqpl-main-content.dqpl-collapsed {
-  padding-top: 80px;
+  .page-content .dqpl-main-content.dqpl-collapsed {
+    padding-top: 80px;
 }
 }
 
