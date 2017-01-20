@@ -45,45 +45,7 @@ _This means…_ you can integrate accessibility testing into your existing funct
 * Failure modes due to connectivity or cloud server performance issues – none!
 * Monthly, or daily usage limits – nada!  
 
-_This means…_ you can run your accessibility tests instantly with gulp watch, grunt watch or testem and integrate them into your Travis.ci pull request builds.
+_This means…_ you can run your accessibility tests instantly with gulp watch, grunt watch or test and integrate them into your Travis.ci pull request builds.
 
-## How easy is aXe to use?
-To download the module, make sure you have Node.js installed and are sitting in the root directory of your project, and execute the following command:
 
-```javascript
-npm install axe-core --save-dev
-```
 
-Then include the JavaScript file in your test fixtures:
-
-```javascript
-<script src="node_modules/axe-core/axe.min.js"></script>
-```
-
-Finally, make calls to the accessibility checker function at the appropriate points in your functional tests:
-
-```javascript
-axe.a11yCheck(document, function (results) {
-  ok(results.violations.length === 0, 'Should be no accessibility issues');
-  // complete the async call
-  ...
-});
-```
-
-## How do I get started?
-If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar ‘Creating Accessible Web Applications with aXe’.
-
-<iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen></iframe>
-
-## aXe Repository
-You can download the source code from our [GitHub repository](https://github.com/dequelabs/axe-core) where you can also fork, customize, extend and contribute.
-
-## aXe Integrations
-* [aXe for Selenium – Java Integration](https://github.com/dequelabs/axe-selenium-java)
-* [aXe for Selenium – JavaScript Integration](https://github.com/dequelabs/axe-webdriverjs)
-* [aXe Cucumber Integration Source](https://github.com/dequelabs/axe-matchers)
-* [aXe Cucumber Integration Built Gem](https://rubygems.org/gems/axe-matchers/)
-
-## aXe Browser Extensions
-* [aXe for Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd)
-* [aXe for Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/)

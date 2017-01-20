@@ -44,6 +44,10 @@ table th, table td {
   padding-right: 100px;
 }
 
+.browser {
+  text-align: center;
+}
+
 /*allblocks & block can be find in Integrations */
 .allblocks{
   text-align: center;
@@ -61,6 +65,7 @@ table th, table td {
   width: 25%;
   margin: 8px;
   padding: 10px;
+  padding-top: 30px;
   display: inline-block;
   overflow: auto;
   min-height: 175px;
@@ -172,12 +177,17 @@ body .dqpl-main-content.dqpl-collapsed {
   }
 }
 
+
 /* smartphone */
  @media (max-width: 767px){
   .examplelogo {
     height: 75px;
     width: 75px;
   }
+
+.page-content .dqpl-main-content.dqpl-collapsed {
+  padding-top: 80px;
+}
 }
 
 /* Tablet */
@@ -186,6 +196,10 @@ body .dqpl-main-content.dqpl-collapsed {
     height: 85px;
     width: 85px;
   }
+
+.page-content .dqpl-main-content.dqpl-collapsed {
+  padding-top: 80px;
+}
 }
 
 /* normal screen desktop */
