@@ -84,8 +84,3 @@ module.exports = function (grunt) {
 
 </code></pre>
 
-
-## Integrations
-
-* [aXe for Selenium – Java Integration](https://github.com/dequelabs/axe-selenium-java)
-* [aXe for Selenium – JavaScript Integration](https://github.com/dequelabs/axe-webdriverjs)

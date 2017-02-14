@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Example PhantomJS
+title: Example Phantomjs
 ---
 
 

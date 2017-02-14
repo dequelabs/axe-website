@@ -44,7 +44,7 @@ The aXe API can be used as part of a broader process that is performed on many, 
 4. Either assert against results or save them for later processing
 
 
-## Section 2: API Reference 
+## Section 2: API Reference
 
 ### Overview
 
@@ -94,9 +94,9 @@ The current set of tags supported are listed in the following table:
 
 In this example, we pass in the WCAG 2 A and AA tags into `axe.getRules` to retrieve only those rules. The function call returns an array of rules.
 
-_Call:_ `axe.getRules(['wcag2aa', 'wcag2a']);`
+**Call:** `axe.getRules(['wcag2aa', 'wcag2a']);`
 
-_Returned Data:_
+**Returned Data:**
 
 ```javascript
 [
@@ -155,7 +155,7 @@ axe.configure({
   	 	* `enabled` - boolean(optional, default `true`). This is used to indicate whether the check is on or off by default. Checks that are off are not evaluated, even when included in a rule. Overriding this is a common way to disable a particular check across multiple rules.
 * `rules` - Used to add rules to the existing set of rules, or to override the properties of existing rules
 	* The rules attribute is an Array of rule objects
-	* Each rule object can contain the following attributes: 
+	* Each rule object can contain the following attributes:
 		* `id` - string(required). This uniquely identifies the rule. If the rule already exists, it will be overridden with any of the attributes supplied. The attributes below that are marked required, are only required for new rules.
 		* `selector` - string(optional, default `*`). A CSS selector used to identify the elements that are passed into the rule for evaluation.
 		* `excludeHidden` - boolean(optional, default `true`). This indicates whether elements that are hidden from all users are to be passed into the rule for evaluation.
@@ -167,7 +167,7 @@ axe.configure({
 		* `tags` - array(optional, default `[]`). A list if the tags that "classify" the rule. In practice, you must supply some valid tags or the default evaluation will not invoke the rule. The convention is to include the standard (WCAG 2 and/or section 508), the WCAG 2 level, Section 508 paragraph, and the WCAG 2 success criteria. Tags are constructed by converting all letters to lower case, removing spaces and periods and concatinating the result. E.g. WCAG 2 A success criteria 1.1.1 would become ["wcag2a", "wcag111"]
 		* `matches` - string(optional, default `*`). A filtering CSS selector that will exclude elements that do not match the CSS selector.
 
-__Returns:__ Nothing
+**Returns:** Nothing
 
 
 ### API Name: axe.reset
@@ -275,14 +275,14 @@ In most cases, the component arrays will contain only one CSS selector. Multiple
 	}
    ```
 4. Include the element with the ID of `fix`, within the iframe with id `frame`
-	
+
    ```javascript
   	{
     	include: [['#frame', '#fix']]
  	}
    ```
 5. Include the element with the ID of `fix`, within the iframe with id `frame2`, within the iframe with id `frame1`
-	
+
    ```javascript
   	{
     include: [['#frame1', '#frame2', '#fix']]
@@ -364,7 +364,7 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 3. Run all enabled Rules except for a list of rules
 
 	The default operation for a11yCheck is to run all WCAG 2.0 Level A and Level AA rules. If certain rules should be disabled from being run, specify `options` as:
-	
+
    ```javascript
 	{
 	  "rules": {
@@ -379,7 +379,7 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 4. Run a modified set or rules using tags and rule enable
 
 	By combining runOnly with type: tags and the rules option, a modified set can be defined. This lets you include rules with unspecified tags, and exclude rules that do have the specified tag(s).
-	
+
    ```javascript
 	{
 	  runOnly: {
@@ -398,7 +398,7 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 5. Run only some tags, bug exclude others
 
 	Similar to scope, the runOnly option can accept an object with an 'include' and 'exclude' property. Only those checks that match an included tag will run, except those that share a tag from the exclude list.
-	
+
    ```javascript
 	{
 	  runOnly: {
@@ -411,12 +411,12 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 	}
    ```
 
-	This example first includes all `wcag2a` and `wcag2aa` rules. All rules that are tagged as `experimental` are than removed from the list of rules to run.  
+	This example first includes all `wcag2a` and `wcag2aa` rules. All rules that are tagged as `experimental` are than removed from the list of rules to run.
 
 
 ##### Callback Parameter
 
-The callback parameter is a function that will be called when the asynchronous `axe.a11yCheck` function completes. The callback function is passed a single parameter - the results object of the `axe.a11yCheck` call.  
+The callback parameter is a function that will be called when the asynchronous `axe.a11yCheck` function completes. The callback function is passed a single parameter - the results object of the `axe.a11yCheck` call.
 
 
 #### Results Object
@@ -431,10 +431,10 @@ The URL of the page that was tested.
 
 ###### `timestamp`
 
-The date and time that analysis was completed.  
+The date and time that analysis was completed.
 
 
-###### `passes` and `violations` array  
+###### `passes` and `violations` array
 
 * `description` - Text string that describes what the rule does
 * `help` - Help text that describes the test that was performed

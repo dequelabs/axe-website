@@ -44,6 +44,18 @@ table th, table td {
   padding-right: 100px;
 }
 
+code.highlighter-rouge {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background: rgba(217, 50, 81, 0.05);
+  display: inline-block;
+  padding: 0 2px;
+  color: #D93251;
+}
+
+strong {
+  font-weight: 700;
+}
+
 .browser {
   text-align: center;
 }
@@ -58,6 +70,10 @@ table th, table td {
 .allblocks a {
   text-decoration: none;
   text-align: center;
+}
+.block img {
+  display: block;
+  margin: 0 auto 2em;
 }
 
 .block {

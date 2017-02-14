@@ -12,11 +12,37 @@ fs.readFile( // Copy the API docs to docs/index
  'utf8',
   function (err, content) {
     frontLoad(
-      path.join(root, './docs/index.md'),
+      path.join(root, './docs.md'),
       { layout: 'page', title: 'Axe API Documentation' },
       content
     )
-    console.log('saved to file docs/index.md')
+    console.log('saved to file docs.md')
+  }
+)
+
+fs.readFile( // Copy the API docs to docs/index
+  path.join(axeDocs, './plugins.md'),
+ 'utf8',
+  function (err, content) {
+    frontLoad(
+      path.join(root, './plugins.md'),
+      { layout: 'page', title: 'Axe Plugins' },
+      content
+    )
+    console.log('saved to file plugins.md')
+  }
+)
+
+fs.readFile( // Copy the API docs to docs/index
+  path.join(axeDocs, './examples/html-handlebars.md'),
+ 'utf8',
+  function (err, content) {
+    frontLoad(
+      path.join(root, './examples/html-handlebars.md'),
+      { layout: 'page', title: 'Turning violation nodes into readable HTML' },
+      content
+    )
+    console.log('saved to file html-handlebars.md')
   }
 )
 
@@ -71,13 +97,13 @@ examples.forEach(example => {
 
   var fileName = example.split('/').slice(-1)[0] + '.md'
   frontLoad(
-    path.join(root, './integrations/', fileName),
+    path.join(root, './examples/', fileName),
     { layout: 'page',
       title: 'Example ' + fileName[0].toUpperCase() + fileName.match(/[^.]*/)[0].substr(1)
     },
     exampleBody + '\n\n'
   )
-  console.log('saved to file integrations/' + fileName)
+  console.log('saved to file examples/' + fileName)
 })
 
 function frontLoad (file, metaData, content) {
@@ -87,6 +113,10 @@ function frontLoad (file, metaData, content) {
       key => key + ': ' + metaData[key]
     ).join('\n') +
     '\n---\n' +
-    content.replace(/^#\s.+/, ''), 'utf8'
+    modifyHref(content).replace(/^#\s.+/, ''), 'utf8'
   )
+}
+
+function modifyHref (content) {
+  return content.replace(/\.md\)/g, '.html)')
 }
