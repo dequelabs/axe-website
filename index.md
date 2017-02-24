@@ -3,21 +3,61 @@ layout: page
 title: Easy Accessibility Testing with aXe
 ---
 
-The Accessibility Engine for automated testing of HTML-based user interfaces. Drop the aXe on your accessibility defects!
+<!-- including screencasts, links to Deque U. examples with aXe analysis -->
 
-<a href="https://github.com/dequelabs/axe-core"><img style="position: absolute; top: 80px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<a href="https://github.com/dequelabs/axe-core" target="_blank" title="Fork me on GitHub"><img style="position: absolute; top: 80px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
-## Philosophy
+## How do I get started?
 
-We believe that automated testing has an important role to play in achieving digital equality and that in order to do that, it must achieve mainstream adoption by professional web developers. That means that the tests must inspire trust, must be fast, must work everywhere and must be available everywhere.
+<div class="allblocks">
+	<div class="block integration">
+		<a href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd"><img src="../assets/images/chrome.png" alt="" class="examplelogo">
+	  	<br/>
+	    <br/>
+	    aXe for Chrome
+	  </a>
+	</div>
 
-## Manifesto
+	<div class="block integration">
+		<a href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/"><img src="../assets/images/firefox.png" alt="" class="examplelogo"> 
+			<br/>
+			<br/>
+			aXe for Firefox
+		</a>	
+	</div>
+</div>
 
-- Automated accessibility testing rules must have a zero false-positive rate
-- Automated accessibility testing rules must be lightweight and fast
-- Automated accessibility testing rules must work in all modern browsers
-- Automated accessibility testing rules must, themselves, be tested automatically
+<div class="browser">aXe Browser Extensions</div>
 
-## Getting Started
 
-The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/getting-started/#how-easy-is-axe-to-use).
+## How easy is aXe to use?
+To download the module, make sure you have Node.js installed and are sitting in the root directory of your project, and execute the following command:
+
+```javascript
+npm install axe-core --save-dev
+```
+
+Then include the JavaScript file in your test fixtures:
+
+```javascript
+<script src="node_modules/axe-core/axe.min.js"></script>
+```
+
+Finally, make calls to the accessibility checker function at the appropriate points in your functional tests:
+
+```javascript
+axe.a11yCheck(document, function (results) {
+  ok(results.violations.length === 0, 'Should be no accessibility issues');
+  // complete the async call
+  ...
+});
+```
+
+## What more?
+
+If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar ‘Creating Accessible Web Applications with aXe’.
+
+<iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen title="Webinar Creating AccessibleWeb Applications with aXe"></iframe>
+
+## aXe Repository
+You can download the source code from our [GitHub repository](https://github.com/dequelabs/axe-core) where you can also fork, customize, extend and contribute.

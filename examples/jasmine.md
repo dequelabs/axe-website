@@ -1,8 +1,7 @@
 ---
-layout: page
-title: Example Jasmine
+layout: example
+title: Example Jasmine 
 ---
-
 
 This example demonstrates how to use aXe with the Jasmine unit testing framework.
 

@@ -1,8 +1,26 @@
 ---
 layout: page
-title: About Axe
+title: About aXe
 ---
 <!-- Manifesto, About Deque and Deque products -->
+
+The Accessibility Engine for automated testing of HTML-based user interfaces. Drop the aXe on your accessibility defects!
+
+## Philosophy
+
+We believe that automated testing has an important role to play in achieving digital equality and that in order to do that, it must achieve mainstream adoption by professional web developers. That means that the tests must inspire trust, must be fast, must work everywhere and must be available everywhere.
+
+## Manifesto
+
+- Automated accessibility testing rules must have a zero false-positive rate
+- Automated accessibility testing rules must be lightweight and fast
+- Automated accessibility testing rules must work in all modern browsers
+- Automated accessibility testing rules must, themselves, be tested automatically
+
+## Getting Started
+
+The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/getting-started/#how-easy-is-axe-to-use).
+
 
 ## What is aXe?
 Deque System’s aXe (The Accessibility Engine) open source library is a lightweight (~100 KB), fast, portable JavaScript library that executes automated accessibility testing inside your testing framework or browser of choice.

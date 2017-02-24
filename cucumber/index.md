@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Example Mocha
+layout: example
+title: Example Cucumber
 ---
 
 This example demonstrates how to use aXe with Cucumber.

@@ -4,6 +4,10 @@ body {
   padding: 0px;
 }
 
+body p {
+  line-height: 1.618
+}
+
 * {
   font-family: Roboto, sans-serif;
   font-size: 18px;
@@ -70,7 +74,12 @@ strong {
 .allblocks a {
   text-decoration: none;
   text-align: center;
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #666666;
 }
+
 .block img {
   display: block;
   margin: 0 auto 2em;
@@ -85,6 +94,21 @@ strong {
   display: inline-block;
   overflow: auto;
   min-height: 175px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.backto {
+ float: right;
+ padding-top: 20px;
+
+}
+
+.backto a {
+  text-decoration: none; 
+}
+
+.integration img{
+  margin: 0 auto 0em !important;
 }
 
 body .dqpl-main-content.dqpl-collapsed {
@@ -189,6 +213,12 @@ body .dqpl-main-content.dqpl-collapsed {
   height: 70vh;
 }
 
+.small {
+  margin: 40px 0px 0px 0px;
+  text-decoration: none;
+}
+
+
 @media only screen and (min-width: 1024px) {
   .page-content .dqpl-main-content.dqpl-collapsed {
     padding-left: 277px;
@@ -205,7 +235,17 @@ body .dqpl-main-content.dqpl-collapsed {
 
   .page-content .dqpl-main-content.dqpl-collapsed {
     padding-top: 80px;
-}
+  }
+
+  .big {
+    display: none;
+  }
+
+  .small {
+    font-size: small;
+    margin: 110px 20px;
+    text-decoration: none;
+  }
 }
 
 /* Tablet */
@@ -215,9 +255,19 @@ body .dqpl-main-content.dqpl-collapsed {
     width: 85px;
   }
 
-.page-content .dqpl-main-content.dqpl-collapsed {
+  .page-content .dqpl-main-content.dqpl-collapsed {
   padding-top: 80px;
-}
+  }
+
+  .big {
+    display: none;
+  }
+
+  .small {
+    font-size: medium;
+    margin: 40px 25px;
+    text-decoration: none;
+  }
 }
 
 /* normal screen desktop */
@@ -241,6 +291,7 @@ body .dqpl-main-content.dqpl-collapsed {
     box-sizing: border-box;
     padding-bottom: 10px;
   }
+
   .examplelogo {
     height: 100px;
     width: 100px;
