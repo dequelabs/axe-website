@@ -75,7 +75,7 @@ title: aXe Playground
 					</div>
 				</div>
 				<div class="presets check hidden">
-					<div> 
+					<div>
 						<select id="check-presets" aria-labelledby="name-legend">
 							<option value="abstract-role">abstract-role</option>
 							<option value="allowed-attr">allowed-attr</option>
@@ -154,15 +154,15 @@ title: aXe Playground
 	<button id="apply-preset">Apply Selected Preset</button>
 	</div>
 	<h2>Edit the Fixture</h2>
-	<p> Modify the markup of the fixture below. This can be useful to test 
-whether minor adjustments to the given markup will satisfy the aXe 
+	<p> Modify the markup of the fixture below. This can be useful to test
+whether minor adjustments to the given markup will satisfy the aXe
 tool's rules.</p>
 	<label id="edit-html-legend" for="markup">Edit HTML</label>
 	<textarea class="prettyprint" id="markup" rows="10"></textarea>
 	<button id="render">Render Markup</button>
 	<h2>View the Rendered Fixture</h2>
 	<p>Everything in the area below will be targeted by aXe when you analyze the page.</p>
-	<div id="fixture">		
+	<div id="fixture">
 		<div>
 		  <label>
 		    <span>N<u>a</u>me</span>
@@ -184,8 +184,8 @@ tool's rules.</p>
 		<button class="area-trigger" data-area="options-area" data-text="aXe Options"></button>
 			<div class="hidden" id="options-area">
 				<h2>aXe Options</h2>
-				<p> Modify the options object below and click 'Analyze' to update the results. For more info, see 
-				<a href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter">the aXe documentation for the Options parameter</a>.</p> 
+				<p> Modify the options object below and click 'Analyze' to update the results. For more info, see
+				<a href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter">the aXe documentation for the Options parameter</a>.</p>
 				<label for="config-textarea">Edit Options</label>
 				<textarea id="config-textarea" rows="8"></textarea>
 				<button id="analyze">Update Results</button>
@@ -194,7 +194,9 @@ tool's rules.</p>
 		<label for="axe-results">Violations Array</label>
 		<textarea id="axe-results" rows="30" readonly="true"></textarea>
 	</div>
-	<script src="/build/axe/index.js"></script>
+
+	<script src="/assets/scripts/playground.js"></script>
+	<script src="/assets/scripts/axe.min.js"></script>
 	<script>analyze()</script>
 </main>
 
