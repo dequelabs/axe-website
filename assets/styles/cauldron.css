@@ -3506,7 +3506,7 @@ body :focus {
 }
 body h1 {
   margin: 0;
-  padding: 18px 0;
+  padding: 18px 0 !important;
 }
 body ul {
   margin: 0;

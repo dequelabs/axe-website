@@ -17,11 +17,6 @@ We believe that automated testing has an important role to play in achieving dig
 - Automated accessibility testing rules must work in all modern browsers
 - Automated accessibility testing rules must, themselves, be tested automatically
 
-## Getting Started
-
-The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/getting-started/#how-easy-is-axe-to-use).
-
-
 ## What is aXe?
 Deque System’s aXe (The Accessibility Engine) open source library is a lightweight (~100 KB), fast, portable JavaScript library that executes automated accessibility testing inside your testing framework or browser of choice.
 
@@ -65,5 +60,8 @@ _This means…_ you can integrate accessibility testing into your existing funct
 
 _This means…_ you can run your accessibility tests instantly with gulp watch, grunt watch or test and integrate them into your Travis.ci pull request builds.
 
+## Getting Started
+
+The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd/) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/getting-started/#how-easy-is-axe-to-use).
 
 

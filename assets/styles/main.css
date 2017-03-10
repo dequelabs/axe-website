@@ -15,8 +15,8 @@ body p {
 }
 
 h1 {
-  font-size: 56px;
-  color: #0b0e11;
+  font-size: 56px !important;
+  color: #0b0e11 !important;
  }
 
 .post-title {
@@ -133,9 +133,9 @@ body .dqpl-main-content.dqpl-collapsed {
 
 /*Logo*/
 .dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img, .dqpl-item-text.dqpl-branding a .dqpl-logo img {
-  height: 90px;
-  width: 100%;
-  padding-left: 0px;
+  height: 90px !important;
+  width: 100% !important;
+  padding-left: 0px !important;
 }
 
 /*Blue border of the selected nav. button*/

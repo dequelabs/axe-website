@@ -3,12 +3,22 @@ layout: page
 title: aXe Playground
 ---
 
-<link rel="stylesheet" href="/playground/assets/css/axe-panel.css" />
-<div id="axe-results-container"></div>
-
 <main class="grid">
-	<div class="col-1-2">
-		<button class="area-trigger" data-area="preset-area" data-text="Preset Fixtures"></button>
+<div>
+	<label id="edit-html-legend" for="markup">Edit HTML</label>
+	<textarea class="prettyprint" id="markup" rows="10"></textarea>
+	<button id="render">Analyse my HTML</button>
+	<br/>
+</div>
+
+
+
+<div>
+	<link rel="stylesheet" href="/playground/assets/css/axe-panel.css" />
+	<div id="axe-results-container"></div>
+</div>
+<div class="col-1-2">
+	<button class="area-trigger" data-area="preset-area" data-text="Preset Fixtures"></button>
 	<div class="hidden" id="preset-area">
 		<h2>Choose a Preset Fixture</h2>
 		<p>Choose the 'Type' and 'Name' of a specific rule or check you would like to test.</p>
@@ -160,9 +170,7 @@ title: aXe Playground
 	<p> Modify the markup of the fixture below. This can be useful to test
 whether minor adjustments to the given markup will satisfy the aXe
 tool's rules.</p>
-	<label id="edit-html-legend" for="markup">Edit HTML</label>
-	<textarea class="prettyprint" id="markup" rows="10"></textarea>
-	<button id="render">Render Markup</button>
+
 	<h2>View the Rendered Fixture</h2>
 	<p>Everything in the area below will be targeted by aXe when you analyze the page.</p>
 	<div id="fixture">
