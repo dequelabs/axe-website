@@ -1,0 +1,65 @@
+html {
+  font-family: Helvetica, sans-serif;
+}
+body {
+  padding: 10px;
+}
+[class^="col"] {
+  padding-left: 5px;
+}
+table th {
+  background-color: #eee;
+}
+table th,
+table td {
+  padding: 0.5em;
+  border: 1px solid #aaa;
+}
+.sr {
+  position: absolute;
+  left: 0px;
+  top: -500px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  visibility: visible !important;
+  display: block !important;
+}
+.hidden {
+  display: none;
+}
+.right {
+  float: right;
+}
+.clear {
+  clear: both;
+  content: '';
+  display: table;
+}
+textarea,
+code {
+  min-width: 100%;
+  max-width: 100%;
+  font-family: monospace;
+  border: 1px solid #cccccc;  
+  padding: 10px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+#axe-results,
+#markup {
+  overflow-x: scroll;
+  word-wrap: normal;
+  white-space: pre;
+}
+#fixture {
+  border: 1px solid #cccccc;  
+  padding: 10px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+div.radio label {
+  margin-left: 0.5em;
+}
+textarea,
+code {
+  font-size: 1em;
+}
