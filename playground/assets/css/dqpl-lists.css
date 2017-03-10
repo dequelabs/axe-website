@@ -1,0 +1,83 @@
+/* Lists */
+.dqpl-list {
+  margin: 0;
+  padding: 0;
+  display: block;
+  list-style: none;
+}
+.dqpl-list a {
+  color: #666;
+}
+.dqpl-list > li,
+.dqpl-list-item {
+  margin: 0;
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+  font-size: inherit;
+}
+.dqpl-list-item.dqpl-selected,
+.dqpl-list li.dqpl-selected {
+  background: #D5F4F7;
+}
+
+/* Clickable list items */
+.dqpl-list a {
+  display:block;
+  text-decoration: none;
+  margin: -9px -12px;
+  padding: 9px 12px;
+}
+.dqpl-list a:hover,
+.dqpl-list a:focus,
+.dqpl-list-item a:hover,
+.dqpl-list-item a:focus {
+  background: repeat-y url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5'><rect fill='rgb(40,54,64)' x='0' y='0' width='100%' height='100%'/></svg>");
+}
+.dqpl-list a:focus,
+.dqpl-list-item a:focus {
+  outline: solid 1px #CCC;
+  outline-offset: -1px
+}
+
+/* List nesting */
+.dqpl-list li > .dqpl-list-item,
+.dqpl-list-item > .dqpl-list-item {
+  margin: -9px -12px 0;
+}
+.dqpl-list .dqpl-list > li:list-child,
+.dqpl-list .dqpl-list .dqpl-list-item:last-child {
+  border:none;
+}
+.dqpl-list .dqpl-list {
+  margin: 0 -12px -9px;
+}
+
+/* list nesting, 2 levels */
+.dqpl-list .dqpl-list > li,
+.dqpl-list .dqpl-list .dqpl-list-item {
+  padding-left:24px
+}
+.dqpl-list .dqpl-list a {
+  margin-left: -24px;
+  padding-left: 24px;
+}
+
+/* list nesting, 3 levels */
+.dqpl-list .dqpl-list .dqpl-list > li,
+.dqpl-list .dqpl-list .dqpl-list .dqpl-list-item {
+  padding-left:36px
+}
+.dqpl-list .dqpl-list .dqpl-list a {
+  margin-left: -36px;
+  padding-left: 36px;
+}
+
+/* list nesting, 4 levels */
+.dqpl-list .dqpl-list .dqpl-list .dqpl-list > li,
+.dqpl-list .dqpl-list .dqpl-list .dqpl-list .dqpl-list-item {
+  padding-left:48px
+}
+.dqpl-list .dqpl-list .dqpl-list .dqpl-list a {
+  margin-left: -48px;
+  padding-left: 48px;
+}

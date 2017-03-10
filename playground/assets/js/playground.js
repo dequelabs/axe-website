@@ -9,6 +9,8 @@ var HIDDEN_CLASS = 'hidden';
 var SHOW = 'Show ';
 var HIDE = 'Hide ';
 
+
+
 module.exports = initAreas;
 
 /**
@@ -253,7 +255,6 @@ markupArea.innerHTML = safeTags(fixture.innerHTML);
 /**
  * Run aXe on the text fixture.
  */
-
 window.analyze = function () {
   var optsVal = configArea.value;
   var opts = optsVal.length && JSON.parse(optsVal) || {};
@@ -261,7 +262,11 @@ window.analyze = function () {
   axe.a11yCheck('#fixture', opts, function (res) {
     var str = JSON.stringify(res.violations, null, 2);
     resultsTextbox.innerHTML = safeTags(str);
-    window.scrollTo(0, 0);
+
+    window.postMessage({
+      topic: 'issues-set',
+      message: res
+    }, '*')
   });
 };
 
