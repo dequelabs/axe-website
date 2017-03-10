@@ -1,0 +1,112 @@
+body .dqpl-options-menu-wrap {
+  width: auto;
+}
+body button, body [role="button"] {
+  background: transparent;
+  color: inherit;
+}
+body .dqpl-options-menu-wrap .dqpl-options-menu {
+  top: 100%;
+  right: -8px;
+  color: black;
+  min-width: auto;
+}
+body .dqpl-options-menu-wrap .dqpl-options-menu .dqpl-options-menuitem {
+  font-size: 1em;
+  padding: 5px 30px 5px 8px;
+  white-space: nowrap;
+}
+body :not(pre) > code[class*="language-"] {
+  margin-top: 5px;
+  display: block;
+  padding: 5px 10px;
+}
+body .dqpl-checkbox-wrap,
+body .dqpl-radio-wrap {
+  margin-bottom: 24px
+}
+
+.dqpl-disabled {
+  color: rgba(255, 255, 255, 0.5);
+}
+.dqpl-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+body button.dqpl-disabled,
+body button[disabled],
+body button[aria-disabled="true"],
+body [role="button"].dqpl-disabled,
+body [role="button"][disabled],
+body [role="button"][aria-disabled="true"] {
+  cursor: inherit;
+}
+
+button.fa {
+  padding: 0;
+  font-size: 17px;
+  margin: 0 2px;
+  padding: 0 1px;
+}
+
+
+input.dqpl-radio,
+input.dqpl-checkbox {
+  width: auto;
+  height: auto;
+}
+
+input.dqpl-radio:focus,
+input.dqpl-checkbox:focus {
+  box-shadow: 0px 0px 8px 1px #3c7aae;
+  border-radius: 3px;
+}
+
+body .dqpl-flexr .dqpl-label {
+  padding-right: 8px;
+}
+
+body .dqpl-button-group button {
+  margin: 20px 24px 20px 0;
+}
+
+body .dqpl-select {
+  padding: 3px 8px;
+  font-size: 15px;
+  color: #666666;
+}
+
+body .dqpl-select,
+body .dqpl-text-input {
+  min-width:300px;
+  max-width:90%
+}
+
+.fa-spinner.dqpl-rotating {
+  width: 1em;
+  height: 1em;
+}
+.dqpl-rotating {
+  -moz-animation: spin 5s linear infinite;
+  -webkit-animation: spin 5s linear infinite;
+  -ms-animation: spin 5s linear infinite;
+}
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}

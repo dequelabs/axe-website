@@ -1,0 +1,13 @@
+.dqpl-narrow .dqpl-field-wrap {
+  margin-bottom: 12px;
+}
+
+.dqpl-narrow .dqpl-radio, .dqpl-checkbox {
+  width: 24px;
+  height: 24px
+}
+
+.dqpl-narrow .dqpl-checkbox-wrap,
+.dqpl-narrow .dqpl-radio-wrap {
+  margin-bottom: 12px
+}

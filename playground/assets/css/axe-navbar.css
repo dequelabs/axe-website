@@ -1,0 +1,81 @@
+.analyze-button.dqpl-button-primary {
+    margin: 24px 0;
+}
+
+.result-summary {
+    display: flex;
+    min-height: 48px;
+    border-bottom: 1px solid #CCC;
+}
+.result-summary + .dqpl-list {
+    overflow:auto
+}
+.result-summary .counts,
+.result-summary .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.result-summary .counts {
+	min-width: 148px;
+	background: #f2f2f2;
+	padding: 4px 12px;
+	box-sizing: border-box;
+}
+.result-summary .counts > div {
+    display: flex;
+    justify-content: space-between;
+}
+.result-summary .counts .violations {
+	font-size: 13px;
+}
+.result-summary .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+    margin: 2px 8px 2px 0;
+	font-size: 11px;
+	min-width:113px;
+}
+.result-summary .actions .dqpl-options-menu-wrap > button {
+    padding: 0;
+}
+
+.result-summary .actions .dqpl-options-menu {
+    right: -3px;
+    left: auto;
+}
+
+.violation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.violation-item .count {
+	display: inline-block;
+	margin-left: 12px;
+	font-size: 13px
+}
+.axe-panel-navbar .axe-analyze-status {
+	align-self: flex-end;
+	text-align: right;
+	padding: 0 4px 2px;
+	font-size: 11px;
+}
+.issue-links a {
+    display: inline-block;
+    padding-bottom: 2px;
+}
+body .result-summary .dqpl-options-menu-wrap .dqpl-options-menu {
+	top: 1.8em;
+}
+
+.dqpl-extension-aside .version-icon {
+    color: white;
+    position: absolute;
+    top: 7px;
+    right: 12px;
+    text-align: right;
+}

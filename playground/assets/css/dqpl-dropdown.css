@@ -1,0 +1,8 @@
+body .dqpl-options-menu-wrap .dqpl-options-menu .dqpl-options-menuitem.dqpl-dropdown-divider {
+  border-top: solid #ccc 1px;
+  padding: 0;
+}
+
+.dqpl-options-menuitem .dqpl-disabled {
+  color: rgba(0,0,0,0.5)
+}

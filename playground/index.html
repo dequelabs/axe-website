@@ -3,6 +3,9 @@ layout: page
 title: aXe Playground
 ---
 
+<link rel="stylesheet" href="/playground/assets/css/axe-panel.css" />
+<div id="axe-results-container"></div>
+
 <main class="grid">
 	<div class="col-1-2">
 		<button class="area-trigger" data-area="preset-area" data-text="Preset Fixtures"></button>
@@ -195,8 +198,10 @@ tool's rules.</p>
 		<textarea id="axe-results" rows="30" readonly="true"></textarea>
 	</div>
 
-	<script src="/assets/scripts/playground.js"></script>
-	<script src="/assets/scripts/axe.min.js"></script>
+	<script src="/playground/assets/js/playground.js"></script>
+	<script src="/playground/assets/js/axe.min.js"></script>
+	<script src="/playground/assets/js/axe-devtools-react.bundle.js"></script>
+	<script src="/playground/assets/js/axe-devtools-init.js"></script>
 	<script>analyze()</script>
 </main>
 
