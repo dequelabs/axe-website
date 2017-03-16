@@ -60,6 +60,10 @@ strong {
   font-weight: 700;
 }
 
+.analysebutton {
+  display: inline-block;
+}
+
 .browser {
   text-align: center;
 }
@@ -117,7 +121,7 @@ body .dqpl-main-content.dqpl-collapsed {
 
 .post-content{
   border-left: 6px solid #0b0e11;
-  padding-left: 25px;
+  padding: 0px 25px 20px;
 }
 
 .dqpl-main-content ul{
@@ -207,10 +211,25 @@ body .dqpl-main-content.dqpl-collapsed {
   height:100%;
   margin: 0 !important;
 }
+
+.fieldset {
+  border: 1px solid #cccccc;
+  width: 30%;
+  display: inline-block;
+  overflow: auto;
+  min-height: 80px;
+  padding: 8px 0px 0px 20px;
+  margin: 24px 0px 24px 0px;
+}
+
 #gitter iframe {
   width: 100%;
   min-height: 400px;
   height: 70vh;
+}
+
+.results {
+  margin-top: 24px;
 }
 
 .small {
@@ -218,6 +237,10 @@ body .dqpl-main-content.dqpl-collapsed {
   text-decoration: none;
 }
 
+.sizeinput {
+  min-width: 800px !important;
+  margin-right: 10px;
+}
 
 @media only screen and (min-width: 1024px) {
   .page-content .dqpl-main-content.dqpl-collapsed {
