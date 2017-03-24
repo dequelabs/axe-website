@@ -2,13 +2,9 @@
 layout: page
 title: aXe Playground
 ---
-<main class="grid">
-	<div class="play">
-		<h2>Edit the Fixture</h2>
-	<p> Modify the markup of the fixture below. This can be useful to test 
-whether minor adjustments to the given markup will satisfy the aXe 
-tool's rules.</p>
-	<label id="edit-html-legend" for="markup">Edit HTML</label>
+<div>
+	<p> Welcome to aXe Playground. Here comes a fancy pancy text about how to use the playground.</p>
+	<label id="edit-html-legend" for="markup">Paste your HTML in here</label>
 	<textarea class="prettyprint" id="markup" rows="10">&lt;div&gt;
   &lt;label&gt;
     &lt;span&gt;N&lt;u&gt;a&lt;/u&gt;me&lt;/span&gt;
@@ -26,8 +22,6 @@ tool's rules.</p>
 &lt;/div&gt;
 	</textarea>
 	<button class="area-trigger dqpl-button-secondary" data-area="preset-area" data-text="Preset Fixtures" aria-expanded="false" aria-controls="preset-area" type="button">
-			<span class="state">Show </span>
-			<span>Preset Fixtures</span>
 		</button>	
 		<div class="hidden" id="preset-area">
 		<h2>Choose a Preset Fixture</h2>
@@ -114,9 +108,8 @@ tool's rules.</p>
 	<button id="apply-preset" class="dqpl-button-primary" type="button">Apply Selected Preset</button>
 	</div>
 	<button id="render" class="dqpl-button-primary" type="button">Render Markup</button>
-	<button class="dqpl-button-secondary dqpl-button-wrap clear" type="button"><span class="dqpl-inner-button">CLEAR</span></button>
-	<h2>View the Rendered Fixture</h2>
-	<p>Everything in the area below will be targeted by aXe when you analyze the page.</p>
+	<h2>Your markup</h2>
+	<p>This is the markup of your HTML. Blablablabla....</p>
 	<div id="fixture">
 		<div>
   		<label>
@@ -134,10 +127,10 @@ tool's rules.</p>
   		<button accesskey="a">C<u>a</u>ncel</button>
 		</div>
 	</div>
-	</div>
+	
 	<div>
 		<h2>aXe Results</h2>
-		<label for="axe-results">Violations Array</label>
+		<p>Here are the aXe results. Below you can find blablablabla...</p>
 		<textarea id="axe-results" rows="30" readonly="true">[
   {
     "id": "accesskeys",
@@ -180,8 +173,6 @@ tool's rules.</p>
 ]
 		</textarea>
 		<button class="area-trigger dqpl-button-secondary" data-area="options-area" data-text="aXe Options" aria-expanded="false" aria-controls="options-area" type="button"> 
-			<span class="state">Show</span>
-			<span>aXe Options</span>
 		</button>
 		<div class="hidden" id="options-area">
 			<h2>aXe Options</h2>
@@ -190,7 +181,8 @@ tool's rules.</p>
 			<textarea id="config-textarea" rows="8"></textarea>
 			<button id="analyze" class="dqpl-button-primary" type="button">Update Results</button>
 		</div>
-	</div>
+	</div>	
 	<script src="/assets/scripts/index.js"></script>
 	<script>analyze()</script>
-</main>
+	</div>
+

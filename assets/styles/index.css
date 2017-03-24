@@ -51,6 +51,7 @@ code {
 #fixture {
   border: 2px solid #3C7AAE;
   padding: 10px;
+  margin-bottom: 20px;
 }
 div.radio label {
   margin-left: 0.5em;

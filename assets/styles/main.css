@@ -5,7 +5,8 @@ body {
 }
 
 body p {
-  line-height: 1.618
+  line-height: 1.618;
+  margin: 10px 0px;
 }
 
 * {
@@ -26,10 +27,16 @@ h1 {
 
 h2 {
   font-size: 34px;
+  margin: 0px;
 }
 
 h3{
   font-size: 20px;
+  margin: 0px;
+}
+
+h4 {
+  margin: 0px;
 }
 
 table {
