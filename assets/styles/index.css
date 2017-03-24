@@ -41,11 +41,7 @@ code {
   min-width: 100%;
   max-width: 100%;
   font-family: monospace;
-  border: 1px solid #cccccc;  
-  padding: 10px;
-  margin-top: 10px;
 }
-
 #axe-results,
 #markup {
   overflow-x: scroll;
@@ -53,9 +49,8 @@ code {
   white-space: pre;
 }
 #fixture {
-  border: 1px solid #cccccc;  
+  border: 2px solid #3C7AAE;
   padding: 10px;
-  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
 }
 div.radio label {
   margin-left: 0.5em;

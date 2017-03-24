@@ -68,6 +68,10 @@ strong {
   text-align: center;
 }
 
+.dqpl-button-secondary, .dqpl-button-primary {
+  margin: 0px 0px 10px 2px !important;
+}
+
 /*allblocks & block can be find in Integrations */
 .allblocks{
   text-align: center;
