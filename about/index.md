@@ -62,6 +62,6 @@ _This means…_ you can run your accessibility tests instantly with gulp watch, 
 
 ## Getting Started
 
-The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd/) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/getting-started/#how-easy-is-axe-to-use).
+The quickest way to pick up the aXe, is by using the extensions, available for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd/) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/). For developers, we recommend installing axe-core directly and [using it in your projects](/index/#how-easy-is-axe-to-use).
 
 
