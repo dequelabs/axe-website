@@ -3,23 +3,9 @@ layout: page
 title: aXe Playground
 ---
 <div>
-	<p> Welcome to aXe Playground. Here comes a fancy pancy text about how to use the playground.</p>
+	<p> Welcome to aXe Playground. Here comes a fancy pancy text about how to use the playground. And we need a link to DequeU for people who want to see how things can get solved: <a href="https://dequeuniversity.com/rules/axe/2.1/aria-required-children?application=axeChrome" target="_blank">(more info)</a></p>
 	<label id="edit-html-legend" for="markup">Paste your HTML in here</label>
-	<textarea class="prettyprint" id="markup" rows="10">&lt;div&gt;
-  &lt;label&gt;
-    &lt;span&gt;N&lt;u&gt;a&lt;/u&gt;me&lt;/span&gt;
-    &lt;input type="text" name="name" accesskey="a"&gt;
-  &lt;/label&gt;
-&lt;/div&gt;
-&lt;div&gt;
-  &lt;label&gt;
-    &lt;span&gt;&lt;u&gt;E&lt;/u&gt;mail&lt;/span&gt;
-    &lt;input type="email" name="email" accesskey="e"&gt;
-  &lt;/label&gt;
-&lt;/div&gt;
-&lt;div&gt;
-  &lt;button accesskey="a"&gt;C&lt;u&gt;a&lt;/u&gt;ncel&lt;/button&gt;
-&lt;/div&gt;
+	<textarea placeholder="Paste your HTML in here" class="prettyprint" id="markup" rows="10" >
 	</textarea>
 	<button class="area-trigger dqpl-button-secondary" data-area="preset-area" data-text="Preset Fixtures" aria-expanded="false" aria-controls="preset-area" type="button">
 		</button>	
@@ -107,76 +93,17 @@ title: aXe Playground
 	<p class="clear"></p>
 	<button id="apply-preset" class="dqpl-button-primary" type="button">Apply Selected Preset</button>
 	</div>
-	<button id="render" class="dqpl-button-primary" type="button">Render Markup</button>
-	<h2>Your markup</h2>
-	<p>This is the markup of your HTML. Blablablabla....</p>
-	<div id="fixture">
-		<div>
-  		<label>
-    		<span>N<u>a</u>me</span>
-    		<input type="text" name="name" accesskey="a">
-  		</label>
-		</div>
-		<div>
-  		<label>
-    		<span><u>E</u>mail</span>
-    		<input type="email" name="email" accesskey="e">
-  		</label>
-		</div>
-		<div>
-  		<button accesskey="a">C<u>a</u>ncel</button>
-		</div>
-	</div>
-	
+
 	<div>
 		<h2>aXe Results</h2>
 		<p>Here are the aXe results. Below you can find blablablabla...</p>
-		<textarea id="axe-results" rows="30" readonly="true">[
-  {
-    "id": "accesskeys",
-    "impact": "critical",
-    "tags": [
-      "wcag2a",
-      "wcag211"
-    ],
-    "description": "Ensures every accesskey attribute value is unique",
-    "help": "accesskey attribute value must be unique",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/2.1/accesskeys?application=axeAPI",
-    "nodes": [
-      {
-        "any": [],
-        "all": [],
-        "none": [
-          {
-            "id": "accesskeys",
-            "data": "a",
-            "relatedNodes": [
-              {
-                "html": "&lt;button accesskey=\"a\"&gt;C&lt;u&gt;a&lt;/u&gt;ncel&lt;/button&gt;",
-                "target": [
-                  "#fixture &gt; div:nth-of-type(3) &gt; button"
-                ]
-              }
-            ],
-            "impact": "critical",
-            "message": "Document has multiple elements with the same accesskey"
-          }
-        ],
-        "impact": "critical",
-        "html": "&lt;input type=\"text\" name=\"name\" accesskey=\"a\"&gt;",
-        "target": [
-          "#fixture &gt; div:nth-of-type(1) &gt; label &gt; input"
-        ]
-      }
-    ]
-  }
-]
+		<textarea id="axe-results" rows="30" readonly="true" placeholder="Your aXe result">
 		</textarea>
 		<button class="area-trigger dqpl-button-secondary" data-area="options-area" data-text="aXe Options" aria-expanded="false" aria-controls="options-area" type="button"> 
 		</button>
 		<div class="hidden" id="options-area">
 			<h2>aXe Options</h2>
-			<p> Modify the options object below and click 'Analyze' to update the results. For more info, see <a href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter">the aXe documentation for the Options parameter</a>.</p>
+			<p> Modify the options object below and click 'Analyze' to update the results. For more info, see <a href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter" target="_blank">the aXe documentation for the Options parameter</a>.</p>
 			<label for="config-textarea">Edit Options</label>
 			<textarea id="config-textarea" rows="8"></textarea>
 			<button id="analyze" class="dqpl-button-primary" type="button">Update Results</button>
