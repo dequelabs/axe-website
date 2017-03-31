@@ -6,23 +6,23 @@ title: aXe API Documentation
 
 ## Table of Contents
 
-1. [Section 1: Introduction](#section-1-introduction)
-	1. [Get Started](#getting-started)
-1. [Section 2: API Reference](#section-2-api-reference)
-	1. [Overview](#overview)
-	1. [API Notes](#api-notes)
-	1. [API Name: axe.getRules](#api-name-axegetrules)
-	1. [API Name: axe.configure](#api-name-axeconfigure)
-	1. [API Name: axe.reset](#api-name-axereset)
-	1. [API Name: axe.a11yCheck](#api-name-axea11ycheck)
-		1. [Parameters](#parameters-2)
-			1. [Context Parameter](#context-parameter)
-			2. [Options Parameter](#options-parameter)
-			3. [Callback Parameter](#callback-parameter)
-		1. [Results Object](#results-object)
-	1. [API Name: axe.registerPlugin](#api-name-axeregisterplugin)
-	1. [API Name: axe.cleanup](#api-name-axecleanup)
-1. [Section 3: Example Reference](#section-3-example-reference)
+1. <a href="#section-1-introduction" class="dqpl-link">Section 1: Introduction</a>
+	1. <a href="#getting-started" class="dqpl-link">Get Started</a>
+1. <a href="#section-2-api-reference" class="dqpl-link">Section 2: API Reference</a>
+	1. <a href="#overview" class="dqpl-link">Overview</a>
+	1. <a href="#api-notes" class="dqpl-link">API Notes</a>
+	1. <a href="#api-name-axegetrules" class="dqpl-link">API Name: axe.getRules</a>
+	1. <a href="#api-name-axeconfigure" class="dqpl-link">API Name: axe.configure</a>
+	1. <a href="#api-name-axereset" class="dqpl-link">API Name: axe.reset</a>
+	1. <a href="#api-name-axea11ycheck" class="dqpl-link">API Name: axe.a11yCheck</a>
+		1. <a href="#parameters-2" class="dqpl-link">Parameters</a>
+			1. <a href="#context-parameter" class="dqpl-link">Context Parameter</a>
+			2. <a href="#options-parameter" class="dqpl-link">Options Parameter</a>
+			3. <a href="#callback-parameter" class="dqpl-link">Callback Parameter</a>
+		1. <a href="#results-object" class="dqpl-link">Results Object</a>
+	1. <a href="#api-name-axeregisterplugin" class="dqpl-link">API Name: axe.registerPlugin</a>
+	1. <a href="#api-name-axecleanup" class="dqpl-link">API Name: axe.cleanup</a>[]()
+1. <a href="#section-3-example-reference" class="dqpl-link">Section 3: Example Reference</a>
 
 ## Section 1: Introduction
 The aXe API is designed to be an improvement over the previous generation of accessibility APIs. It provides the following benefits:

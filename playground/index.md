@@ -3,7 +3,7 @@ layout: page
 title: aXe Playground
 ---
 <div>
-	<p> Welcome to aXe Playground. Here comes a fancy pancy text about how to use the playground. And we need a link to DequeU for people who want to see how things can get solved: <a href="https://dequeuniversity.com/rules/axe/2.1/aria-required-children?application=axeChrome" target="_blank">(more info)</a></p>
+	<p> Welcome to aXe Playground. Here comes a fancy pancy text about how to use the playground. And we need a link to DequeU for people who want to see how things can get solved: <a class="dqpl-link" href="https://dequeuniversity.com/rules/axe/2.1/aria-required-children?application=axeChrome" target="_blank">(more info)</a></p>
 	<label id="edit-html-legend" for="markup">Paste your HTML in here</label>
 	<textarea placeholder="Paste your HTML in here" class="prettyprint" id="markup" rows="10" >
 	</textarea>

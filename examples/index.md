@@ -3,46 +3,46 @@ layout: page
 title: aXe Integrations
 ---
 
-aXe can be used with many test tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can only be used effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through WebDriver. And somewhere must come a link to the <a href="https://www.deque.com/products/axe-core/">productpage</a>.
+aXe can be used with many test tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can only be used effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through WebDriver. And somewhere must come a link to the <a class="dqpl-link" href="https://www.deque.com/products/axe-core/">productpage</a>.
 
 <div class="allblocks">
 	<div class="block">
-		<a href="./jasmine.html">
+		<a class="dqpl-link" href="./jasmine.html">
 			<img src="../assets/images/jasmine.png" alt="" class="examplelogo">
 	    Jasmine integration example
 	  </a>
 	</div>
 
 	<div class="block">
-		<a href="./mocha.html">
+		<a class="dqpl-link" href="./mocha.html">
 			<img src="../assets/images/mocha.png" alt="" class="examplelogo">
 			Mocha integration example
 		</a>
 	</div>
 
 	<div class="block">
-		<a href="./selenium.html">
+		<a class="dqpl-link" href="./selenium.html">
 			<img src="../assets/images/selenium.png" alt="" class="examplelogo">
 			Selenium integration example
 		</a>
 	</div>
 
 	<div class="block">
-		<a href="./phantomjs.html">
+		<a class="dqpl-link" href="./phantomjs.html">
 			<img src="../assets/images/phantomjs.png" alt="" class="examplelogo">
 			PhantomJS integration example
 		</a>
 	</div>
 
 	<div class="block">
-	  <a href="./qunit.html">
+	  <a class="dqpl-link" href="./qunit.html">
 	  	<img src="../assets/images/qunit.png" alt="" class="examplelogo">
 			QUnit integration example
 		</a>
 	</div>
 	
 	<div class="block">
-	  <a href="../cucumber/">
+	  <a class="dqpl-link" href="../cucumber/">
 	  	<img src="../assets/images/cucumber.png" alt="" class="examplelogo">
 			Cucumber Ruby
 		</a>
@@ -54,7 +54,7 @@ aXe can be used with many test tools. Because many of aXe tests require a render
 When you click on one of the integrations you will be send to a other webpage.
 
 <div class="allblocks">
-	<a href="https://www.deque.com/products/worldspace-attest/" target="_blank">
+	<a class="dqpl-link" href="https://www.deque.com/products/worldspace-attest/" target="_blank">
 		<div class="block">
 	  	<img src="../assets/images/cucumberruby.png" alt="" class="examplelogo">
 			Cucumber Ruby
