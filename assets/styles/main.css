@@ -38,6 +38,10 @@ h4 {
   margin: 0px;
 }
 
+iframe {
+  padding-bottom: 20px
+}
+
 table {
   text-align: left;
   padding-left: 80px;
@@ -117,7 +121,7 @@ strong {
 }
 
 .dqpl-button-secondary, .dqpl-button-primary {
-  margin: 0px 0px 10px 2px !important;
+  margin: 0px 7px 10px 7px !important;
 }
 
 .dqpl-main-content ul{
@@ -192,9 +196,9 @@ strong {
 }
 
 .fork {
-  position: fixed; 
+  position: absolute; 
   top: 70px; 
-  right: 15px; 
+  right: 0px; 
   border: 0; 
   z-index: 1;
 }
@@ -226,12 +230,10 @@ strong {
 }
 
 .post-content{
-  border-left: 6px solid #283640;
   padding: 0px 25px 20px;
 }
 
 .post-title {
-  padding-left: 31px;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -273,25 +275,35 @@ strong {
   }
 
   .fork {
-  right: 0px; 
+    top: 50px;
+    right: 10px;
   }
 
   .logo {
     width: 110px !important;
   }
 
+  iframe {
+    height: 350px;
+    width: 325px;
+  }
+
   .page-content .dqpl-main-content.dqpl-collapsed {
-  padding-top: 60px;
+  padding-top: 50px;
   }
 
   .post-content {
     border: none;
     padding: 0px;
   }
+
+  .post-title {
+    margin-left: 0px;
+  }
 }
 
 /* Tablet */
-@media screen and (min-width: 500px) and (max-width: 1023.9px){
+@media screen and (min-width: 480.1px) and (max-width: 1023.9px){
   .big {
     display: none;
   }
@@ -301,21 +313,22 @@ strong {
   height: 231px;
   }
 
+  body .dqpl-main-content.dqpl-collapsed{
+   width: 100%;
+  }
+
   .examplelogo {
     height: 85px;
     width: 85px;
   }
 
   .fork {
-  right: 0px; 
+    top: 70px;
+    right: 0px;
   }
 
   .logo {
     width: 110px !important;
-  }
-
-  .page-content .dqpl-main-content.dqpl-collapsed {
-  padding-top: 60px;
   }
 
   .post-content {
@@ -323,10 +336,21 @@ strong {
     padding: 0px;
   }
 
+  .post-title {
+    margin-top: 50px;
+  }
+
   .small {
     font-size: medium;
     margin: 40px 25px;
     text-decoration: none;
+  }
+}
+
+@media screen and (min-width: 480.1px) and (max-width: 766px){
+  .fork {
+    top: 60px;
+    right: 15px;
   }
 }
 
@@ -347,6 +371,10 @@ strong {
     height: 100px;
     width: 100px;
   }
+
+  .post-header {
+    padding-top: 80px;
+  }
 }
 
 /* big screen desktop */
@@ -360,6 +388,10 @@ strong {
   .examplelogo {
     height: 100px;
     width: 100px;
+  }
+
+  .post-header {
+    padding-top: 0px;
   }
 }
 
