@@ -206,12 +206,13 @@ applyPresetBtn.addEventListener('click', function () {
  *  - Re-render the fixture using the current markup
  *  - Analyze the fixture and update the results
  */
-
-renderBtn.addEventListener('click', function () {
-  var html = markupArea.value;
-  fixture.innerHTML = html;
-  analyze();
-});
+if (renderBtn) {
+  renderBtn.addEventListener('click', function () {
+    var html = markupArea.value;
+    fixture.innerHTML = html;
+    analyze();
+  });
+}
 
 /**
  * Clicks on the 'Analyze' button run aXe on the existing fixture.
