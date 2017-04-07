@@ -2,17 +2,14 @@
 layout: page
 title: Easy Accessibility Testing with aXe
 ---
-
-<!-- including screencasts, links to Deque U. examples with aXe analysis -->
-
-<a href="https://github.com/dequelabs/axe-core" target="_blank" title="Fork me on GitHub"><img style="position: fixed; top: 70px; right: 15px; border: 0; z-index: 1" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<div><a href="https://github.com/dequelabs/axe-core" target="_blank" title="Fork me on GitHub"><img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" class="fork" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></div>
 
 ## How do I get started?
 The quickest way to pick up the aXe, is by using the extensions, available for Chrome and Firefox. For developers, we recommend installing axe-core directly and using it in your projects.
 
 <div class="allblocks">
 	<div class="block integration">
-		<a href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd" target="_blank"><img src="../assets/images/chrome.png" alt="" class="examplelogo">
+		<a class="dqpl-link" href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd"  target="_blank"><img src="../assets/images/chrome.png" alt="" class="examplelogo">
 	  	<br/>
 	    <br/>
 	    aXe for Chrome
@@ -20,7 +17,7 @@ The quickest way to pick up the aXe, is by using the extensions, available for C
 	</div>
 
 	<div class="block integration">
-		<a href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/" target="_blank"><img src="../assets/images/firefox.png" alt="" class="examplelogo"> 
+		<a class="dqpl-link" href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/"  target="_blank"><img src="../assets/images/firefox.png" alt="" class="examplelogo"> 
 			<br/>
 			<br/>
 			aXe for Firefox
@@ -61,4 +58,4 @@ If you want a more in-depth view of what aXe can do and how you can start perfor
 <iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen title="Webinar Creating AccessibleWeb Applications with aXe"></iframe>
 
 ## aXe Repository
-You can download the source code from our [GitHub repository](https://github.com/dequelabs/axe-core) where you can also fork, customize, extend and contribute.
+You can download the source code from our <a class="dqpl-link" href="https://github.com/dequelabs/axe-core"  alt="" target="_blank">GitHub repository</a> where you can also fork, customize, extend and contribute.

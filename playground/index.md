@@ -93,22 +93,22 @@ title: aXe Playground
 	<p class="clear"></p>
 	<button id="apply-preset" class="dqpl-button-primary" type="button">Apply Selected Preset</button>
 	</div>
-
-	<div>
-		<h2>aXe Results</h2>
-		<p>Here are the aXe results. Below you can find blablablabla...</p>
-		<textarea id="axe-results" rows="30" readonly="true" placeholder="Your aXe result">
-		</textarea>
-		<button class="area-trigger dqpl-button-secondary" data-area="options-area" data-text="aXe Options" aria-expanded="false" aria-controls="options-area" type="button"> 
-		</button>
-		<div class="hidden" id="options-area">
+	<h2>aXe Results</h2>
+	<p>Here are the aXe results. Below you can find blablablabla...</p>
+	<button class="area-trigger dqpl-button-secondary" data-area="options-area" data-text="aXe Options" aria-expanded="false" aria-controls="options-area" type="button"> 
+	</button>
+	<div class="hidden" id="options-area">
 			<h2>aXe Options</h2>
-			<p> Modify the options object below and click 'Analyze' to update the results. For more info, see <a href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter" target="_blank">the aXe documentation for the Options parameter</a>.</p>
+			<p> Modify the options object below and click 'Analyze' to update the results. For more info, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter"  target="_blank">the aXe documentation for the Options parameter</a>.</p>
 			<label for="config-textarea">Edit Options</label>
 			<textarea id="config-textarea" rows="8"></textarea>
 			<button id="analyze" class="dqpl-button-primary" type="button">Update Results</button>
-		</div>
-	</div>	
+	</div>
+	<div>
+
+		<textarea id="axe-results" rows="30" readonly="true" placeholder="Your aXe result">
+		</textarea>
+	</div>
 	<script src="/assets/scripts/index.js"></script>
 	<script>analyze()</script>
 	</div>
