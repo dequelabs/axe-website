@@ -1,3 +1,19 @@
+.table {
+  border: none;
+  padding-left: 0px;
+}
+
+.tabletext {
+  border: none;
+  padding-left: 0px;
+}
+
+.tablebutton {
+  vertical-align: bottom; 
+  padding: 0px;
+  border: none;
+}
+
 body {
   background-color: #FDFDFE;
   margin: 0px;
@@ -19,6 +35,9 @@ body .dqpl-main-content.dqpl-collapsed {
   font-weight: 300;
 }
 
+fieldset{
+  border: none;
+}
 h1 {
   font-size: 56px !important;
   color: #0b0e11 !important;
@@ -118,10 +137,6 @@ strong {
 .container {
   width: 80%;
   text-align: center;
-}
-
-.dqpl-button-secondary, .dqpl-button-primary {
-  margin: 0px 7px 10px 7px !important;
 }
 
 .dqpl-main-content ul{

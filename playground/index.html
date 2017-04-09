@@ -5,10 +5,17 @@ title: aXe Playground
 <div>
 	<div id="playground-input">
 		<div id="markup-input">
-			<button class="dqpl-button-secondary pull-right" id="show-options">
-				Select an example
-			</button>
-			<p>text</p>
+			<p>
+				<table class="table">
+					<tr >
+						<td class="tabletext">Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "CLEAR FIELD" and put in your own piece of code. In "SELECT AN EXAMPLE" you can set a specific rule you want aXe to check. If you're ready to go press "ANALYSE HTML".
+						</td>
+						<td class="tablebutton">			
+						<button class="dqpl-button-secondary pull-right" id="show-options">Select an example</button>
+						</td>
+					</tr>
+				</table>
+			</p>
 
 			<textarea  id="markup" class="prettyprint" rows="10"
 		  	placeholder="Paste your HTML in here"></textarea>
@@ -18,13 +25,19 @@ title: aXe Playground
 		  	<button class="dqpl-button-secondary">Clear field</button>
 		  </div>
 		</div>
-
 		<div id="markup-select" class="hidden">
-			<button class="dqpl-button-secondary pull-right" id="toggle-input">
-				Back to HTML input
-			</button>
-			<p>text</p>
-
+			<p>
+				<table class="table">
+					<tr >
+						<td class="tabletext">What do you want aXe to check for you? Select Rule or Check and choose your specific preset. If you are done, press "APPLY SELECTED PRESET".
+						</td>
+						<td class="tablebutton">			
+						<button class="dqpl-button-secondary pull-right" id="toggle-input">Back to HTML input
+						</button>						
+						</td>
+					</tr>
+				</table>
+			</p>
 			<fieldset>
 				<legend>Type</legend>
 				<div class="radio">
@@ -103,7 +116,6 @@ title: aXe Playground
 						</ul>
 					</div>
 				</div>
-
 			</fieldset>
 			<p class="clear"></p>
 			<button id="apply-preset" class="dqpl-button-primary" type="button">
@@ -115,28 +127,43 @@ title: aXe Playground
 	<hr />
 	<h2>aXe Results</h2>
 
-	<div>
-		<div id="options-area">
-			<button class="dqpl-button-secondary pull-right" id="toggle-options">
-				Show aXe output
-			</button>
-			<p> Modify the options object below and click 'Analyze' to update the results. For more info, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter"  target="_blank">the aXe documentation for the Options parameter</a>.</p>
-			<label for="config-textarea">Edit Options</label>
-			<textarea id="config-textarea" rows="8"></textarea>
-		</div>
-
-		<div id="results-area" class="hidden">
-			<button class="dqpl-button-secondary pull-right" id="toggle-output">
-				Change aXe options
-			</button>
-			<p>text</p>
+	<div>		
+		<div id="results-area">
+			<p>
+				<table class="table">
+					<tr >
+						<td class="tabletext">This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".
+						</td>
+						<td class="tablebutton">			
+						<button class="dqpl-button-secondary pull-right" id="toggle-output">Change aXe options
+						</button>						
+						</td>
+					</tr>
+				</table>
+			</p>
 			<textarea id="axe-results" rows="20" readonly="true"
 				placeholder="Your aXe result"></textarea>
 		</div>
+		<div id="options-area" class="hidden">
+			<p>
+				<table class="table">
+					<tr >
+						<td class="tabletext">Modify the options object below and click 'Analyze' to update the results. For more info, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter"  target="_blank">the aXe documentation for the Options parameter</a>.
+						</td>
+						<td class="tablebutton">			
+						<button class="dqpl-button-secondary pull-right" id="toggle-options">Show aXe output
+						</button>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<label for="config-textarea">Edit Options</label>
+			<textarea id="config-textarea" rows="8"></textarea>
+		</div>
 	</div>
-
-	<h2>HTML Output:</h2>
-	<p>text</p>
+<hr />
+	<h2>HTML Output</h2>
+	<p>Here you see the default markup of your HTML-input.</p>
 	<div id="fixture"></div>
 
 	<script src="/assets/scripts/axe-playground.js"></script>
