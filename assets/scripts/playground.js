@@ -73,9 +73,9 @@ var presetAreas = query.all('.presets');
 var ruleSelect = query('#rule-presets');
 var checkSelect = query('#check-presets');
 var applyPresetBtn = query('#apply-preset');
-var markupArea = query('#markup');
+var markupArea = query('#markup textarea');
 var renderBtn = query('#render');
-var configArea = query('#config-textarea');
+var configArea = query('#playground-config textarea');
 var analyzeBtn = query('#analyze');
 var resultsTextbox = query('#axe-results');
 
@@ -208,7 +208,7 @@ applyPresetBtn.addEventListener('click', function () {
  */
 if (renderBtn) {
   renderBtn.addEventListener('click', function () {
-    var html = markupArea.value;
+    var html = safeTags(markupArea.value);
     fixture.innerHTML = html;
     analyze();
   });
@@ -249,7 +249,7 @@ if (selectedRuleEl) {
 } else {
   fixture.innerHTML = examples.rule.accesskeys;
 }
-markupArea.innerHTML = safeTags(fixture.innerHTML);
+markupArea.value = fixture.innerHTML;
 
 /**
  * Run aXe on the text fixture.
