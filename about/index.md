@@ -4,9 +4,9 @@ title: About aXe
 ---
 <!-- Manifesto, About Deque and Deque products -->
 
-The Accessibility Engine for automated testing of HTML-based user interfaces. Drop the aXe on your accessibility defects!
+### The Accessibility Engine for automated testing of HTML-based user interfaces. Drop the aXe on your accessibility defects!
 
-## Philosophy
+## Philosophy 
 
 We believe that automated testing has an important role to play in achieving digital equality and that in order to do that, it must achieve mainstream adoption by professional web developers. That means that the tests must inspire trust, must be fast, must work everywhere and must be available everywhere.
 

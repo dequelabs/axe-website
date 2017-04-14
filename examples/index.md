@@ -3,7 +3,7 @@ layout: page
 title: aXe Integrations
 ---
 
-aXe can be used with many test tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can only be used effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through WebDriver. And somewhere must come a link to the <a class="dqpl-link" href="https://www.deque.com/products/axe-core/">productpage</a>.
+aXe can be used with many test tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can only be used effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through WebDriver. And somewhere must come a link to the<a class="dqpl-link" href="https://www.deque.com/products/axe-core/">productpage</a>.
 
 <div class="allblocks">
 	<div class="block">

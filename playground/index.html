@@ -8,10 +8,10 @@ title: aXe Playground
 			<p>
 				<table class="table">
 					<tr >
-						<td class="tabletext">Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "CLEAR FIELD" and put in your own piece of code. In "SELECT AN EXAMPLE" you can set a specific rule you want aXe to check. If you're ready to go press "ANALYSE HTML".
+						<td class="tabletext">Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
 						</td>
-						<td class="tablebutton">			
-						<button class="dqpl-button-secondary pull-right" id="show-options">Select an example</button>
+						<td class="tablebutton">
+						<button class="dqpl-button-secondary pull-right" type="button" data-modal="demo-2">Select an example</button>			
 						</td>
 					</tr>
 				</table>
@@ -25,102 +25,102 @@ title: aXe Playground
 		  	<button class="dqpl-button-secondary">Clear field</button>
 		  </div>
 		</div>
-		<div id="markup-select" class="hidden">
-			<p>
-				<table class="table">
-					<tr >
-						<td class="tabletext">What do you want aXe to check for you? Select Rule or Check and choose your specific preset. If you are done, press "APPLY SELECTED PRESET".
-						</td>
-						<td class="tablebutton">			
-						<button class="dqpl-button-secondary pull-right" id="toggle-input">Back to HTML input
-						</button>						
-						</td>
-					</tr>
-				</table>
-			</p>
 			<fieldset>
-				<legend>Type</legend>
-				<div class="radio">
-					<input id="rule-type" type="radio" name="type" value="rule" checked="true">
-					<label for="rule-type">Rule</label>
-				</div>
-				<div class="radio">
-					<input id="check-type" type="radio" name="type" value="check">
-					<label for="check-type">Check</label>
+				<div class="dqpl-modal" role="dialog" id="demo-2">
+				  <div class="dqpl-modal-inner">
+				    <div class="dqpl-modal-header">
+				      <h2>Select an example</h2>
+				      <button class="dqpl-modal-close" type="button">
+				        <div class="fa fa-close" aria-hidden="true"></div>
+				        <div class="dqpl-offscreen">Close</div>
+				      </button>
+				    </div>
+				    <div class="dqpl-field-wrap">
+				    <div class="dqpl-modal-content">
+				      <div class="field-section" role="group" aria-labelledby="personal-info">
+				        <h3 id="personal-info">What do you want aXe to check for you? Select a specific preset in Rule or Check and if you're done, apply your preset.</h3>
+				        <div class="dqpl-field-wrap">
+				          <label class="dqpl-label" for="first-name">Rule</label>
+				            <div class="dqpl-field-wrap">
+				        <div class="dqpl-select">
+				        <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
+				        </div>
+				            <ul class="dqpl-listbox" role="listbox" id="rule-presets" aria-labelledby="name-legend">
+				              <li class="dqpl-option" id="default" role="option" value="accesskeys">accesskeys</li>
+				              <li class="dqpl-option" role="option" value="area-alt">area-alt</li>
+				              <li class="dqpl-option" role="option" value="aria-allowed-attr">aria-allowed-attr</li>
+				              <li class="dqpl-option" role="option" value="aria-required-attr">aria-required-attr</li>
+				              <li class="dqpl-option" role="option" value="aria-required-children">aria-required-children</li>
+				              <li class="dqpl-option" role="option" value="aria-required-parent">aria-required-parent</li>
+				              <li class="dqpl-option" role="option" value="aria-roles">aria-roles</li>
+				              <li class="dqpl-option" role="option" value="aria-valid-attr-value">aria-valid-attr-value</li>
+				              <li class="dqpl-option" role="option" value="aria-valid-attr">aria-valid-attr</li>
+				              <li class="dqpl-option" role="option" value="audio-caption">audio-caption</li>
+				              <li class="dqpl-option" role="option" value="blink">blink</li>
+				              <li class="dqpl-option" role="option" value="button-name">button-name</li>
+				              <li class="dqpl-option" role="option" value="bypass">bypass</li>
+				              <li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
+				              <li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
+				              <li class="dqpl-option" role="option" value="data-table">data-table</li>
+				              <li class="dqpl-option" role="option" value="definition-list">definition-list</li>
+				              <li class="dqpl-option" role="option" value="dlitem">dlitem</li>
+				              <li class="dqpl-option" role="option" value="document-title">document-title</li>
+				              <li class="dqpl-option" role="option" value="duplicate-id">duplicate-id</li>
+				              <li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
+				              <li class="dqpl-option" role="option" value="frame-title">frame-title</li>
+				              <li class="dqpl-option" role="option" value="heading-order">heading-order</li>
+				              <li class="dqpl-option" role="option" value="html-lang">html-lang</li>
+				              <li class="dqpl-option" role="option" value="image-alt">image-alt</li>
+				              <li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
+				              <li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
+				              <li class="dqpl-option" role="option" value="label">label</li>
+				              <li class="dqpl-option" role="option" value="layout-table">layout-table</li>
+				              <li class="dqpl-option" role="option" value="link-name">link-name</li>
+				              <li class="dqpl-option" role="option" value="list">list</li>
+				              <li class="dqpl-option" role="option" value="listitem">listitem</li>
+				              <li class="dqpl-option" role="option" value="marquee">marquee</li>
+				              <li class="dqpl-option" role="option" value="meta-refresh">meta-refresh</li>
+				              <li class="dqpl-option" role="option" value="meta-viewport">meta-viewport</li>
+				              <li class="dqpl-option" role="option" value="object-alt">object-alt</li>
+				              <li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
+				              <li class="dqpl-option" role="option" value="region">region</li>
+				              <li class="dqpl-option" role="option" value="scope">scope</li>
+				              <li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
+				              <li class="dqpl-option" role="option" value="skip-link">skip-link</li>
+				              <li class="dqpl-option" role="option" value="tabindex">tabindex</li>
+				              <li class="dqpl-option" role="option" value="valid-lang">valid-lang</li>
+				              <li class="dqpl-option" role="option" value="video-caption">video-caption</li>
+				              <li class="dqpl-option" role="option" value="video-description">video-description</li>
+				            </ul>
+				          </div>
+				        </div>
+				       <div class="dqpl-error-wrap"></div>
+				        </div>
+				      </div>
+				        <div class="dqpl-field-wrap">
+				          <label class="dqpl-label" for="first-name">Check</label>
+				            <div class="dqpl-field-wrap">
+				        <div class="dqpl-select">
+				        <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="check-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
+				        </div>
+				            <ul class="dqpl-listbox" role="listbox" id="check-presets" aria-labelledby="name-legend">
+				              <li class="dqpl-option" id="default" role="option" value="cell-no-header">cell-no-header</li>
+				              <li class="dqpl-option" role="option" value="headers-visible-text">headers-visible-text</li>
+				              <li class="dqpl-option" role="option" value="th-single-row-column">th-single-row-column</li>
+				            </ul>
+				          </div>
+				        </div>
+				       <div class="dqpl-error-wrap"></div>
+				        </div>
+				      </div>
+				    <div class="dqpl-modal-footer">
+				      <button class="dqpl-button-primary" type="button">Apply selected preset</button>
+				      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
+				    </div>
+				    <div class="dqpl-error-wrap"></div>
+				  </div>
 				</div>
 			</fieldset>
-			<fieldset>
-			<div class="dqpl-field-wrap">
-			<div class="dqpl-label" id="name-legend">Name</div>
-				<div class="dqpl-select">
-				<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
-				</div>
-						<ul class="dqpl-listbox" role="listbox" id="rule-presets" aria-labelledby="name-legend">
-							<li class="dqpl-option" id="default" role="option" value="accesskeys">accesskeys</li>
-							<li class="dqpl-option" role="option" value="area-alt">area-alt</li>
-							<li class="dqpl-option" role="option" value="aria-allowed-attr">aria-allowed-attr</li>
-							<li class="dqpl-option" role="option" value="aria-required-attr">aria-required-attr</li>
-							<li class="dqpl-option" role="option" value="aria-required-children">aria-required-children</li>
-							<li class="dqpl-option" role="option" value="aria-required-parent">aria-required-parent</li>
-							<li class="dqpl-option" role="option" value="aria-roles">aria-roles</li>
-							<li class="dqpl-option" role="option" value="aria-valid-attr-value">aria-valid-attr-value</li>
-							<li class="dqpl-option" role="option" value="aria-valid-attr">aria-valid-attr</li>
-							<li class="dqpl-option" role="option" value="audio-caption">audio-caption</li>
-							<li class="dqpl-option" role="option" value="blink">blink</li>
-							<li class="dqpl-option" role="option" value="button-name">button-name</li>
-							<li class="dqpl-option" role="option" value="bypass">bypass</li>
-							<li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
-							<li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
-							<li class="dqpl-option" role="option" value="data-table">data-table</li>
-							<li class="dqpl-option" role="option" value="definition-list">definition-list</li>
-							<li class="dqpl-option" role="option" value="dlitem">dlitem</li>
-							<li class="dqpl-option" role="option" value="document-title">document-title</li>
-							<li class="dqpl-option" role="option" value="duplicate-id">duplicate-id</li>
-							<li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
-							<li class="dqpl-option" role="option" value="frame-title">frame-title</li>
-							<li class="dqpl-option" role="option" value="heading-order">heading-order</li>
-							<li class="dqpl-option" role="option" value="html-lang">html-lang</li>
-							<li class="dqpl-option" role="option" value="image-alt">image-alt</li>
-							<li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
-							<li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
-							<li class="dqpl-option" role="option" value="label">label</li>
-							<li class="dqpl-option" role="option" value="layout-table">layout-table</li>
-							<li class="dqpl-option" role="option" value="link-name">link-name</li>
-							<li class="dqpl-option" role="option" value="list">list</li>
-							<li class="dqpl-option" role="option" value="listitem">listitem</li>
-							<li class="dqpl-option" role="option" value="marquee">marquee</li>
-							<li class="dqpl-option" role="option" value="meta-refresh">meta-refresh</li>
-							<li class="dqpl-option" role="option" value="meta-viewport">meta-viewport</li>
-							<li class="dqpl-option" role="option" value="object-alt">object-alt</li>
-							<li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
-							<li class="dqpl-option" role="option" value="region">region</li>
-							<li class="dqpl-option" role="option" value="scope">scope</li>
-							<li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
-							<li class="dqpl-option" role="option" value="skip-link">skip-link</li>
-							<li class="dqpl-option" role="option" value="tabindex">tabindex</li>
-							<li class="dqpl-option" role="option" value="valid-lang">valid-lang</li>
-							<li class="dqpl-option" role="option" value="video-caption">video-caption</li>
-							<li class="dqpl-option" role="option" value="video-description">video-description</li>
-						</ul>
-					</div>
-				</div>
-			<div class="dqpl-field-wrap presets check hidden">
-				<div class="dqpl-label" id="name-legend"></div>
-					<div class="dqpl-select">
-					<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="check-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
-					</div>
-						<ul class="dqpl-listbox" role="listbox" id="check-presets" aria-labelledby="name-legend">
-							<li class="dqpl-option" id="default" role="option" value="cell-no-header">cell-no-header</li>
-							<li class="dqpl-option" role="option" value="headers-visible-text">headers-visible-text</li>
-							<li class="dqpl-option" role="option" value="th-single-row-column">th-single-row-column</li>
-						</ul>
-					</div>
-				</div>
-			</fieldset>
-			<p class="clear"></p>
-			<button id="apply-preset" class="dqpl-button-primary" type="button">
-				Apply Selected Preset
-			</button>
 		</div>
 	</div>
 

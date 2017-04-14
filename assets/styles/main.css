@@ -2,7 +2,6 @@ body {
   background-color: #FDFDFE;
   margin: 0px;
   padding: 0px;
-  scroll-behavior: smooth;
 }
 
 body p {
@@ -16,7 +15,7 @@ body .dqpl-main-content.dqpl-collapsed {
 
 * {
   font-family: Roboto, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 300;
 }
 
@@ -39,7 +38,7 @@ h3{
 }
 
 h4 {
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
 }
 
 iframe {
