@@ -44,7 +44,6 @@ textarea {
 }
 #axe-results,
 #markup {
-  overflow-x: scroll;
   word-wrap: normal;
   white-space: pre;
 }
