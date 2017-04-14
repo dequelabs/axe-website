@@ -47,7 +47,8 @@ iframe {
 
 table {
   text-align: left;
-  padding-left: 80px;
+  margin-left: 80px;
+  border-collapse: collapse;
 }
 
 table th {
@@ -56,9 +57,10 @@ table th {
   font-weight: 300;
 }
 
-table th, table td {
-  height: 25px;
-  padding-right: 100px;
+.post table th, .post table td {
+  padding: .5em 1em;
+  border: none;
+  border-bottom: 1px solid #aaa;
 }
 
 code.highlighter-rouge {
@@ -259,14 +261,15 @@ hr {
   margin-right: 10px;
 }
 
-.table {
-  border: none;
+.tableplay {
+  margin: 20px 0px 20px 0px !important;
   padding-left: 0px;
+  border: hidden;
 }
 
 .tabletext {
   border: none;
-  padding-left: 0px;
+  padding-left: 0px !important;
 }
 
 .tablebutton {
@@ -448,3 +451,4 @@ hr {
   border-left: 8px solid #d4dde0;
   margin-left:-24px;
 }
+

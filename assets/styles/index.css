@@ -59,3 +59,15 @@ textarea,
 code {
   font-size: 1em;
 }
+
+.dqpl-main-content .post {
+  position: fixed;
+  top: 80px;
+  bottom: 0;
+  overflow: auto;
+}
+
+
+#gitter iframe {
+  box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
