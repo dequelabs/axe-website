@@ -36,11 +36,11 @@ table td {
   content: '';
   display: table;
 }
-textarea,
-code {
+textarea {
   min-width: 100%;
   max-width: 100%;
   font-family: monospace;
+  padding: .5em 1em;
 }
 #axe-results,
 #markup {

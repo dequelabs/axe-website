@@ -129,7 +129,7 @@ strong {
 }
 
 .dqpl-button-primary {
-  margin-right: 10px !important; 
+  margin-right: 10px !important;
 }
 
 .dqpl-main-content{
@@ -200,10 +200,10 @@ strong {
 }
 
 .fork {
-  position: absolute; 
-  top: 70px; 
-  right: 0px; 
-  border: 0; 
+  position: absolute;
+  top: 70px;
+  right: 0px;
+  border: 0;
   z-index: 1;
 }
 
@@ -271,7 +271,7 @@ hr {
 }
 
 .tablebutton {
-  vertical-align: bottom; 
+  vertical-align: bottom;
   padding: 0px;
   border: none;
 }
@@ -420,3 +420,27 @@ hr {
   }
 }
 
+.CodeFlask__textarea,
+.CodeFlask__code,
+.CodeFlask__code * {
+  font: 18px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+  line-height: 1.5 !important;
+}
+
+.CodeFlask__textarea {
+  border: none !important;
+  box-shadow: none !important;
+  margin-left: 10px !important;
+  padding-left: 1em !important;
+}
+.CodeFlask__code {
+  padding-left: 0 !important;
+}
+.CodeFlask__pre::before,
+.CodeFlask__pre::after {
+  display: none !important;
+}
+.CodeFlask {
+  margin-bottom: 1em;
+  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+}
