@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#markup-select').toggle();
   });
 
+  $('#clear-field').on('click', function () {
+    markup.update('')
+  })
+
   $('#toggle-output, #toggle-options').on('click', function () {
     $('#options-area').toggle();
     $('#results-area').toggle();
