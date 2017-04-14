@@ -22,8 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   $('#analyze').on('click', function () {
-    $('#options-area').hide();
-    $('#results-area').show()[0].scrollIntoView();
+    setTimeout(function () {
+      $('#options-area').hide();
+      $('#results-area').show()[0].scrollIntoView();
+      Prism.highlightAll();
+    }, 30)
   });
 });
 
