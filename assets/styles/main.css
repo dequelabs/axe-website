@@ -47,7 +47,8 @@ iframe {
 
 table {
   text-align: left;
-  padding-left: 80px;
+  margin-left: 80px;
+  border-collapse: collapse;
 }
 
 table th {
@@ -56,9 +57,10 @@ table th {
   font-weight: 300;
 }
 
-table th, table td {
-  height: 25px;
-  padding-right: 100px;
+.post table th, .post table td {
+  padding: .5em 1em;
+  border: none;
+  border-bottom: 1px solid #aaa;
 }
 
 code.highlighter-rouge {
@@ -128,7 +130,7 @@ strong {
 }
 
 .dqpl-button-primary {
-  margin-right: 10px !important; 
+  margin-right: 10px !important;
 }
 
 .dqpl-main-content{
@@ -199,10 +201,10 @@ strong {
 }
 
 .fork {
-  position: absolute; 
-  top: 70px; 
-  right: 0px; 
-  border: 0; 
+  position: absolute;
+  top: 70px;
+  right: 0px;
+  border: 0;
   z-index: 1;
 }
 
@@ -270,7 +272,7 @@ hr {
 }
 
 .tablebutton {
-  vertical-align: bottom; 
+  vertical-align: bottom;
   padding: 0px;
   border: none;
 }
@@ -418,4 +420,3 @@ hr {
     padding-top: 0px;
   }
 }
-
