@@ -40,7 +40,7 @@ title: aXe Playground
 				      <div class="field-section" role="group" aria-labelledby="personal-info">
 				        <h3 id="personal-info">What do you want aXe to check for you? Select a specific preset in Rule or Check and if you're done, apply your preset.</h3>
 				        <div class="dqpl-field-wrap">
-				          <label class="dqpl-label" for="first-name">Rule</label>
+				          <label class="dqpl-label" for="rule-name">Rule</label>
 				            <div class="dqpl-field-wrap">
 				        <div class="dqpl-select">
 				        <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
@@ -98,7 +98,7 @@ title: aXe Playground
 				        </div>
 				      </div>
 				        <div class="dqpl-field-wrap">
-				          <label class="dqpl-label" for="first-name">Check</label>
+				          <label class="dqpl-label" for="check-name">Check</label>
 				            <div class="dqpl-field-wrap">
 				        <div class="dqpl-select">
 				        <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="check-presets" aria-expanded="false" aria-labelledby="name-legend" aria-required="true" aria-activedescendant="yes">
@@ -134,9 +134,8 @@ title: aXe Playground
 					<tr >
 						<td class="tabletext">This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".
 						</td>
-						<td class="tablebutton">			
-						<button class="dqpl-button-secondary pull-right" id="toggle-output">Change aXe options
-						</button>						
+						<td class="tablebutton">
+						<button class="dqpl-button-secondary pull-right" type="button" data-modal="changeoption">Change aXe options</button>
 						</td>
 					</tr>
 				</table>
@@ -144,21 +143,31 @@ title: aXe Playground
 			<textarea id="axe-results" rows="20" readonly="true"
 				placeholder="Your aXe result"></textarea>
 		</div>
-		<div id="options-area" class="hidden">
-			<p>
-				<table class="table">
-					<tr >
-						<td class="tabletext">Modify the options object below and click 'Analyze' to update the results. For more info, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter"  target="_blank">the aXe documentation for the Options parameter</a>.
-						</td>
-						<td class="tablebutton">			
-						<button class="dqpl-button-secondary pull-right" id="toggle-options">Show aXe output
-						</button>
-						</td>
-					</tr>
-				</table>
-			</p>
-			<label for="config-textarea">Edit Options</label>
-			<textarea id="config-textarea" rows="8"></textarea>
+			<div class="dqpl-modal" role="dialog" id="changeoption">
+			  <div class="dqpl-modal-inner">
+			    <div class="dqpl-modal-header">
+			      <h2>Change aXe options</h2>
+			      <button class="dqpl-modal-close" type="button">
+			        <div class="fa fa-close" aria-hidden="true"></div>
+			        <div class="dqpl-offscreen">Close</div>
+			      </button>
+			    </div>
+			    <div class="dqpl-modal-content">
+			      <div class="field-section" role="group" aria-labelledby="intro">
+			        <h3 id="intro">Modify the options object below and click 'Analyze' to update the results. For more info, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter"  target="_blank">the aXe documentation for the Options parameter</a>.</h3>
+			        <div class="dqpl-field-wrap">
+			          <label class="dqpl-label" for="config-textarea">Edit Options</label>
+			            <textarea id="config-textarea" rows="8"></textarea>
+			          <div class="dqpl-error-wrap"></div>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="dqpl-modal-footer">
+			      <button class="dqpl-button-primary" type="button">Show aXe output</button>
+			      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
 <hr />
