@@ -11,7 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
     options.update()
   });
 
-  $('#toggle-input, #apply-preset, #show-options').on('click', function () {
+  $('#apply-preset').on('click', function () {
+    setTimeout(function () {
+      markup.update()
+    }, 10)
+  })
+
+  $('#toggle-input, #show-options').on('click', function () {
     $('#markup-input').toggle();
     $('#markup-select').toggle();
   });
@@ -33,10 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 30)
   });
 
-var $myModal = jQuery('#my-modal');
-
-$myModal
-  .on('dqpl:modal-open', function () {
+  var $myModal = jQuery('#my-modal');
+  $myModal.on('dqpl:modal-open', function () {
     console.log('The modal has been opened!!');
   })
   .on('dqpl:modal-close', function () {

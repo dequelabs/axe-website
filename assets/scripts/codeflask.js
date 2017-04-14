@@ -192,8 +192,6 @@ CodeFlask.prototype.update = function(string) {
     if (string !== undefined) {
         this.textarea.value = string;
     }
-    console.log(this.textarea.value)
-
     this.renderOutput(this.highlightCode, this.textarea);
     Prism.highlightAll();
 

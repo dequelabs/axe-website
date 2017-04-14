@@ -5,17 +5,10 @@ title: aXe Playground
 <div>
 	<div id="playground-input">
 		<div id="markup-input">
-			<p>
-				<table class="tableplay">
-					<tr >
-						<td class="tabletext">Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
-						</td>
-						<td class="tablebutton">
-						<button class="dqpl-button-secondary pull-right" type="button" data-modal="demo-2">Select an example</button>	
-						</td>
-					</tr>
-				</table>
+			<p>Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
 			</p>
+			<button class="dqpl-button-secondary playground-button" type="button" data-modal="demo-2">Select an example</button>
+
 			<div id="markup"></div>
 		  <div class="dqpl-flexr">
 		  	<button class="dqpl-button-primary" id="analyze">Analyze HTML</button>
@@ -23,123 +16,96 @@ title: aXe Playground
 		  </div>
 		</div>
 
+		<div class="dqpl-modal" role="dialog" id="demo-2">
+		  <div class="dqpl-modal-inner">
+		    <div class="dqpl-modal-header">
+		      <h2>Select an example</h2>
+		      <button class="dqpl-modal-close" type="button">
+		        <div class="fa fa-close" aria-hidden="true"></div>
+		        <div class="dqpl-offscreen">Close</div>
+		      </button>
+		    </div>
+		    <div class="dqpl-field-wrap">
+		    <div class="dqpl-modal-content">
+		      <div class="field-section" role="group" aria-labelledby="personal-info">
 
-
-				<div class="dqpl-modal" role="dialog" id="demo-2">
-				  <div class="dqpl-modal-inner">
-				    <div class="dqpl-modal-header">
-				      <h2>Select an example</h2>
-				      <button class="dqpl-modal-close" type="button">
-				        <div class="fa fa-close" aria-hidden="true"></div>
-				        <div class="dqpl-offscreen">Close</div>
-				      </button>
-				    </div>
-				    <div class="dqpl-field-wrap">
-				    <div class="dqpl-modal-content">
-				      <div class="field-section" role="group" aria-labelledby="personal-info">
-				        <h4 id="personal-info">What do you want aXe to check for you? Select a specific preset in Rule or Check and if you're done, apply your preset.</h4>
-				        <div class="dqpl-field-wrap">
-				          <label class="dqpl-label" id="rulelabel" for="rule-name">Rule</label>
-				          <div class="dqpl-field-wrap">
-				            <div class="dqpl-select">
-				        			<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="rulelabel" aria-required="true" aria-activedescendant="yes">
-				        			</div>
-				            <ul class="dqpl-listbox" role="listbox" id="rule-presets" aria-labelledby="name-legend">
-				              <li class="dqpl-option" id="default" role="option" value="accesskeys">accesskeys</li>
-				              <li class="dqpl-option" role="option" value="area-alt">area-alt</li>
-				              <li class="dqpl-option" role="option" value="aria-allowed-attr">aria-allowed-attr</li>
-				              <li class="dqpl-option" role="option" value="aria-required-attr">aria-required-attr</li>
-				              <li class="dqpl-option" role="option" value="aria-required-children">aria-required-children</li>
-				              <li class="dqpl-option" role="option" value="aria-required-parent">aria-required-parent</li>
-				              <li class="dqpl-option" role="option" value="aria-roles">aria-roles</li>
-				              <li class="dqpl-option" role="option" value="aria-valid-attr-value">aria-valid-attr-value</li>
-				              <li class="dqpl-option" role="option" value="aria-valid-attr">aria-valid-attr</li>
-				              <li class="dqpl-option" role="option" value="audio-caption">audio-caption</li>
-				              <li class="dqpl-option" role="option" value="blink">blink</li>
-				              <li class="dqpl-option" role="option" value="button-name">button-name</li>
-				              <li class="dqpl-option" role="option" value="bypass">bypass</li>
-				              <li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
-				              <li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
-				              <li class="dqpl-option" role="option" value="data-table">data-table</li>
-				              <li class="dqpl-option" role="option" value="definition-list">definition-list</li>
-				              <li class="dqpl-option" role="option" value="dlitem">dlitem</li>
-				              <li class="dqpl-option" role="option" value="document-title">document-title</li>
-				              <li class="dqpl-option" role="option" value="duplicate-id">duplicate-id</li>
-				              <li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
-				              <li class="dqpl-option" role="option" value="frame-title">frame-title</li>
-				              <li class="dqpl-option" role="option" value="heading-order">heading-order</li>
-				              <li class="dqpl-option" role="option" value="html-lang">html-lang</li>
-				              <li class="dqpl-option" role="option" value="image-alt">image-alt</li>
-				              <li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
-				              <li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
-				              <li class="dqpl-option" role="option" value="label">label</li>
-				              <li class="dqpl-option" role="option" value="layout-table">layout-table</li>
-				              <li class="dqpl-option" role="option" value="link-name">link-name</li>
-				              <li class="dqpl-option" role="option" value="list">list</li>
-				              <li class="dqpl-option" role="option" value="listitem">listitem</li>
-				              <li class="dqpl-option" role="option" value="marquee">marquee</li>
-				              <li class="dqpl-option" role="option" value="meta-refresh">meta-refresh</li>
-				              <li class="dqpl-option" role="option" value="meta-viewport">meta-viewport</li>
-				              <li class="dqpl-option" role="option" value="object-alt">object-alt</li>
-				              <li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
-				              <li class="dqpl-option" role="option" value="region">region</li>
-				              <li class="dqpl-option" role="option" value="scope">scope</li>
-				              <li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
-				              <li class="dqpl-option" role="option" value="skip-link">skip-link</li>
-				              <li class="dqpl-option" role="option" value="tabindex">tabindex</li>
-				              <li class="dqpl-option" role="option" value="valid-lang">valid-lang</li>
-				              <li class="dqpl-option" role="option" value="video-caption">video-caption</li>
-				              <li class="dqpl-option" role="option" value="video-description">video-description</li>
-				            </ul>
-				          </div>
-				        </div>
-				       <div class="dqpl-error-wrap"></div>
-				        </div>
-				      </div>
-				        <div class="dqpl-field-wrap">
-				          <label class="dqpl-label" id="checklabel" for="check-name">Check</label>
-				          <div class="dqpl-field-wrap">
-		           			<div class="dqpl-select">
-				        			<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="check-presets" aria-expanded="false" aria-labelledby="checklabel" aria-required="true" aria-activedescendant="yes">
-				        			</div>
-					            <ul class="dqpl-listbox" role="listbox" id="check-presets">
-					              <li class="dqpl-option" id="default" role="option" value="cell-no-header">cell-no-header</li>
-					              <li class="dqpl-option" role="option" value="headers-visible-text">headers-visible-text</li>
-					              <li class="dqpl-option" role="option" value="th-single-row-column">th-single-row-column</li>
-					            </ul>
-				          </div>
-				        </div>
-				        <div class="dqpl-error-wrap"></div>
-				        </div>
-				      </div>
-				    <div class="dqpl-modal-footer">
-				      <button class="dqpl-button-primary" id="applypreset" type="button">Apply selected preset</button>
-				      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
-				    </div>
-				    <div class="dqpl-error-wrap"></div>
-				  </div>
-				</div>
-
-
-
-
+		        <h4 id="personal-info">What do you want aXe to check for you? Select a specific preset in Rule or Check and if you're done, apply your preset.</h4>
+		        <div class="dqpl-field-wrap">
+		          <label class="dqpl-label" id="rulelabel" for="rule-name">Rule</label>
+		          <div class="dqpl-field-wrap">
+		            <div class="dqpl-select">
+		        			<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="rulelabel" aria-required="true" aria-activedescendant="yes">
+		        			</div>
+			            <ul class="dqpl-listbox" role="listbox" id="rule-presets" aria-labelledby="name-legend">
+			              <li class="dqpl-option" id="default" role="option" value="accesskeys">accesskeys</li>
+			              <li class="dqpl-option" role="option" value="area-alt">area-alt</li>
+			              <li class="dqpl-option" role="option" value="aria-allowed-attr">aria-allowed-attr</li>
+			              <li class="dqpl-option" role="option" value="aria-required-attr">aria-required-attr</li>
+			              <li class="dqpl-option" role="option" value="aria-required-children">aria-required-children</li>
+			              <li class="dqpl-option" role="option" value="aria-required-parent">aria-required-parent</li>
+			              <li class="dqpl-option" role="option" value="aria-roles">aria-roles</li>
+			              <li class="dqpl-option" role="option" value="aria-valid-attr-value">aria-valid-attr-value</li>
+			              <li class="dqpl-option" role="option" value="aria-valid-attr">aria-valid-attr</li>
+			              <li class="dqpl-option" role="option" value="audio-caption">audio-caption</li>
+			              <li class="dqpl-option" role="option" value="blink">blink</li>
+			              <li class="dqpl-option" role="option" value="button-name">button-name</li>
+			              <li class="dqpl-option" role="option" value="bypass">bypass</li>
+			              <li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
+			              <li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
+			              <li class="dqpl-option" role="option" value="data-table">data-table</li>
+			              <li class="dqpl-option" role="option" value="definition-list">definition-list</li>
+			              <li class="dqpl-option" role="option" value="dlitem">dlitem</li>
+			              <li class="dqpl-option" role="option" value="document-title">document-title</li>
+			              <li class="dqpl-option" role="option" value="duplicate-id">duplicate-id</li>
+			              <li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
+			              <li class="dqpl-option" role="option" value="frame-title">frame-title</li>
+			              <li class="dqpl-option" role="option" value="heading-order">heading-order</li>
+			              <li class="dqpl-option" role="option" value="html-lang">html-lang</li>
+			              <li class="dqpl-option" role="option" value="image-alt">image-alt</li>
+			              <li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
+			              <li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
+			              <li class="dqpl-option" role="option" value="label">label</li>
+			              <li class="dqpl-option" role="option" value="layout-table">layout-table</li>
+			              <li class="dqpl-option" role="option" value="link-name">link-name</li>
+			              <li class="dqpl-option" role="option" value="list">list</li>
+			              <li class="dqpl-option" role="option" value="listitem">listitem</li>
+			              <li class="dqpl-option" role="option" value="marquee">marquee</li>
+			              <li class="dqpl-option" role="option" value="meta-refresh">meta-refresh</li>
+			              <li class="dqpl-option" role="option" value="meta-viewport">meta-viewport</li>
+			              <li class="dqpl-option" role="option" value="object-alt">object-alt</li>
+			              <li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
+			              <li class="dqpl-option" role="option" value="region">region</li>
+			              <li class="dqpl-option" role="option" value="scope">scope</li>
+			              <li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
+			              <li class="dqpl-option" role="option" value="skip-link">skip-link</li>
+			              <li class="dqpl-option" role="option" value="tabindex">tabindex</li>
+			              <li class="dqpl-option" role="option" value="valid-lang">valid-lang</li>
+			              <li class="dqpl-option" role="option" value="video-caption">video-caption</li>
+			              <li class="dqpl-option" role="option" value="video-description">video-description</li>
+			            </ul>
+			          </div>
+			        </div>
+			        <div class="dqpl-error-wrap"></div>
+		        </div>
+		      </div>
+	      </div>
+		    <div class="dqpl-modal-footer">
+		      <button class="dqpl-button-primary dqpl-modal-cancel" id="apply-preset" type="button">Apply selected preset</button>
+		      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
+		    </div>
+		    <div class="dqpl-error-wrap"></div>
+		  </div>
+		</div>
 
 	</div>
 	<hr />
 	<h2>aXe Results</h2>
 	<div>
 		<div id="results-area">
-			<p>
-				<table class="tableplay">
-					<tr >
-						<td class="tabletext">This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".
-						</td>
-						<td class="tablebutton">
-						<button class="dqpl-button-secondary pull-right" type="button" data-modal="changeoption">Change aXe options</button>
-						</td>
-					</tr>
-				</table>
-			</p>
+			<p>This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".</p>
+
+			<button class="dqpl-button-secondary  playground-button" type="button" data-modal="changeoption">Change aXe options</button>
+
 			<div class="language-javascript highlighter-rouge">
 				<pre class="highlight">
 				<code id="axe-results"></code>
@@ -147,16 +113,16 @@ title: aXe Playground
 			</div>
 		</div>
 
-
-<div class="dqpl-modal" role="dialog" id="changeoption">
-  <div class="dqpl-modal-inner">
-    <div class="dqpl-modal-header">
-      <h2>Change aXe options</h2>
-      <button class="dqpl-modal-close" type="button">
-        <div class="fa fa-close" aria-hidden="true"></div>
-        <div class="dqpl-offscreen">Close</div>
-      </button>
+			<div class="dqpl-modal" role="dialog" id="changeoption">
+			  <div class="dqpl-modal-inner">
+			    <div class="dqpl-modal-header">
+			      <h2>Change aXe options</h2>
+			      <button class="dqpl-modal-close" type="button">
+			        <div class="fa fa-close" aria-hidden="true"></div>
+			        <div class="dqpl-offscreen">Close</div>
+			      </button>
 			    </div>
+
 			    <div class="dqpl-modal-content">
 			      <div class="field-section" role="group" aria-labelledby="name-legend">
 			      	<h4 id="name-legend">Modify the options object below and click 'Show aXe output' to update the results. For more information, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter" target="_blank">the aXe documentation for the Options parameter</a>.</h4>
@@ -171,10 +137,10 @@ title: aXe Playground
 			      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
 			    </div>
 			  </div>
-			</div> 
+			</div>
 		</div>
 	</div>
-<hr />
+	<hr />
 	<h2>HTML Output</h2>
 	<p>Here you see the default markup of your HTML-input.</p>
 	<div id="fixture"></div>

@@ -66,9 +66,6 @@ var RULE = 'rule';
 var CHECK = 'check';
 
 var fixture = query('#fixture');
-var typeRadios = query.all('input[name="type"]');
-var ruleTypeRadio = query('#rule-type');
-var checkTypeRadio = query('#check-type');
 var presetAreas = query.all('.presets');
 var ruleSelect = query('#rule-presets');
 var checkSelect = query('#check-presets');
@@ -166,27 +163,6 @@ var checkOptions = query.all('option', checkSelect);
 });
 
 /**
- * 'change' events on the 'Type' radios toggle
- * the corresponding 'Name' select lists.
- */
-
-[].slice.call(typeRadios).forEach(function (radio) {
-  radio.addEventListener('change', function (e) {
-    [].slice.call(presetAreas).forEach(function (area) {
-      classes(area).add(HIDDEN_CLASS);
-    });
-    var val;
-    if (ruleTypeRadio.checked) {
-      selectedType = RULE;
-    } else if (checkTypeRadio.checked) {
-      selectedType = CHECK;
-    }
-    var area = query('.presets.' + selectedType);
-    classes(area).remove(HIDDEN_CLASS);
-  });
-});
-
-/**
  * Clicks on the 'Apply Selected Preset' button:
  *  - Update the Edit HTML textarea
  * 	- Re-render the fixture
@@ -195,10 +171,10 @@ var checkOptions = query.all('option', checkSelect);
 
 applyPresetBtn.addEventListener('click', function () {
   var selectEl = selectedType == CHECK ? checkSelect : ruleSelect;
-  var val = selectEl.value;
+  var val = ruleSelect.querySelector('.dqpl-option-active').getAttribute('value');
   fixture.innerHTML = examples[selectedType][val];
+  console.log(selectedType, val, ruleSelect)
   markupArea.value = fixture.innerHTML;
-  analyze();
 });
 
 /**
