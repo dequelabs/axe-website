@@ -1,23 +1,8 @@
-.table {
-  border: none;
-  padding-left: 0px;
-}
-
-.tabletext {
-  border: none;
-  padding-left: 0px;
-}
-
-.tablebutton {
-  vertical-align: bottom; 
-  padding: 0px;
-  border: none;
-}
-
 body {
   background-color: #FDFDFE;
   margin: 0px;
   padding: 0px;
+  scroll-behavior: smooth;
 }
 
 body p {
@@ -41,7 +26,7 @@ fieldset{
 h1 {
   font-size: 56px !important;
   color: #0b0e11 !important;
- }
+}
 
 h2 {
   font-size: 34px;
@@ -143,6 +128,10 @@ strong {
   padding: 20px;
 }
 
+.dqpl-button-primary {
+  margin-right: 10px !important; 
+}
+
 .dqpl-main-content{
   overflow: auto;
   position: fixed;
@@ -234,6 +223,10 @@ strong {
   height: 70vh;
 }
 
+hr {
+  margin: 15px 0px;
+}
+
 .integration img{
   margin: 0 auto 0em !important;
 }
@@ -250,6 +243,7 @@ strong {
 
 .post-title {
   border-bottom: 1px solid #f2f2f2;
+  margin-left: 25px;
 }
 
 /*Blue border of the selected nav. button*/
@@ -264,6 +258,22 @@ strong {
 .sizeinput {
   min-width: 800px !important;
   margin-right: 10px;
+}
+
+.table {
+  border: none;
+  padding-left: 0px;
+}
+
+.tabletext {
+  border: none;
+  padding-left: 0px;
+}
+
+.tablebutton {
+  vertical-align: bottom; 
+  padding: 0px;
+  border: none;
 }
 
 @media only screen and (min-width: 1024px) {
