@@ -455,3 +455,13 @@ hr {
 #playground-input .dqpl-modal-content {
   overflow-y: visible;
 }
+.playground-button {
+  margin: 0 8px !important;
+}
+h5 {
+  font-weight: 500;
+}
+h6 {
+  font-weight: 300;
+  font-style: italic;
+}
