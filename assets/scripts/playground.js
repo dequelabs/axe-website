@@ -72,9 +72,10 @@ var checkSelect = query('#check-presets');
 var applyPresetBtn = query('#apply-preset');
 var markupArea = query('#markup textarea');
 var renderBtn = query('#render');
-var configArea = query('#playground-config textarea');
+var configArea = query('#playground-config');
 var analyzeBtn = query('#analyze');
 var resultsTextbox = query('#axe-results');
+var changeOptsBtn = query('#change-options');
 
 var selectedType = RULE;
 
@@ -173,7 +174,6 @@ applyPresetBtn.addEventListener('click', function () {
   var selectEl = selectedType == CHECK ? checkSelect : ruleSelect;
   var val = ruleSelect.querySelector('.dqpl-option-active').getAttribute('value');
   fixture.innerHTML = examples[selectedType][val];
-  console.log(selectedType, val, ruleSelect)
   markupArea.value = fixture.innerHTML;
 });
 
@@ -184,8 +184,7 @@ applyPresetBtn.addEventListener('click', function () {
  */
 if (renderBtn) {
   renderBtn.addEventListener('click', function () {
-    var html = safeTags(markupArea.value);
-    fixture.innerHTML = html;
+    fixture.innerHTML = markupArea.value;
     analyze();
   });
 }
@@ -193,27 +192,27 @@ if (renderBtn) {
 /**
  * Clicks on the 'Analyze' button run aXe on the existing fixture.
  */
-
-analyzeBtn.addEventListener('click', function () {
-  analyze();
-});
+if (analyzeBtn) {
+  analyzeBtn.addEventListener('click', function () {
+    analyze();
+  });
+}
 
 /**
  * Set and apply default aXe options.
  */
 
-var defaultOpts = {
-  runOnly: {
-    type: 'tag',
-    values: ['wcag2a', 'wcag2aa', 'best-practice']
-  },
-  checks: {
-    'duplicate-img-label': { enabled: true },
-    'skip-link': { enabled: true }
-  }
-};
-
-configArea.value = JSON.stringify(defaultOpts, null, 2);
+var defaultOpts = '{\n\
+ "runOnly": {\n\
+  "type": "tag",\n\
+  "values": ["wcag2a", "wcag2aa"]\n\
+ },\n\
+ "checks": {\n\
+  "skip-link": {"enabled": true}\n\
+ }\n\
+}';
+configArea.value = defaultOpts;
+var options = JSON.parse(defaultOpts)
 
 /**
  * Apply default values to HTML and Render Fixture areas.
@@ -223,22 +222,42 @@ var selectedRuleEl = document.querySelector('#rule-presets option[default-select
 if (selectedRuleEl) {
   fixture.innerHTML = examples.rule[selectedRuleEl.value];
 } else {
-  fixture.innerHTML = examples.rule.accesskeys;
+  fixture.innerHTML = examples.rule['image-alt'];
 }
 markupArea.value = fixture.innerHTML;
+
+if (changeOptsBtn) {
+  changeOptsBtn.addEventListener('click', function () {
+    try {
+      var optsVal = configArea.value
+      options = optsVal.length ? JSON.parse(optsVal) : {};
+      fixture.innerHTML = markupArea.value;
+    } catch (e) {
+      console.error(e);
+      resultsTextbox.innerHTML = "Unable to parse options. Ensure that options is valid JSON.";
+      return;
+    }
+    // wait for the lightbox to close
+    setTimeout(function () {
+      fixture.innerHTML = markupArea.value;
+      analyze();
+    }, 10)
+  });
+
+}
+
 
 /**
  * Run aXe on the text fixture.
  */
-
 window.analyze = function () {
-  var optsVal = configArea.value;
-  var opts = optsVal.length && JSON.parse(optsVal) || {};
-
-  axe.a11yCheck('#fixture', opts, function (res) {
+  axe.a11yCheck('#fixture', options, function (res) {
     var str = JSON.stringify(res.violations, null, 2);
     resultsTextbox.innerHTML = safeTags(str);
-    window.scrollTo(0, 0);
+    resultsTextbox.scrollIntoView();
+    if (Prism) {
+      Prism.highlightAll();
+    }
   });
 };
 
@@ -392,7 +411,7 @@ module.exports = "<!--\nSorry, the 'html-lang' rule\nrequires a full-page test t
 },{}],30:[function(require,module,exports){
 "use strict";
 
-module.exports = "<img src=\"/build/axe/images/solar-system.jpg\" style=\"height: 200px;\"/>";
+module.exports = "<img src=\"/build/axe/images/solar-system.jpg\" />";
 
 },{}],31:[function(require,module,exports){
 "use strict";

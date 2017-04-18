@@ -452,3 +452,6 @@ hr {
   margin-left:-24px;
 }
 
+#playground-input .dqpl-modal-content {
+  overflow-y: visible;
+}

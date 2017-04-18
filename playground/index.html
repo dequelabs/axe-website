@@ -5,13 +5,15 @@ title: aXe Playground
 <div>
 	<div id="playground-input">
 		<div id="markup-input">
-			<p>Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
-			</p>
-			<button class="dqpl-button-secondary playground-button" type="button" data-modal="demo-2">Select an example</button>
+			<div class="dqpl-flexr">
+				<p>Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
+				</p>
+				<p><button class="dqpl-button-secondary playground-button" type="button" data-modal="demo-2">Select an example</button></p>
+			</div>
 
 			<div id="markup"></div>
 		  <div class="dqpl-flexr">
-		  	<button class="dqpl-button-primary" id="analyze">Analyze HTML</button>
+		  	<button class="dqpl-button-primary" id="render">Analyze HTML</button>
 		  	<button class="dqpl-button-secondary" id="clear-field">Clear field</button>
 		  </div>
 		</div>
@@ -102,14 +104,16 @@ title: aXe Playground
 	<h2>aXe Results</h2>
 	<div>
 		<div id="results-area">
-			<p>This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".</p>
+			<div class="dqpl-flexr">
+				<p>This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".</p>
 
-			<button class="dqpl-button-secondary  playground-button" type="button" data-modal="changeoption">Change aXe options</button>
+				<p><button class="dqpl-button-secondary  playground-button" type="button" data-modal="changeoption">Change aXe options</button></p>
+			</div>
 
 			<div class="language-javascript highlighter-rouge">
-				<pre class="highlight">
-				<code id="axe-results"></code>
-				</pre>
+				<pre class="highlight"><code id="axe-results">
+Click "Analyze HTML" to see the results.
+				</code></pre>
 			</div>
 		</div>
 
@@ -125,15 +129,18 @@ title: aXe Playground
 
 			    <div class="dqpl-modal-content">
 			      <div class="field-section" role="group" aria-labelledby="name-legend">
-			      	<h4 id="name-legend">Modify the options object below and click 'Show aXe output' to update the results. For more information, see <a class="dqpl-link" href="https://github.com/dequelabs/axe-core/blob/master/doc/API.md#b-options-parameter" target="_blank">the aXe documentation for the Options parameter</a>.</h4>
+			      	<h4 id="name-legend">
+			        	<label for="playground-config">aXe options:</label>
+			      	</h4>
 			        <div class="dqpl-field-wrap">
-								<div id="playground-config"></div>
+								<textarea id="playground-config" rows="10" cols="30"></textarea>
+			      		<p>For details, see the <a class="dqpl-link" href="/docs.html#options-parameter" target="_blank">API documentation</a>.</p>
 			          <div class="dqpl-error-wrap"></div>
 			        </div>
 			      </div>
 			    </div>
 			    <div class="dqpl-modal-footer">
-			      <button class="dqpl-button-primary" type="button">Show aXe output</button>
+			      <button class="dqpl-button-primary dqpl-modal-cancel" type="button" id="change-options">Show aXe output</button>
 			      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
 			    </div>
 			  </div>
