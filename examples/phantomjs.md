@@ -1,7 +1,9 @@
 ---
-layout: example
+layout: page
 title: Example Phantomjs
 ---
+[Back to integrations](/examples/)
+
 
 
 This example demonstrates how to use aXe with PhantomJS.

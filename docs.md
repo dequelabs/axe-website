@@ -1,30 +1,31 @@
 ---
 layout: page
-title: aXe API Documentation
+title: Axe API Documentation
 ---
 
 
 ## Table of Contents
 
-1. <a href="#section-1-introduction" class="dqpl-link">Section 1: Introduction</a>
-	1. <a href="#getting-started" class="dqpl-link">Get Started</a>
-1. <a href="#section-2-api-reference" class="dqpl-link">Section 2: API Reference</a>
-	1. <a href="#overview" class="dqpl-link">Overview</a>
-	1. <a href="#api-notes" class="dqpl-link">API Notes</a>
-	1. <a href="#api-name-axegetrules" class="dqpl-link">API Name: axe.getRules</a>
-	1. <a href="#api-name-axeconfigure" class="dqpl-link">API Name: axe.configure</a>
-	1. <a href="#api-name-axereset" class="dqpl-link">API Name: axe.reset</a>
-	1. <a href="#api-name-axea11ycheck" class="dqpl-link">API Name: axe.a11yCheck</a>
-		1. <a href="#parameters-2" class="dqpl-link">Parameters</a>
-			1. <a href="#context-parameter" class="dqpl-link">Context Parameter</a>
-			2. <a href="#options-parameter" class="dqpl-link">Options Parameter</a>
-			3. <a href="#callback-parameter" class="dqpl-link">Callback Parameter</a>
-		1. <a href="#results-object" class="dqpl-link">Results Object</a>
-	1. <a href="#api-name-axeregisterplugin" class="dqpl-link">API Name: axe.registerPlugin</a>
-	1. <a href="#api-name-axecleanup" class="dqpl-link">API Name: axe.cleanup</a>[]()
-1. <a href="#section-3-example-reference" class="dqpl-link">Section 3: Example Reference</a>
+1. [Section 1: Introduction](#section-1-introduction)
+	1. [Get Started](#getting-started)
+1. [Section 2: API Reference](#section-2-api-reference)
+	1. [Overview](#overview)
+	1. [API Notes](#api-notes)
+	1. [API Name: axe.getRules](#api-name-axegetrules)
+	1. [API Name: axe.configure](#api-name-axeconfigure)
+	1. [API Name: axe.reset](#api-name-axereset)
+	1. [API Name: axe.a11yCheck](#api-name-axea11ycheck)
+		1. [Parameters](#parameters-2)
+			1. [Context Parameter](#context-parameter)
+			2. [Options Parameter](#options-parameter)
+			3. [Callback Parameter](#callback-parameter)
+		1. [Results Object](#results-object)
+	1. [API Name: axe.registerPlugin](#api-name-axeregisterplugin)
+	1. [API Name: axe.cleanup](#api-name-axecleanup)
+1. [Section 3: Example Reference](#section-3-example-reference)
 
 ## Section 1: Introduction
+
 The aXe API is designed to be an improvement over the previous generation of accessibility APIs. It provides the following benefits:
 
 * Runs in any modern browser
@@ -50,30 +51,24 @@ The aXe API can be used as part of a broader process that is performed on many, 
 
 The aXe APIs are provided in the javascript file axe.js. It must be included in the web page under test. Parameters are sent as javascript function parameters. Results are returned in JSON format.
 
-
 ### API Notes
 
 * A Rule test is made up of sub-tests. Each sub-test is returned in an array of 'checks'
 * The `"helpUrl"` in the results object is a link to a broader description of the accessibility issue and suggested remediation. All of links point to Deque University help pages and require a valid login to that system.
 
-
 ### API Name: axe.getRules
-
 
 #### Purpose
 
 To get information on all the rules in the system.
 
-
 #### Description
 
 Returns a list of all rules with their ID and description
 
-
 #### Synopsis
 
 `axe.getRules([Tag Name 1, Tag Name 2...]);`
-
 
 #### Parameters
 
@@ -83,12 +78,13 @@ Returns a list of all rules with their ID and description
 
 The current set of tags supported are listed in the following table:
 
-| Tag Name           | Accessibility Standard|
-|:-------------------|:----------------------|
-| `wcag2a`| WCAG 2.0 Level A |
-| `wcag2aa` | WCAG 2.0 Level AA |
-| `section508` | Section 508 |
-| `best-practice` | Best practices endorsed by Deque |
+| Tag Name           | Accessibility Standard                |
+|--------------------|:-------------------------------------:|
+| `wcag2a`           | WCAG 2.0 Level A                      |
+| `wcag2aa`          | WCAG 2.0 Level AA                     |
+| `section508`       | Section 508                           |
+| `best-practice`    | Best practices endorsed by Deque      |
+
 
 #### Example 1
 
@@ -107,19 +103,15 @@ In this example, we pass in the WCAG 2 A and AA tags into `axe.getRules` to retr
 ]
 ```
 
-
 ### API Name: axe.configure
-
 
 #### Purpose
 
 To configure the format of the data used by aXe. This can be used to add new rules, which must be registered with the library to execute.
 
-
 #### Description
 
 User specifies the format of the JSON structure passed to the callback of `axe.a11yCheck`
-
 
 #### Synopsis
 
@@ -134,54 +126,49 @@ axe.configure({
 	rules: [Object]});
 ```
 
-
 #### Parameters
 
 * `configurationOptions` - Options object; where the valid name, value pairs are:
   * `branding` - mixed(optional) Used to set the branding of the helpUrls
-  	* `brand` - string(optional) sets the brand string - default "axe"
-    * `application` - string(optional) sets the application string - default "axeAPI"
+     * `brand` - string(optional) sets the brand string - default "axe"
+     * `application` - string(optional) sets the application string - default "axeAPI"
   * `reporter` - Used to set the output format that the axe.a11yCheck function will pass to the callback function
-    * `v1` to use the previous version's format: `axe.configure({ reporter: "v1" });`
-    * `v2` to use the current version's format: `axe.configure({ reporter: "v2" });`
+     * `v1` to use the previous version's format: `axe.configure({ reporter: "v1" });`
+     * `v2` to use the current version's format: `axe.configure({ reporter: "v2" });`
   * `checks` - Used to add checks to the list of checks used by rules, or to override the properties of existing checks
-  	* The checks attribute is an array of check objects
-  	* Each check object can contain the following attributes
+  	 * The checks attribute is an array of check objects
+  	 * Each check object can contain the following attributes
   	 	 * `id` - string(required). This uniquely identifies the check. If the check already exists, this will result in any supplied check properties being overridden. The properties below that are marked required if new are optional when the check is being overridden.
-  	 	* `evaluate` - function(required for new). This is the function that implements the check's functionality.
-  	 	* `after` - function(optional). This is the function that gets called for checks that operate on a page-level basis, to process the results from the iframes.
-  	 	* `options` - mixed(optional). This is the options structure that is passed to the evaluate function and is intended to be used to configure checks. It is the most common property that is intended to be overridden for existing checks.
-  	 	* `matches` - string(optional). This string will filter the nodes that are passed into the evaluate function. It is a CSS selector.
-  	 	* `enabled` - boolean(optional, default `true`). This is used to indicate whether the check is on or off by default. Checks that are off are not evaluated, even when included in a rule. Overriding this is a common way to disable a particular check across multiple rules.
-* `rules` - Used to add rules to the existing set of rules, or to override the properties of existing rules
-	* The rules attribute is an Array of rule objects
-	* Each rule object can contain the following attributes:
-		* `id` - string(required). This uniquely identifies the rule. If the rule already exists, it will be overridden with any of the attributes supplied. The attributes below that are marked required, are only required for new rules.
-		* `selector` - string(optional, default `*`). A CSS selector used to identify the elements that are passed into the rule for evaluation.
-		* `excludeHidden` - boolean(optional, default `true`). This indicates whether elements that are hidden from all users are to be passed into the rule for evaluation.
-		* `enabled` - boolean(optional, default `true`). Whether the rule is turned on. This is a common attribute for overriding.
-		* `pageLevel` - boolean(optional, default `false`). This indicates whether the page operates only when the scope is the entire page. An example of a rule like this is the skip link rule. It is not recommended to override this property unless also changing the implementation.
-		* `any` -  array(optional, default `[]`). This is the list of checks that must all "pass" or else there is a violation.
-		* `all` - array(optional, default `[]`). This is the list of checks that, if any "fails", will generate a violation.
-		* `none` - array(optional, default `[]`). This is a list of the checks that, if none "pass", will generate a violation.
-		* `tags` - array(optional, default `[]`). A list if the tags that "classify" the rule. In practice, you must supply some valid tags or the default evaluation will not invoke the rule. The convention is to include the standard (WCAG 2 and/or section 508), the WCAG 2 level, Section 508 paragraph, and the WCAG 2 success criteria. Tags are constructed by converting all letters to lower case, removing spaces and periods and concatinating the result. E.g. WCAG 2 A success criteria 1.1.1 would become ["wcag2a", "wcag111"]
-		* `matches` - string(optional, default `*`). A filtering CSS selector that will exclude elements that do not match the CSS selector.
+  	 	 * `evaluate` - function(required for new). This is the function that implements the check's functionality.
+  	 	 * `after` - function(optional). This is the function that gets called for checks that operate on a page-level basis, to process the results from the iframes.
+  	 	 * `options` - mixed(optional). This is the options structure that is passed to the evaluate function and is intended to be used to configure checks. It is the most common property that is intended to be overridden for existing checks.
+  	 	 * `matches` - string(optional). This string will filter the nodes that are passed into the evaluate function. It is a CSS selector.
+  	 	 * `enabled` - boolean(optional, default `true`). This is used to indicate whether the check is on or off by default. Checks that are off are not evaluated, even when included in a rule. Overriding this is a common way to disable a particular check across multiple rules.
+  * `rules` - Used to add rules to the existing set of rules, or to override the properties of existing rules
+  	 * The rules attribute is an Array of rule objects
+  	 * each rule object can contain the following attributes
+  	 	 * `id` - string(required). This uniquely identifies the rule. If the rule already exists, it will be overridden with any of the attributes supplied. The attributes below that are marked required, are only required for new rules.
+  	 	 * `selector` - string(optional, default `*`). A CSS selector used to identify the elements that are passed into the rule for evaluation.
+  	 	 * `excludeHidden` - boolean(optional, default `true`). This indicates whether elements that are hidden from all users are to be passed into the rule for evaluation.
+  	 	 * `enabled` - boolean(optional, default `true`). Whether the rule is turned on. This is a common attribute for overriding.
+  	 	 * `pageLevel` - boolean(optional, default `false`). This indicates whether the page operates only when the scope is the entire page. An example of a rule like this is the skip link rule. It is not recommended to override this property unless also changing the implementation.
+  	 	 * `any` -  array(optional, default `[]`). This is the list of checks that must all "pass" or else there is a violation.
+  	 	 * `all` - array(optional, default `[]`). This is the list of checks that, if any "fails", will generate a violation.
+  	 	 * `none` - array(optional, default `[]`). This is a list of the checks that, if none "pass", will generate a violation.
+  	 	 * `tags` - array(optional, default `[]`). A list if the tags that "classify" the rule. In practice, you must supply some valid tags or the default evaluation will not invoke the rule. The convention is to include the standard (WCAG 2 and/or section 508), the WCAG 2 level, Section 508 paragraph, and the WCAG 2 success criteria. Tags are constructed by converting all letters to lower case, removing spaces and periods and concatinating the result. E.g. WCAG 2 A success criteria 1.1.1 would become ["wcag2a", "wcag111"]
+  	 	 * `matches` - string(optional, default `*`). A filtering CSS selector that will exclude elements that do not match the CSS selector.
 
 **Returns:** Nothing
 
-
 ### API Name: axe.reset
-
 
 #### Purpose
 
 Reset the configuration to the default configuration.
 
-
 #### Description
 
 Override any previous calls to `axe.configure` and restore the configuration to the default configuration. Note: this will NOT unregister any new rules or checks that were registered but will reset the configuration back to the default configuration for everything else.
-
 
 #### Synopsis
 
@@ -189,24 +176,19 @@ Override any previous calls to `axe.configure` and restore the configuration to 
 axe.reset();
 ```
 
-
 #### Parameters
 
 None
 
-
 ### API Name: axe.a11yCheck
-
 
 #### Purpose
 
 Analyze currently loaded page
 
-
 #### Description
 
 Runs a number of rules against the provided HTML page and returns the resulting issue list
-
 
 #### Synopsis
 
@@ -214,13 +196,11 @@ Runs a number of rules against the provided HTML page and returns the resulting 
 axe.a11yCheck(context, options, callback);
 ```
 
-
 #### Parameters
 
 * [`context`](#context-parameter): Defines the scope of the analysis - the part of the DOM that you would like to analyze. This will typically be the `document` or a specific selector such as class name, ID, selector, etc.
 * [`options`](#options-parameter): (optional) Set of options passed into rules or checks, temporarily modifying them. This contrasts with `axe.configure`, which is more permanent. [See below for more information](#a11ycheck-parameters)
 * [`callback`](#callback-parameter): The callback function which receives on the [results object](#results-object) as a parameter when analysis is complete
-
 
 ##### Context Parameter
 
@@ -233,7 +213,6 @@ The context object can be passed one of the following:
 	*  A CSS selector as a node name (e.g. `div`)
 	*  A CSS selector of an element id (e.g. `#tag`)
 3. An include-exclude object (see below)
-
 
 ###### Include-Exclude Object
 
@@ -248,70 +227,68 @@ The include exclude object is a JSON object with two attributes: include and exc
 
 In most cases, the component arrays will contain only one CSS selector. Multiple CSS selectors are only required if you want to include or exclude regions of a page that are inside iframes (or iframes within iframes within iframes). In this case, the first n-1 selectors are selectors that select the iframe(s) and the nth selector, selects the region(s) within the iframe.
 
-
 ###### Context Parameter Examples
 
 1. Include the first item in the `$fixture` NodeList but exclude its first child
 
-   ```javascript
+	```javascript
 	{
 	  include: $fixture[0],
 	  exclude: $fixture[0].firstChild
 	}
-   ```
+	```
 2. Include the element with the ID of `fix` but exclude any `div`s within it
 
-   ```javascript
+	```javascript
 	{
 	  include: [['#fix']],
 	  exclude: [['#fix div']]
 	}
-   ```
+	```
 3. Include the whole document except any structures whose parent contains the class `exclude1` or `exclude2`
 
-   ```javascript
+	```javascript
 	{
 	  exclude: [['.exclude1'], ['.exclude2']]
 	}
-   ```
+	```
 4. Include the element with the ID of `fix`, within the iframe with id `frame`
 
-   ```javascript
-  	{
-    	include: [['#frame', '#fix']]
- 	}
-   ```
+  ```javascript
+  {
+    include: [['#frame', '#fix']]
+  }
+  ```
 5. Include the element with the ID of `fix`, within the iframe with id `frame2`, within the iframe with id `frame1`
 
-   ```javascript
-  	{
+  ```javascript
+  {
     include: [['#frame1', '#frame2', '#fix']]
-  	}
-   ```
+  }
+  ```
 6. Include the following:
   * The element with the ID of `fix`, within the iframe with id `frame2`, within the iframe with id `frame1`
   * The element with id `header`
   * All links
 
-   ```javascript
-  	{
+  ```javascript
+  {
     include: [
       ['#header'],
       ['a'],
       ['#frame1', '#frame2', '#fix']
     ]
-  	}
-   ```
+  }
+  ```
 
 
 ##### Options Parameter
 
 The options parameter is flexible way to configure how `a11yCheck` operates. The different modes of operation are:
 
-  * Run all rules corresponding to one of the accessibility standards
-  * Run all rules defined in the system, except for the list of rules specified
-  * Run a specific set of rules provided as a list of rule ids
-
+* Run all rules corresponding to one of the accessibility standards
+* Run all rules defined in the system, except for the list of rules specified
+* Run a specific set of rules provided as a list of rule ids
 
 ###### Options Parameter Examples
 
@@ -319,68 +296,68 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 
 	There are certain standards defined that can be used to select a set of rules. The defined standards and tag string are defined as follows:
 
-	| Tag Name           | Accessibility Standard|
-	|:-------------------|:----------------------|
-	| `wcag2a`| WCAG 2.0 Level A |
-	| `wcag2aa` | WCAG 2.0 Level AA |
-	| `section508` | Section 508 |
-	| `best-practice` | Best practices endorsed by Deque |
+	| Tag Name           | Accessibility Standard                |
+	|--------------------|:-------------------------------------:|
+	| `wcag2a`           | WCAG 2.0 Level A                      |
+	| `wcag2aa`          | WCAG 2.0 Level AA                     |
+	| `section508`       | Section 508                           |
+	| `best-practice`    | Best practices endorsed by Deque      |
 
 	To run only WCAG 2.0 Level A rules, specify `options` as:
 
-   ```javascript
+	```javascript
 	{
 	  runOnly: {
 		  type: "tag",
 		  values: ["wcag2a"]
 		}
 	}
-   ```
+	```
+
 	To run both WCAG 2.0 Level A and Level AA rules, you must specify both `wcag2a` and `wcag2aa`:
 
-   ```javascript
+	```javascript
 	{
 	  runOnly: {
 	    type: "tag",
 	    values: ["wcag2a", "wcag2aa"]
 	  }
 	}
-   ```
+	```
+
 2. Run only a specified list of Rules
 
 	If you only want to run certain rules, specify options as:
 
-   ```javascript
+	```javascript
 	{
 	  runOnly: {
 	    type: "rule",
 	    values: [ "ruleId1", "ruleId2", "ruleId3" ]
 	  }
 	}
-   ```
+	```
 
 	This example will only run the rules with the id of `ruleId1`, `ruleId2`, and `ruleId3`. No other rule will run.
 
 3. Run all enabled Rules except for a list of rules
 
 	The default operation for a11yCheck is to run all WCAG 2.0 Level A and Level AA rules. If certain rules should be disabled from being run, specify `options` as:
-
-   ```javascript
+	```javascript
 	{
 	  "rules": {
 	    "color-contrast": { enabled: false },
 	    "valid-lang": { enabled: false }
 	  }
 	}
-   ```
+	```
 
 	This example will disable the rules with the id of `color-contrast` and `valid-lang`. All other rules will run. The list of valid rule IDs is specified in the section below.
 
 4. Run a modified set or rules using tags and rule enable
 
 	By combining runOnly with type: tags and the rules option, a modified set can be defined. This lets you include rules with unspecified tags, and exclude rules that do have the specified tag(s).
-
-   ```javascript
+	```javascript
 	{
 	  runOnly: {
 	    type: "tag",
@@ -391,15 +368,14 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 	    "valid-lang": { enabled: false }
 	  }
 	}
-   ```
+	```
 
 	This example includes all level A rules except for valid-lang, and in addition will include the level AA color-contrast rule.
 
 5. Run only some tags, bug exclude others
 
 	Similar to scope, the runOnly option can accept an object with an 'include' and 'exclude' property. Only those checks that match an included tag will run, except those that share a tag from the exclude list.
-
-   ```javascript
+	```javascript
 	{
 	  runOnly: {
 	    type: 'tags',
@@ -409,10 +385,9 @@ The options parameter is flexible way to configure how `a11yCheck` operates. The
 	    }
 	  }
 	}
-   ```
+	```
 
 	This example first includes all `wcag2a` and `wcag2aa` rules. All rules that are tagged as `experimental` are than removed from the list of rules to run.
-
 
 ##### Callback Parameter
 
@@ -423,23 +398,20 @@ The callback parameter is a function that will be called when the asynchronous `
 
 The callback function passed in as the third parameter of `axe.allyCheck` runs on the results object. This object has two components – a passes array and a violations array.  The passes array keeps track of all the passed tests, along with detailed information on each one. This leads to more efficient testing, especially when used in conjunction with manual testing, as the user can easily find out what tests have already been passed. Similarly, the violations array keeps track of all the failed tests, along with detailed information on each one.
 
-
 ###### `url`
 
 The URL of the page that was tested.
 
-
 ###### `timestamp`
 
 The date and time that analysis was completed.
-
 
 ###### `passes` and `violations` array
 
 * `description` - Text string that describes what the rule does
 * `help` - Help text that describes the test that was performed
 * `helpUrl` - URL that provides more information about the specifics of the violation. Links to a page on the Deque University site.
-* `id` - Unique identifier for the rule; [see the list of rules](rule-descriptions.md)
+* `id` - Unique identifier for the rule; [see the list of rules](rule-descriptions.html)
 * `impact` - How serious the violation is. Can be one of "minor", "moderate", "serious", or "critical" if the Rule failed or `null` if the check passed
 * `tags` - Array of tags that this rule is assigned. These tags can be used in the option structure to select which rules are run ([see `axe.allyCheck` parameters below for more information](#a11ycheck-parameters)).
 * `nodes` - Array of all elements the Rule tested
@@ -457,7 +429,6 @@ The date and time that analysis was completed.
 	* `all` - Array of checks that were made where all must have passed. Each entry in the array contains the same information as the 'any' array
 	* `none` - Array of checks that were made where all must have not passed. Each entry in the array contains the same information as the 'any' array
 
-
 #### Example 2
 
 In this example, we will pass the selector for the entire document, pass no options, which means all enabled rules will be run, and have a simple callback function that logs the entire results object to the console log:
@@ -467,7 +438,6 @@ axe.a11yCheck(document, function(results) {
   console.log(results);
 });
 ```
-
 
 ###### `passes`
 
@@ -481,7 +451,6 @@ axe.a11yCheck(document, function(results) {
 
 * `passes[1]`
    ...
-
 
 ###### `violations`
 
@@ -506,7 +475,6 @@ This indicates that the element selected by the entry in `target[0]` was checked
 
 Each subsequent entry in the passes array has the same format, but will detail the different rules that were run as part of this call to `axe.a11yCheck()`.
 
-
 ##### `violations` Results Array
 
 The array of `violations` contains one entry; this entry describes a test that check if buttons have valid alternate text (button-name).  This first entry in the array has the `help`, `helpUrl` and `id` fields returned as expected.
@@ -530,16 +498,15 @@ axe.a11yCheck(document, {
   console.log(results);
 });
 ```
-
 ### API Name: axe.registerPlugin
 
-Register a plugin with the aXe plugin system. See [implementing a plugin](plugins.md) for more information on the plugin system
+Register a plugin with the aXe plugin system. See [implementing a plugin](plugins.html) for more information on the plugin system
 
 ### API Name: axe.cleanup
 
-Call the plugin system's cleanup function. See [implementing a plugin](plugins.md).
+Call the plugin system's cleanup function. See [implementing a plugin](plugins.html).
 
 
 ## Section 3: Example Reference
 
-This package contains examples for [jasmine](examples/jasmine), [mocha](examples/mocha), [phantomjs](examples/phantomjs), [qunit](examples/qunit), [selenium using javascript](examples/selenium), and [generating HTML from the violations array](examples/html-handlebars.md). Each of these examples is in the [doc/examples](examples) folder. In each folder, there is a README.md file which contains specific information about each example.
+This package contains examples for [jasmine](examples/jasmine), [mocha](examples/mocha), [phantomjs](examples/phantomjs), [qunit](examples/qunit), [selenium using javascript](examples/selenium), and [generating HTML from the violations array](examples/html-handlebars.html). Each of these examples is in the [doc/examples](examples) folder. In each folder, there is a README.md file which contains specific information about each example.

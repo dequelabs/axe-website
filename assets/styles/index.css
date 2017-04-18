@@ -1,8 +1,15 @@
 html {
   font-family: Helvetica, sans-serif;
 }
+h5 {
+  font-weight: 500;
+}
+h6 {
+  font-weight: 300;
+  font-style: italic;
+}
 body {
-  padding: 10px;
+  margin: 0; padding: 0;
 }
 [class^="col"] {
   padding-left: 5px;

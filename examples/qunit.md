@@ -1,7 +1,9 @@
 ---
-layout: example
+layout: page
 title: Example Qunit
 ---
+[Back to integrations](/examples/)
+
 
 
 This example demonstrates how to use aXe with the QUnit unit testing framework.

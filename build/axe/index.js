@@ -3,7 +3,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 
-const root = path.join(__dirname, '../')
+const root = path.join(__dirname, '../../')
 const axeDocs = path.join(root, './node_modules/axe-core/doc/')
 const exampleDocs = path.join(axeDocs, './examples/')
 
@@ -82,7 +82,7 @@ examples.forEach(example => {
     var fileName = exampleFile.name.replace(example + '/','')
 
     if (fileName.toLowerCase() === 'readme.md') {
-      return exampleFile.body
+      return exampleFile.body.replace(/#\s[a-zA-Z\s0-9]+\s#/, '')
 
     } else {
       var language = languageMap[exampleFile.name.split('.').slice(-1)[0]] || ''
@@ -101,6 +101,7 @@ examples.forEach(example => {
     { layout: 'page',
       title: 'Example ' + fileName[0].toUpperCase() + fileName.match(/[^.]*/)[0].substr(1)
     },
+    '[Back to integrations](/examples/)\n\n' +
     exampleBody + '\n\n'
   )
   console.log('saved to file examples/' + fileName)

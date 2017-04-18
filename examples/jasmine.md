@@ -1,7 +1,10 @@
 ---
-layout: example
-title: Example Jasmine 
+layout: page
+title: Example Jasmine
 ---
+[Back to integrations](/examples/)
+
+
 
 This example demonstrates how to use aXe with the Jasmine unit testing framework.
 
@@ -31,7 +34,7 @@ failures.
 To run the example on your own HTML, such as widgets or controls, insert the
 HTML into the document, retrieve the root element of your widget (with e.g.,
 `document.getElementById()`), and pass that as the first argument into a call
-to `axe.a11yCheck`.
+to `axe.a11yCheck`.  
 
 The third argument to the `axe.a11yCheck` call should be the function to test
 the results. The example is simply looking at the count of violations, but much
@@ -41,8 +44,7 @@ should be consulted for more details on customizing and analyzing calls to
 
 
 ## package.json
-
-```javascript
+<pre><code class="highlight language-javascript">
 {
   "name": "axe-jasmine-example",
   "description": "aXe Jasmine Example",
@@ -63,8 +65,8 @@ should be consulted for more details on customizing and analyzing calls to
     "grunt-contrib-jasmine": "~0.9.2"
   }
 }
-```
 
+</code></pre>
 
 ## Gruntfile.js
 <pre><code class="highlight language-javascript">

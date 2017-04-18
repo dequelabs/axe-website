@@ -1,7 +1,9 @@
 ---
-layout: example
+layout: page
 title: Example Mocha
 ---
+[Back to integrations](/examples/)
+
 
 
 This example demonstrates how to use aXe with the Mocha unit testing framework.

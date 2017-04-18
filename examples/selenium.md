@@ -1,7 +1,9 @@
 ---
-layout: example
+layout: page
 title: Example Selenium
 ---
+[Back to integrations](/examples/)
+
 
 
 This example demonstrates how to use aXe with the Selenium browser automation
