@@ -6,11 +6,12 @@ title: aXe Playground
 	<div id="playground-input">
 		<div id="markup-input">
 			<div class="dqpl-flexr">
-				<p>Welcome to the aXe Playground. Do you wanna know what aXe can do for you? Give it a try! Use the example we put in or press "Clear field" and put in your own piece of code. In "Select an example" you can set a specific rule you want aXe to check. If you're ready to go press "Analyse HTML".
+				<p><strong>Experiment with aXe.</strong> Put in your HTML, and analyze it with axe, or use one of the code examples. Change options, and find out exactly what individual rules in axe-core do.
 				</p>
 				<p><button class="dqpl-button-secondary playground-button" type="button" data-modal="demo-2">Select an example</button></p>
 			</div>
 
+			<p><label for="markup-area">Edit the HTML code:</label></p>
 			<div id="markup"></div>
 		  <div class="dqpl-flexr">
 		  	<button class="dqpl-button-primary" id="render">Analyze HTML</button>
@@ -31,7 +32,7 @@ title: aXe Playground
 		    <div class="dqpl-modal-content">
 		      <div class="field-section" role="group" aria-labelledby="personal-info">
 
-		        <h4 id="personal-info">What do you want aXe to check for you? Select a specific preset in Rule or Check and if you're done, apply your preset.</h4>
+		        <h4 id="personal-info">Select an example for any of the rules in axe-core.</h4>
 		        <div class="dqpl-field-wrap">
 		          <label class="dqpl-label" id="rulelabel" for="rule-name">Rule</label>
 		          <div class="dqpl-field-wrap">
@@ -105,7 +106,7 @@ title: aXe Playground
 	<div>
 		<div id="results-area">
 			<div class="dqpl-flexr">
-				<p>This is what aXe can do for you. Want to know more about the violation? Press the link in the result! You will be directed to DequeU where you can read more about the violation and how to adjust this inside your code. If you want to change the options manually, press "CHANGE AXE OPTIONS".</p>
+				<p>Violations as they are returned by axe-core. For a detailed description of the format, see the <a href="/docs.html#results-object">API documentation</a>.</p>
 
 				<p><button class="dqpl-button-secondary  playground-button" type="button" data-modal="changeoption">Change aXe options</button></p>
 			</div>

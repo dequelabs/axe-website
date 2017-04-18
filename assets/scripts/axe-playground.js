@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var $ = jQuery;
 
   var markup = new CodeFlask();
-  markup.run('#markup', { language: 'html', lineNumbers: false });
+  markup.run('#markup', {
+    language: 'html',
+    lineNumbers: false,
+    areaId: 'markup-area'
+  });
   // var options = new CodeFlask();
   // options.run('#playground-config', { language: 'javascript', lineNumbers: false });
 

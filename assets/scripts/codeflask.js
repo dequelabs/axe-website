@@ -111,6 +111,10 @@ CodeFlask.prototype.scaffold = function(target, isMultiple, opts) {
         textarea.classList.add('CodeFlask__textarea_line-numbers')
     }
 
+    if (opts.areaId) {
+        textarea.id = opts.areaId;
+    }
+
     // Appending editor elements to DOM
     target.innerHTML = '';
     target.appendChild(textarea);
