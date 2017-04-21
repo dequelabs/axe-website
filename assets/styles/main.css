@@ -44,10 +44,13 @@ h4 {
 
 h5 {
   margin: 10px 0px 00px 0px !important;
+  font-weight: 500;
 }
 
 h6 {
   margin: 10px 0px 10px 0px !important;
+  font-weight: 300;
+  font-style: italic;
 }
 
 iframe {
@@ -261,6 +264,14 @@ hr {
   margin: 0 !important;
 }
 
+.playground-button {
+  margin: 0 8px;
+}
+
+#playground-input .dqpl-modal-content {
+  overflow-y: visible;
+}
+
 .post-content{
   padding: 0px 25px 20px;
 }
@@ -341,9 +352,14 @@ hr {
   padding-top: 50px;
   }
 
+  .playground-button {
+    margin: 0px 0px 10px 2px !important;
+  }
+
   .post-content {
     border: none;
     padding: 0px;
+    width: 95%;
   }
 
   .post-title {
@@ -357,10 +373,6 @@ hr {
   .selectbuttonnormal {
     display: none;
   }
-
-  .selectbuttonphone {
-    margin-bottom: 10px;
-}
 }
 
 /* Tablet */
@@ -391,9 +403,17 @@ hr {
     padding-left: 20px;
   }
 
+  .playground-button {
+    margin: 2px 10px !important;
+}
+
   .post-content {
     border: none;
     padding: 0px;
+  }
+
+  .post-title {
+    margin-left: 0px;
   }
 
   .small {
@@ -476,6 +496,7 @@ hr {
 .CodeFlask__pre::after {
   display: none !important;
 }
+
 .CodeFlask {
   margin-bottom: 1em;
   box-shadow: 0 1px 5px rgba(0,0,0,.5);
@@ -486,16 +507,5 @@ hr {
   margin-left:-24px;
 }
 
-#playground-input .dqpl-modal-content {
-  overflow-y: visible;
-}
-.playground-button {
-  margin: 0 8px !important;
-}
-h5 {
-  font-weight: 500;
-}
-h6 {
-  font-weight: 300;
-  font-style: italic;
-}
+
+
