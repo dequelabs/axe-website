@@ -51,7 +51,7 @@ aXe can be used with many test tools. Because many of aXe tests require a render
 
 ## More integrations! Try and test.
 
-When you click on one of the integrations you will be send to a other webpage.
+When you click on one of the integrations you'll be directed to WorldSpace Attest. This is an automated accessibility testing solution for developers.
 
 <div class="allblocks">
 	<a class="dqpl-link" href="https://www.deque.com/products/worldspace-attest/" target="_blank">

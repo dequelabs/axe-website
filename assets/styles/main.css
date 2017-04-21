@@ -10,7 +10,7 @@ body p {
 }
 
 body .dqpl-main-content.dqpl-collapsed {
-  padding-left: 20px;
+  padding-left: 0px;
 }
 
 * {
@@ -29,25 +29,46 @@ h1 {
 
 h2 {
   font-size: 34px;
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
 }
 
 h3{
   font-size: 20px;
   margin: 0px;
+  margin-top: 10px;
 }
 
 h4 {
-  margin: 20px 0px 20px 0px;
+  margin: 10px 0px 0px 0px;
+}
+
+h5 {
+  margin: 10px 0px 00px 0px !important;
+}
+
+h6 {
+  margin: 10px 0px 10px 0px !important;
 }
 
 iframe {
   padding-bottom: 20px
 }
 
+ol {
+  margin: 0px;
+}
+
+.post ul {
+  padding-left: 40px;
+}
+
+p {
+  margin-top: 0px !important;
+}
+
 table {
   text-align: left;
-  margin-left: 80px;
+  margin: 10px 0px 15px 80px;
   border-collapse: collapse;
 }
 
@@ -56,6 +77,8 @@ table th {
   font-size: 23px;
   font-weight: 300;
 }
+
+
 
 .post table th, .post table td {
   padding: .5em 1em;
@@ -125,7 +148,7 @@ strong {
   text-align: center;
 }
 
-.dqpl-main-content ul{
+.dqpl-main-content {
   padding: 20px;
 }
 
@@ -202,7 +225,7 @@ strong {
 
 .fork {
   position: absolute;
-  top: 70px;
+  top: 0px;
   right: 0px;
   border: 0;
   z-index: 1;
@@ -244,7 +267,7 @@ hr {
 
 .post-title {
   border-bottom: 1px solid #f2f2f2;
-  margin-left: 25px;
+  margin: 0px 0px 10px 25px;
 }
 
 /*Blue border of the selected nav. button*/
@@ -302,7 +325,6 @@ hr {
   }
 
   .fork {
-    top: 50px;
     right: 10px;
   }
 
@@ -327,6 +349,18 @@ hr {
   .post-title {
     margin-left: 0px;
   }
+
+  table {
+    margin: 0px;
+  }
+
+  .selectbuttonnormal {
+    display: none;
+  }
+
+  .selectbuttonphone {
+    margin-bottom: 10px;
+}
 }
 
 /* Tablet */
@@ -340,17 +374,12 @@ hr {
   height: 231px;
   }
 
-  body .dqpl-main-content.dqpl-collapsed{
-   width: 100%;
-  }
-
   .examplelogo {
     height: 85px;
     width: 85px;
   }
 
   .fork {
-    top: 70px;
     right: 0px;
   }
 
@@ -358,13 +387,13 @@ hr {
     width: 110px !important;
   }
 
+  .page-content {
+    padding-left: 20px;
+  }
+
   .post-content {
     border: none;
     padding: 0px;
-  }
-
-  .post-title {
-    margin-top: 50px;
   }
 
   .small {
@@ -372,12 +401,9 @@ hr {
     margin: 40px 25px;
     text-decoration: none;
   }
-}
 
-@media screen and (min-width: 480.1px) and (max-width: 766px){
-  .fork {
-    top: 60px;
-    right: 15px;
+  .selectbuttonphone {
+    display: none;
   }
 }
 
@@ -402,12 +428,16 @@ hr {
   .post-header {
     padding-top: 80px;
   }
+
+  .selectbuttonphone {
+    display: none;
+  }
 }
 
 /* big screen desktop */
 @media (min-width: 1200px) {
   .dqpl-main-content {
-    padding-top: 90px;
+    padding-top: 90px 0px 0px 0px;
     box-sizing: border-box;
     padding-bottom: 10px;
   }
@@ -419,6 +449,10 @@ hr {
 
   .post-header {
     padding-top: 0px;
+  }
+
+  .selectbuttonphone {
+    display: none;
   }
 }
 
