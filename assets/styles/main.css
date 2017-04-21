@@ -375,6 +375,12 @@ hr {
   }
 }
 
+@media screen and (min-width: 480.1px) and (max-width: 620px){
+  .fork {
+    right: 30px !important;
+  }
+}
+
 /* Tablet */
 @media screen and (min-width: 480.1px) and (max-width: 1023.9px){
   .big {
