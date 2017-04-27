@@ -6,10 +6,11 @@ title: aXe Playground
 	<div id="playground-input">
 		<div id="markup-input">
 			<div class="dqpl-flexr">
-				<p><strong>Experiment with aXe.</strong> Put in your HTML, and analyze it with axe, or use one of the code examples. Change options, and find out exactly what individual rules in axe-core do.
+				<p><strong>Experiment with aXe.</strong> Put in your HTML, and analyze it with axe, or use one of the code examples. Change options, and find out exactly what individual rules in aXe-core do.
 				</p>
-				<p><button class="dqpl-button-secondary playground-button" type="button" data-modal="demo-2">Select an example</button></p>
+				<p><button class="dqpl-button-secondary playground-button selectbuttonnormal" type="button" data-modal="demo-2">Select an example</button></p>
 			</div>
+			<button class="dqpl-button-secondary playground-button selectbuttonphone" type="button" data-modal="demo-2">Select an example</button>
 
 			<p><label for="markup-area">Edit the HTML code:</label></p>
 			<div id="markup"></div>
@@ -55,7 +56,6 @@ title: aXe Playground
 			              <li class="dqpl-option" role="option" value="bypass">bypass</li>
 			              <li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
 			              <li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
-			              <li class="dqpl-option" role="option" value="data-table">data-table</li>
 			              <li class="dqpl-option" role="option" value="definition-list">definition-list</li>
 			              <li class="dqpl-option" role="option" value="dlitem">dlitem</li>
 			              <li class="dqpl-option" role="option" value="document-title">document-title</li>
@@ -63,7 +63,6 @@ title: aXe Playground
 			              <li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
 			              <li class="dqpl-option" role="option" value="frame-title">frame-title</li>
 			              <li class="dqpl-option" role="option" value="heading-order">heading-order</li>
-			              <li class="dqpl-option" role="option" value="html-lang">html-lang</li>
 			              <li class="dqpl-option" role="option" value="image-alt">image-alt</li>
 			              <li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
 			              <li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
@@ -78,7 +77,6 @@ title: aXe Playground
 			              <li class="dqpl-option" role="option" value="object-alt">object-alt</li>
 			              <li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
 			              <li class="dqpl-option" role="option" value="region">region</li>
-			              <li class="dqpl-option" role="option" value="scope">scope</li>
 			              <li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
 			              <li class="dqpl-option" role="option" value="skip-link">skip-link</li>
 			              <li class="dqpl-option" role="option" value="tabindex">tabindex</li>
@@ -93,7 +91,7 @@ title: aXe Playground
 		      </div>
 	      </div>
 		    <div class="dqpl-modal-footer">
-		      <button class="dqpl-button-primary dqpl-modal-cancel" id="apply-preset" type="button">Apply selected preset</button>
+		      <button class="dqpl-button-primary dqpl-modal-cancel" id="apply-preset" type="button">Apply preset</button>
 		      <button class="dqpl-button-secondary dqpl-modal-cancel" type="button">Cancel</button>
 		    </div>
 		    <div class="dqpl-error-wrap"></div>
@@ -106,10 +104,11 @@ title: aXe Playground
 	<div>
 		<div id="results-area">
 			<div class="dqpl-flexr">
-				<p>Violations as they are returned by axe-core. For a detailed description of the format, see the <a href="/docs.html#results-object">API documentation</a>.</p>
+				<p>Violations as they are returned by axe-core. For a detailed description of the format, see the <a class="dqpl-link" href="/docs.html#results-object">API documentation</a>.</p>
 
-				<p><button class="dqpl-button-secondary  playground-button" type="button" data-modal="changeoption">Change aXe options</button></p>
+				<p><button class="dqpl-button-secondary  playground-button selectbuttonnormal" type="button" data-modal="changeoption">Change aXe options</button></p>
 			</div>
+			<button class="dqpl-button-secondary  playground-button selectbuttonphone" type="button" data-modal="changeoption">Change aXe options</button>
 
 			<div class="language-javascript highlighter-rouge">
 				<pre class="highlight"><code id="axe-results">
