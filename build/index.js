@@ -3,7 +3,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 
-const root = path.join(__dirname, '../../')
+const root = path.join(__dirname, '../')
 const axeDocs = path.join(root, './node_modules/axe-core/doc/')
 const exampleDocs = path.join(axeDocs, './examples/')
 
