@@ -1,5 +1,5 @@
 ---
-layout: example
+layout: page
 title: Example Cucumber
 ---
 

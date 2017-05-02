@@ -2,6 +2,7 @@
 layout: page
 title: Turning violation nodes into readable HTML
 ---
+{% raw %}
 
 
 The violations returns a list of rules that had failures. Each rule has a list of nodes that failed the rule. Each node may have failed for one or more reasons. This information is encoded in a set of structures that can be somewhat difficult to comprehend. This code shows how to turn a list of violations into a table and then for each node in a rule's nodes list, how to generate a summary of the reason(s) that rule failed.
@@ -166,3 +167,5 @@ reasonHtml = summary(node);
 </li>
 </script>
 ```
+
+{% endraw %}

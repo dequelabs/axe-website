@@ -34,17 +34,17 @@ failures.
 To run the example on your own HTML, such as widgets or controls, insert the
 HTML into the document, retrieve the root element of your widget (with e.g.,
 `document.getElementById()`), and pass that as the first argument into a call
-to `axe.a11yCheck`.  
+to `axe.run`.  
 
-The third argument to the `axe.a11yCheck` call should be the function to test
+The third argument to the `axe.run` call should be the function to test
 the results. The example is simply looking at the count of violations, but much
 more detailed information is available if desired.  The aXe documentation
 should be consulted for more details on customizing and analyzing calls to
-`axe.a11yCheck`.
+`axe.run`.
 
 
 ## package.json
-<pre><code class="highlight language-javascript">
+```js:
 {
   "name": "axe-jasmine-example",
   "description": "aXe Jasmine Example",
@@ -66,10 +66,10 @@ should be consulted for more details on customizing and analyzing calls to
   }
 }
 
-</code></pre>
+```
 
 ## Gruntfile.js
-<pre><code class="highlight language-javascript">
+```js:
 module.exports = function (grunt) {
 	'use strict';
 
@@ -87,10 +87,10 @@ module.exports = function (grunt) {
 	});
 };
 
-</code></pre>
+```
 
 ## spec/a11y.js
-<pre><code class="highlight language-javascript">
+```js:
 /* global describe, it, expect, axe, document */
 
 describe('axe', function () {
@@ -107,7 +107,8 @@ describe('axe', function () {
 
 	it('should report that good HTML is good', function (done) {
 		var n = document.getElementById('working');
-		axe.a11yCheck(n, null, function (result) {
+		axe.run(n, function (err, result) {
+			expect(err).toBe(null);
 			expect(result.violations.length).toBe(0);
 			done();
 		});
@@ -115,12 +116,13 @@ describe('axe', function () {
 
 	it('should report that bad HTML is bad', function (done) {
 		var n = document.getElementById('broken');
-		axe.a11yCheck(n, null, function (result) {
+		axe.run(n, function (err, result) {
+			expect(err).toBe(null);
 			expect(result.violations.length).toBe(1);
 			done();
 		});
 	});
 });
 
-</code></pre>
+```
 

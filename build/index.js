@@ -37,12 +37,13 @@ fs.readFile( // Copy the API docs to docs/index
   path.join(axeDocs, './examples/html-handlebars.md'),
  'utf8',
   function (err, content) {
+    var title = content.match(/#\s(.+)/)[1]
     frontLoad(
       path.join(root, './examples/html-handlebars.md'),
-      { layout: 'page', title: 'Turning violation nodes into readable HTML' },
-      content
+      { layout: 'page', title: title },
+      '{% raw %}\n' + content.replace(/#\s.+/, '') + '\n{% endraw %}'
     )
-    console.log('saved to file html-handlebars.md')
+    console.log('saved to file examples/html-handlebars.md')
   }
 )
 
@@ -54,9 +55,11 @@ var examples = fs.readdirSync(exampleDocs)
 )
 
 var languageMap = {
-  js: 'javascript',
-  json: 'javascript',
-  md: 'markdown'
+  js: 'js',
+  json: 'js',
+  md: 'markdown',
+  html: 'html',
+  htm: 'html'
 }
 
 examples.forEach(example => {
@@ -88,9 +91,9 @@ examples.forEach(example => {
       var language = languageMap[exampleFile.name.split('.').slice(-1)[0]] || ''
       return [
         '## ' + fileName,
-        '<pre><code class="highlight language-' + language + '">',
+        '```' + language + ':',
         exampleFile.body,
-        '</code></pre>'
+        '```'
       ].join('\n')
     }
   }).join('\n\n')

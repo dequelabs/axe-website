@@ -39,11 +39,11 @@ so simply edit that property to put in the URLs you wish to test.
 
 The example is simply logging the analysis results to files.  The aXe
 documentation should be consulted for more details on customizing and
-analyzing calls to `axe.a11yCheck`.
+analyzing calls to `axe.run`.
 
 
 ## package.json
-<pre><code class="highlight language-javascript">
+```js:
 {
   "name": "axe-webdriverjs-example",
   "description": "aXe WebDriverJS Example",
@@ -65,10 +65,10 @@ analyzing calls to `axe.a11yCheck`.
   }
 }
 
-</code></pre>
+```
 
 ## Gruntfile.js
-<pre><code class="highlight language-javascript">
+```js:
 module.exports = function (grunt) {
 	'use strict';
 	grunt.loadTasks('build/tasks');
@@ -84,5 +84,46 @@ module.exports = function (grunt) {
 	grunt.registerTask('test', ['axe-selenium']);
 };
 
-</code></pre>
+```
+
+## build/tasks/axe-selenium.js
+```js:
+/*jshint node: true */
+'use strict';
+
+var WebDriver = require('selenium-webdriver'),
+	axeBuilder = require('axe-webdriverjs');
+
+module.exports = function (grunt) {
+	grunt.registerMultiTask('axe-selenium', function () {
+
+		var done = this.async(),
+			count = this.data.length;
+
+		var driver = new WebDriver.Builder()
+			.forBrowser('firefox')
+			.build();
+
+		driver.manage().timeouts().setScriptTimeout(10000);
+
+		this.data.forEach(function (testUrl) {
+			driver.get(testUrl)
+				.then(function () {
+					axeBuilder(driver)
+						.analyze(function (result) {
+							grunt.file.write(result.url.replace(/[^a-z0-9]/gi, '-')
+								.replace(/-{2,}/g, '-').replace(/^-|-$/g, '').toLowerCase() + '.json',
+								JSON.stringify(result, null, '  '));
+
+							if (!--count) {
+								driver.quit();
+								done(result.violations.length === 0);
+							}
+						});
+					});
+				});
+	});
+};
+
+```
 

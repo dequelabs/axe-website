@@ -34,17 +34,17 @@ failures.
 To run the example on your own HTML, such as widgets or controls, insert the
 HTML into the document, retrieve the root element of your widget (with e.g.,
 `document.getElementById()`), and pass that as the first argument into a call
-to `axe.a11yCheck`.  
+to `axe.run`.  
 
-The third argument to the `axe.a11yCheck` call should be the function to test
+The third argument to the `axe.run` call should be the function to test
 the results. The example is simply looking at the count of violations, but much
 more detailed information is available if desired.  The aXe documentation
 should be consulted for more details on customizing and
-analyzing calls to `axe.a11yCheck`.
+analyzing calls to `axe.run`.
 
 
 ## package.json
-<pre><code class="highlight language-javascript">
+```js:
 {
   "name": "axe-mocha-example",
   "description": "aXe Mocha Example",
@@ -67,10 +67,10 @@ analyzing calls to `axe.a11yCheck`.
   }
 }
 
-</code></pre>
+```
 
 ## Gruntfile.js
-<pre><code class="highlight language-javascript">
+```js:
 module.exports = function (grunt) {
 	'use strict';
 
@@ -87,5 +87,71 @@ module.exports = function (grunt) {
 		}
 	});
 };
-</code></pre>
+```
+
+## test/a11y.js
+```js:
+/* global describe, it, expect, axe, document */
+
+describe('axe', function () {
+	'use strict';
+
+	it('should report that good HTML is good', function (done) {
+		var n = document.getElementById('working');
+		axe.run(n, function (err, result) {
+			expect(err).to.be.null();
+			expect(result.violations.length).to.equal(0);
+			done();
+		});
+	});
+
+	it('should report that bad HTML is bad', function (done) {
+		var n = document.getElementById('broken');
+		axe.run(n, function (err, result) {
+			expect(err).to.be.null();
+			expect(result.violations.length).to.equal(1);
+			done();
+		});
+	});
+});
+
+```
+
+## test/test.html
+```html:
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Example Mocha Test</title>
+	<link rel="stylesheet" href="../node_modules/grunt-mocha/node_modules/mocha/mocha.css" type="text/css" charset="utf-8" />
+</head>
+<body>
+	<!-- Required for browser reporter -->
+	<div id="mocha"></div>
+
+	<script src="../node_modules/grunt-mocha/node_modules/mocha/mocha.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../node_modules/chai/chai.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		mocha.setup('bdd');
+		var expect = chai.expect;
+	</script>
+
+	<!-- Include aXe -->
+	<script src="../node_modules/axe-core/axe.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- Spec files -->
+	<script src="a11y.js" type="text/javascript" charset="utf-8"></script>
+	<div id="working">
+		<label for="labelfld">Label for this text field.</label>
+		<input type="text" id="labelfld">
+	</div>
+	<div id="broken">
+		<p>Label for this text field.</p>
+		<input type="text" id="nolabelfld">
+	</div>
+</body>
+</html>
+
+```
 
