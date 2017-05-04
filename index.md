@@ -51,7 +51,7 @@ axe.a11yCheck(document, function (results) {
 });
 ```
 
-## What more?
+## Want more?
 
 If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar ‘Creating Accessible Web Applications with aXe’.
 
