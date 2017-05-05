@@ -24,7 +24,8 @@ In order to create such a plugin, we need to implement the "run" function for th
 
 #### Basic plugin
 
-```javascript
+<div class="highlighter-route language-javascript">
+<pre><code>
 axe.registerPlugin({
 	id: 'doStuff',
 	run: function (id, action, options, callback) {
@@ -60,7 +61,9 @@ axe.registerPlugin({
 	  }
 	}]
 });
-```
+
+</code></pre>
+</div>
 
 Looking at the code, you will see the following things:
 
@@ -84,7 +87,8 @@ Once all the iframes' run functions have been executed, the callback is called. 
 
 Lets implement a basic plugin instance to see how this works. This instance will implement a "highlight" function (to place a basic frame around the bounding box of an element on each iframe on a page)
 
-```javascript
+<div class="highlighter-route language-javascript">
+<pre><code>
   var highlight = {
     id: 'highlight',
     highlighter: new Highlighter(),
@@ -102,7 +106,9 @@ Lets implement a basic plugin instance to see how this works. This instance will
   };
 
   axe.plugins.doStuff.add(highlight);
-```
+
+</code></pre>
+</div>
 
 Above you can see the implementation of a `doStuff` "highlight" instance (the actual highlighting code is not included so as to simplify the example and is left as an exercise for the reader). Plugin instances have an id (which is used to address them), a cleanup function and any number of private or action members. The doStuff `add()` function is called to register this instance with the plugin (notice that we did not have to implement this add function, aXe did that for us). In this case, the action  is called "run", so after registration, this instance can be called by calling `axe.plugins.doStuff.run('highlight', 'run', options, callback);` in the top-level iframe on the page.
 
