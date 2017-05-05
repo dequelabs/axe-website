@@ -531,13 +531,14 @@ axe.run(document, {
   console.log(results);
 });
 ```
+
 ### API Name: axe.registerPlugin
 
-Register a plugin with the aXe plugin system. See [implementing a plugin](../plugins.html) for more information on the plugin system
+Register a plugin with the aXe plugin system. See [implementing a plugin](plugins.html) for more information on the plugin system
 
 ### API Name: axe.cleanup
 
-Call the plugin system's cleanup function. See [implementing a plugin](../plugins.html).
+Call the plugin system's cleanup function. See [implementing a plugin](plugins.html).
 
 ### API Name: axe.a11yCheck
 
