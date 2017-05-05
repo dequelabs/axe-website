@@ -10,21 +10,26 @@ body {
   padding: 0px;
 }
 
-body p {
+body p,
+body .post-content ul,
+body .post-content ol {
   line-height: 1.618;
   margin: 10px 0px;
+}
+.post-content ol ol {
+  margin: 0;
 }
 
 body .dqpl-main-content.dqpl-collapsed {
   padding-left: 0px;
 }
 
-fieldset{
+fieldset {
   border: none;
 }
 h1 {
-  font-size: 56px !important;
-  color: #0b0e11 !important;
+  font-size: 56px;
+  color: #0b0e11;
   font-weight: 300;
   position: relative;
 }
@@ -48,18 +53,18 @@ h4 {
 }
 
 h5 {
-  margin: 10px 0px 00px 0px !important;
+  margin: 10px 0px 0px 0px;
   font-weight: 500;
 }
 
 h6 {
-  margin: 10px 0px 10px 0px !important;
+  margin: 10px 0px 10px 0px;
   font-weight: 300;
   font-style: italic;
 }
 
 iframe {
-  padding-bottom: 20px
+  padding-bottom: 20px;
 }
 
 ol {
@@ -71,7 +76,7 @@ ol {
 }
 
 p {
-  margin-top: 0px !important;
+  margin-top: 0px;
 }
 
 table {
@@ -111,7 +116,7 @@ strong {
 }
 
 /*allblocks & block can be find in Integrations */
-.allblocks{
+.allblocks {
   text-align: center;
   padding: 0px;
   width: 100%;
@@ -141,8 +146,8 @@ strong {
 }
 
 .backto {
- float: right !important;
- padding-top: 20px !important;
+ float: right;
+ padding-top: 20px;
 
 }
 
@@ -157,14 +162,14 @@ strong {
 }
 
 .dqpl-main-content {
-  padding: 20px;
+  padding: 90px 20px 20px;
 }
 
 .dqpl-button-primary {
-  margin-right: 10px !important;
+  margin-right: 10px;
 }
 
-.dqpl-main-content{
+.dqpl-main-content {
   overflow: auto;
   position: fixed;
   height: 100%;
@@ -172,10 +177,11 @@ strong {
 }
 
 /*Logo*/
-.dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img, .dqpl-item-text.dqpl-branding a .dqpl-logo img {
-  height: 90px !important;
-  width: 100% !important;
-  padding-left: 0px !important;
+.dqpl-side-bar li:not([aria-controls]).dqpl-branding a .dqpl-logo img,
+.dqpl-item-text.dqpl-branding a .dqpl-logo img {
+  height: 90px;
+  width: 100%;
+  padding-left: 0px;
 }
 
 .dqpl-main-nav li.dqpl-subnav,
@@ -255,18 +261,36 @@ strong {
   height: 70vh;
 }
 
+.responsive-iframe {
+  max-height: 400px;
+  max-width: 600px;
+}
+.responsive-iframe > div {
+  position: relative;
+  padding-bottom: 66.6%;
+  height: 0;
+  overflow: hidden;
+}
+  .responsive-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
 hr {
   margin: 15px 0px;
 }
 
-.integration img{
+.integration img {
   margin: 0 auto 0em !important;
 }
 
 .page-content .dqpl-main-content.dqpl-collapsed {
-  width:100%;
-  height:100%;
-  margin-left: 0 !important;
+  width: 100%;
+  height: 100%;
+  margin-left: 0;
 }
 
 .playground-button {
@@ -277,13 +301,17 @@ hr {
   overflow-y: visible;
 }
 
-.post-content{
+.post-header {
+  padding-right: 130px;
+}
+
+.post-content {
   padding: 0px 25px 20px;
 }
 
 .post-title {
   border-bottom: 1px solid #f2f2f2;
-  margin: 0px 0px 10px 25px;
+  margin: 30px 0px 10px 25px;
 }
 
 /*Blue border of the selected nav. button*/
@@ -330,22 +358,14 @@ hr {
     display: none;
   }
 
-  .block{
-  width: 111px;
-  height: 231px;
+  .block {
+    width: 111px;
+    height: 231px;
   }
 
   .examplelogo {
     height: 75px;
     width: 75px;
-  }
-
-  .fork {
-    right: 10px;
-  }
-
-  .logo {
-    width: 110px !important;
   }
 
   iframe {
@@ -354,7 +374,7 @@ hr {
   }
 
   .page-content .dqpl-main-content.dqpl-collapsed {
-  padding-top: 50px;
+    padding-top: 50px;
   }
 
   .playground-button {
@@ -382,32 +402,24 @@ hr {
 
 @media screen and (min-width: 480.1px) and (max-width: 620px){
   .fork {
-    right: 30px !important;
+    padding-left: 30px;
   }
 }
 
 /* Tablet */
-@media screen and (min-width: 480.1px) and (max-width: 1023.9px){
+@media screen and (max-width: 1023.9px){
   .big {
     display: none;
   }
 
-  .block{
-  width: 25%;
-  height: 231px;
+  .block {
+    width: 25%;
+    height: 231px;
   }
 
   .examplelogo {
     height: 85px;
     width: 85px;
-  }
-
-  .fork {
-    right: 0px;
-  }
-
-  .logo {
-    width: 110px !important;
   }
 
   .page-content {
@@ -440,7 +452,7 @@ hr {
 
 /* normal screen desktop */
 @media (min-width: 1024px){
-  .block{
+  .block {
     padding-top: 15px;
     width: 30%;
   }
@@ -448,10 +460,6 @@ hr {
   .examplelogo {
     height: 100px;
     width: 100px;
-  }
-
-  .post-header {
-    padding-top: 80px;
   }
 
   .selectbuttonphone {
@@ -462,7 +470,6 @@ hr {
 /* big screen desktop */
 @media (min-width: 1200px) {
   .dqpl-main-content {
-    padding-top: 90px 0px 0px 0px;
     box-sizing: border-box;
     padding-bottom: 10px;
   }

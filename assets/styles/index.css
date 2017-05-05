@@ -68,9 +68,6 @@ code {
 }
 
 .dqpl-main-content .post {
-  position: fixed;
-  top: 80px;
-  bottom: 0;
   overflow: auto;
   max-width: 100%;
 }

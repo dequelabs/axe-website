@@ -2,7 +2,7 @@
 layout: page
 title: Easy Accessibility Testing with aXe
 ---
-<div><a href="https://github.com/dequelabs/axe-core" target="_blank" title="Fork me on GitHub"><img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" class="fork" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></div>
+<div><a href="https://github.com/dequelabs/axe-core" target="_blank" class="fork" title="Fork me on GitHub"><img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></div>
 
 ## How do I get started?
 The quickest way to pick up the aXe, is by using the extensions, available for Chrome and Firefox. For developers, we recommend installing axe-core directly and using it in your projects.
@@ -23,9 +23,9 @@ The quickest way to pick up the aXe, is by using the extensions, available for C
 			aXe for Firefox
 		</a>	
 	</div>
+	<div class="browser">aXe Browser Extensions</div>
 </div>
 
-<div class="browser">aXe Browser Extensions</div>
 
 
 ## How easy is aXe to use?
@@ -62,9 +62,13 @@ axe.run(document, function (error, results) {
 
 ## Want more?
 
-If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar ‘Creating Accessible Web Applications with aXe’.
+If you want a more in-depth view of what aXe can do and how you can start performing automated accessibility tests today, check out our our recorded webinar <a href="https://www.youtube.com/watch?v=C1d278Inrl4" class="dqpl-link" target="_blank">Creating Accessible Web Applications with aXe</a>.
 
-<iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen title="Webinar Creating AccessibleWeb Applications with aXe"></iframe>
+<div class="responsive-iframe">
+	<div>
+		<iframe width="600" height="400" src="https://www.youtube.com/embed/C1d278Inrl4" frameborder="0" allowfullscreen title="Webinar Creating Accessible Web Applications with aXe"></iframe>
+	</div>
+</div>
 
 ## aXe Repository
 You can download the source code from our <a class="dqpl-link" href="https://github.com/dequelabs/axe-core"  alt="" target="_blank">GitHub repository</a> where you can also fork, customize, extend and contribute.
