@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node ./build/index.js && jekyll build",
-    "serve": "node ./build/index.js && jekyll serve"
+    "start": "jekyll serve"
   },
   "repository": {
     "type": "git",
