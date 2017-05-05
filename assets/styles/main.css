@@ -1,3 +1,9 @@
+
+html, body {
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
 body {
   background-color: #FDFDFE;
   margin: 0px;
@@ -13,33 +19,31 @@ body .dqpl-main-content.dqpl-collapsed {
   padding-left: 0px;
 }
 
-* {
-  font-family: Roboto, sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-}
-
 fieldset{
   border: none;
 }
 h1 {
   font-size: 56px !important;
   color: #0b0e11 !important;
+  font-weight: 300;
   position: relative;
 }
 
 h2 {
   font-size: 34px;
+  font-weight: 300;
   margin: 10px 0px 0px 0px;
 }
 
-h3{
+h3 {
   font-size: 20px;
+  font-weight: 300;
   margin: 0px;
   margin-top: 10px;
 }
 
 h4 {
+  font-weight: 400;
   margin: 10px 0px 0px 0px;
 }
 

@@ -31,25 +31,34 @@ The quickest way to pick up the aXe, is by using the extensions, available for C
 ## How easy is aXe to use?
 To download the module, make sure you have Node.js installed and are sitting in the root directory of your project, and execute the following command:
 
-```javascript
+<div class="highlighter-rouge language-bash">
+<pre><code>
 npm install axe-core --save-dev
-```
+
+</code></pre>
+</div>
 
 Then include the JavaScript file in your test fixtures:
 
-```javascript
-<script src="node_modules/axe-core/axe.min.js"></script>
-```
+<div class="highlighter-rouge language-html">
+<pre><code>
+&lt;script src="node_modules/axe-core/axe.min.js">&lt;/script>
+
+</code></pre>
+</div>
 
 Finally, make calls to the accessibility checker function at the appropriate points in your functional tests:
 
-```javascript
-axe.a11yCheck(document, function (results) {
+<div class="highlighter-rouge language-javascript">
+<pre><code>
+axe.run(document, function (error, results) {
   ok(results.violations.length === 0, 'Should be no accessibility issues');
   // complete the async call
   ...
 });
-```
+
+</code></pre>
+</div>
 
 ## Want more?
 
