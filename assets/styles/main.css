@@ -15,6 +15,8 @@ body .post-content ul,
 body .post-content ol {
   line-height: 1.618;
   margin: 10px 0px;
+  max-width: 100%;
+  overflow: auto;
 }
 .post-content ol ol {
   margin: 0;
@@ -239,7 +241,7 @@ strong {
 
 .fork {
   position: absolute;
-  top: 0;
+  top: 60px;
   right: 0;
   border: 0;
   z-index: 1;
@@ -311,7 +313,7 @@ hr {
 
 .post-title {
   border-bottom: 1px solid #f2f2f2;
-  margin: 30px 0px 10px 25px;
+  margin: 10px 0px 10px 25px;
 }
 
 /*Blue border of the selected nav. button*/
@@ -406,12 +408,7 @@ hr {
   }
 }
 
-/* Tablet */
-@media screen and (max-width: 1023.9px){
-  .big {
-    display: none;
-  }
-
+@media screen and (min-width: 1023.9px) {
   .block {
     width: 25%;
     height: 231px;
@@ -420,6 +417,13 @@ hr {
   .examplelogo {
     height: 85px;
     width: 85px;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 1023.9px){
+  .big {
+    display: none;
   }
 
   .page-content {
