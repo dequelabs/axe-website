@@ -1,12 +1,13 @@
 ---
 layout: page
 title: About aXe
+permalink: /about/
 ---
 <!-- Manifesto, About Deque and Deque products -->
 
 ### The Accessibility Engine for automated testing of HTML-based user interfaces. Drop the aXe on your accessibility defects!
 
-## Philosophy 
+## Philosophy
 
 We believe that automated testing has an important role to play in achieving digital equality and that in order to do that, it must achieve mainstream adoption by professional web developers. That means that the tests must inspire trust, must be fast, must work everywhere and must be available everywhere.
 
@@ -63,5 +64,3 @@ _This means…_ you can run your accessibility tests instantly with gulp watch, 
 ## Getting Started
 
 The quickest way to pick up the aXe, is by using the extensions, available for <a class="dqpl-link" href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd/">Chrome</a> <a class="dqpl-link" href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/">Firefox</a>. For developers, we recommend installing axe-core directly and <a class="dqpl-link" href="/index/#how-easy-is-axe-to-use">using it in your projects</a>.
-
-
