@@ -8,19 +8,6 @@ const axeDocs = path.join(root, './node_modules/axe-core/doc/')
 const exampleDocs = path.join(axeDocs, './examples/')
 
 fs.readFile( // Copy the API docs to docs/index
-  path.join(axeDocs, './plugins.md'),
- 'utf8',
-  function (err, content) {
-    frontLoad(
-      path.join(root, './plugins.md'),
-      { layout: 'page', title: 'Axe Plugins' },
-      content
-    )
-    console.log('saved to file plugins.md')
-  }
-)
-
-fs.readFile( // Copy the API docs to docs/index
   path.join(axeDocs, './examples/html-handlebars.md'),
  'utf8',
   function (err, content) {
