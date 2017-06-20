@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Example Cucumber
+permalink: /cucumber/
 ---
 
 This example demonstrates how to use aXe with Cucumber.
