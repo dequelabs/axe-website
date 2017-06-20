@@ -8,19 +8,6 @@ const axeDocs = path.join(root, './node_modules/axe-core/doc/')
 const exampleDocs = path.join(axeDocs, './examples/')
 
 fs.readFile( // Copy the API docs to docs/index
-  path.join(axeDocs, './API.md'),
- 'utf8',
-  function (err, content) {
-    frontLoad(
-      path.join(root, './docs.md'),
-      { layout: 'page', title: 'Axe API Documentation' },
-      content
-    )
-    console.log('saved to file docs.md')
-  }
-)
-
-fs.readFile( // Copy the API docs to docs/index
   path.join(axeDocs, './plugins.md'),
  'utf8',
   function (err, content) {
