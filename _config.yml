@@ -12,6 +12,11 @@ markdown: kramdown
 exclude:
   - node_modules
   - build
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - readme.md
+  - package.json
 
 gems:
   - jekyll-redirect-from
