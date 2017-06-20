@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Axe API Documentation
+permalink: /docs/
 ---
 
 
