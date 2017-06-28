@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Axe API Documentation
-permalink: /docs/
 ---
 
 
@@ -82,12 +81,30 @@ Returns a list of all rules with their ID and description
 
 The current set of tags supported are listed in the following table:
 
-| Tag Name           | Accessibility Standard                |
-|--------------------|:-------------------------------------:|
-| `wcag2a`           | WCAG 2.0 Level A                      |
-| `wcag2aa`          | WCAG 2.0 Level AA                     |
-| `section508`       | Section 508                           |
-| `best-practice`    | Best practices endorsed by Deque      |
+| Tag Name           | Accessibility Standard/Purpose              |
+|--------------------|:-------------------------------------------:|
+| `wcag2a`           | WCAG 2.0 Level A                            |
+| `wcag2aa`          | WCAG 2.0 Level AA                           |
+| `section508`       | Section 508                                 |
+| `best-practice`    | Best practices endorsed by Deque            |
+| `experimental`     | Cutting-edge techniques                     |
+| `cat`              | Category mappings used by Deque (see below) |
+
+| Category name                 |
+|-------------------------------|
+| `cat.aria`                    |
+| `cat.color`                   |
+| `cat.forms`                   |
+| `cat.keyboard`                |
+| `cat.language`                |
+| `cat.name-role-value`         |
+| `cat.parsing`                 |
+| `cat.semantics`               |
+| `cat.sensory-and-visual-cues` |
+| `cat.structure`               |
+| `cat.tables`                  |
+| `cat.text-alternatives`       |
+| `cat.time-and-media`          |
 
 
 #### Example 1
@@ -98,16 +115,14 @@ In this example, we pass in the WCAG 2 A and AA tags into `axe.getRules` to retr
 
 **Returned Data:**
 
-<div class="highlighter-route language-json">
-<pre><code>
+```javascript
 [
   { ruleId: "area-alt", description: "Checks the <area> elements of image…" },
   { ruleId: "aria-allowed-attr", description: "Checks all attributes that start…" },
   { ruleId: "aria-required-attr", description: "Checks all elements that contain…" },
   …
 ]
-</code></pre>
-</div>
+```
 
 ### API Name: axe.configure
 
@@ -121,8 +136,7 @@ User specifies the format of the JSON structure passed to the callback of `axe.r
 
 #### Synopsis
 
-<div class="highlighter-route language-javascript">
-<pre><code>
+```javascript
 axe.configure({
 	branding: {
 		brand: String,
@@ -130,11 +144,8 @@ axe.configure({
 	},
 	reporter: "option",
 	checks: [Object],
-	rules: [Object]
-});
-
-</code></pre>
-</div>
+	rules: [Object]});
+```
 
 #### Parameters
 
@@ -174,7 +185,6 @@ axe.configure({
 Page level rules split their evaluation into two phases. A 'data collection' phase which is done inside the 'evaluate' function and an assessment phase which is done inside the 'after' function. The evaluate function executes inside each individual frame and is responsible for collection data that is passed into the after function which inspects that data and makes a decision.
 
 Page level rules raise violations on the entire document and not on individual nodes or frames from which the data was collected. For an example of how this works, see the heading order check:
-
 - [lib/checks/navigation/heading-order.json](https://github.com/dequelabs/axe-core/blob/master/lib/checks/navigation/heading-order.json)
 - [lib/checks/navigation/heading-order.js](https://github.com/dequelabs/axe-core/blob/master/lib/checks/navigation/heading-order.js)
 - [lib/checks/navigation/heading-order-after.js](https://github.com/dequelabs/axe-core/blob/master/lib/checks/navigation/heading-order-after.js)
@@ -191,12 +201,9 @@ Override any previous calls to `axe.configure` and restore the configuration to 
 
 #### Synopsis
 
-<div class="highlighter-route language-javascript">
-<pre><code>
+```javascript
 axe.reset();
-
-</code></pre>
-</div>
+```
 
 #### Parameters
 
@@ -215,12 +222,9 @@ Runs a number of rules against the provided HTML page and returns the resulting 
 
 #### Synopsis
 
-<div class="highlighter-route language-javascript">
-<pre><code>
+```javascript
 axe.run(context, options, callback);
-
-</code></pre>
-</div>
+```
 
 #### Parameters axe.run
 
@@ -259,58 +263,47 @@ In most cases, the component arrays will contain only one CSS selector. Multiple
 
 1. Include the first item in the `$fixture` NodeList but exclude its first child
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  include: $fixture[0],
 	  exclude: $fixture[0].firstChild
 	}
-	</code></pre>
-	</div>
+	```
 2. Include the element with the ID of `fix` but exclude any `div`s within it
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  include: [['#fix']],
 	  exclude: [['#fix div']]
 	}
-	</code></pre>
-	</div>
+	```
 3. Include the whole document except any structures whose parent contains the class `exclude1` or `exclude2`
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  exclude: [['.exclude1'], ['.exclude2']]
 	}
-	</code></pre>
-	</div>
+	```
 4. Include the element with the ID of `fix`, within the iframe with id `frame`
 
-  <div class="highlighter-route language-json">
-	<pre><code>
+  ```javascript
   {
     include: [['#frame', '#fix']]
   }
-  </code></pre>
-  </div>
+  ```
 5. Include the element with the ID of `fix`, within the iframe with id `frame2`, within the iframe with id `frame1`
 
-  <div class="highlighter-route language-json">
-	<pre><code>
+  ```javascript
   {
     include: [['#frame1', '#frame2', '#fix']]
   }
-  </code></pre>
-  </div>
+  ```
 6. Include the following:
   * The element with the ID of `fix`, within the iframe with id `frame2`, within the iframe with id `frame1`
   * The element with id `header`
   * All links
 
-  <div class="highlighter-route language-json">
-	<pre><code>
+  ```javascript
   {
     include: [
       ['#header'],
@@ -318,8 +311,7 @@ In most cases, the component arrays will contain only one CSS selector. Multiple
       ['#frame1', '#frame2', '#fix']
     ]
   }
-  </code></pre>
-  </div>
+  ```
 
 
 ##### Options Parameter
@@ -329,6 +321,19 @@ The options parameter is flexible way to configure how `axe.run` operates. The d
 * Run all rules corresponding to one of the accessibility standards
 * Run all rules defined in the system, except for the list of rules specified
 * Run a specific set of rules provided as a list of rule ids
+
+Additionally, there are a number or properties that allow configuration of different options:
+
+| Property        | Default | Description                |
+|-----------------|:-------:|:----------------------------:|
+| `runOnly`       | n/a     | Limit which rules are executed, based on names or tags
+| `rules`         | n/a     | Allow customizing a rule's properties (including { enable: false })
+| `reporter`      | `v1`    | Which reporter to use (see [Configutration](#api-name-axeconfigure))
+| `xpath`         | `false` | Return xpath selectors for elements
+| `absolutePaths` | `false` | Use absolute paths when creating element selectors
+| `iframes`       | `true`  | Tell axe to run inside iframes
+| `elementRef`    | `false` | Return element references in addition to the target
+
 
 ###### Options Parameter Examples
 
@@ -345,69 +350,59 @@ The options parameter is flexible way to configure how `axe.run` operates. The d
 
 	To run only WCAG 2.0 Level A rules, specify `options` as:
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  runOnly: {
 		  type: "tag",
 		  values: ["wcag2a"]
 		}
 	}
-	</code></pre>
-	</div>
+	```
 
 	To run both WCAG 2.0 Level A and Level AA rules, you must specify both `wcag2a` and `wcag2aa`:
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  runOnly: {
 	    type: "tag",
 	    values: ["wcag2a", "wcag2aa"]
 	  }
 	}
-	</code></pre>
-	</div>
+	```
 
 2. Run only a specified list of Rules
 
 	If you only want to run certain rules, specify options as:
 
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  runOnly: {
 	    type: "rule",
 	    values: [ "ruleId1", "ruleId2", "ruleId3" ]
 	  }
 	}
-	</code></pre>
-	</div>
+	```
 
 	This example will only run the rules with the id of `ruleId1`, `ruleId2`, and `ruleId3`. No other rule will run.
 
 3. Run all enabled Rules except for a list of rules
 
 	The default operation for axe.run is to run all WCAG 2.0 Level A and Level AA rules. If certain rules should be disabled from being run, specify `options` as:
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  "rules": {
 	    "color-contrast": { enabled: false },
 	    "valid-lang": { enabled: false }
 	  }
 	}
-	</code></pre>
-	</div>
+	```
 
 	This example will disable the rules with the id of `color-contrast` and `valid-lang`. All other rules will run. The list of valid rule IDs is specified in the section below.
 
 4. Run a modified set or rules using tags and rule enable
 
 	By combining runOnly with type: tags and the rules option, a modified set can be defined. This lets you include rules with unspecified tags, and exclude rules that do have the specified tag(s).
-	
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  runOnly: {
 	    type: "tag",
@@ -418,16 +413,14 @@ The options parameter is flexible way to configure how `axe.run` operates. The d
 	    "valid-lang": { enabled: false }
 	  }
 	}
-	</code></pre>
-	</div>
+	```
 
 	This example includes all level A rules except for valid-lang, and in addition will include the level AA color-contrast rule.
 
 5. Run only some tags, bug exclude others
 
 	Similar to scope, the runOnly option can accept an object with an 'include' and 'exclude' property. Only those checks that match an included tag will run, except those that share a tag from the exclude list.
-	<div class="highlighter-route language-json">
-	<pre><code>
+	```javascript
 	{
 	  runOnly: {
 	    type: 'tags',
@@ -437,8 +430,7 @@ The options parameter is flexible way to configure how `axe.run` operates. The d
 	    }
 	  }
 	}
-	</code></pre>
-	</div>
+	```
 
 	This example first includes all `wcag2a` and `wcag2aa` rules. All rules that are tagged as `experimental` are than removed from the list of rules to run.
 
@@ -503,15 +495,12 @@ Each object returned in these arrays have the following properties:
 
 In this example, we will pass the selector for the entire document, pass no options, which means all enabled rules will be run, and have a simple callback function that logs the entire results object to the console log:
 
-<div class="highlighter-route language-javascript">
-<pre><code>
+```javascript
 axe.run(document, function(err, results) {
   if (err) throw err;
   console.log(results);
 });
-
-</code></pre>
-</div>
+```
 
 ###### `passes`
 
@@ -562,8 +551,7 @@ Each subsequent entry in the violations array has the same format, but will deta
 
 In this example, we pass the selector for the entire document, enable two additional best practice rules, and have a simple callback function that logs the entire results object to the console log:
 
-<div class="highlighter-rouge language-javascript">
-<pre><code>
+```javascript
 axe.run(document, {
   rules: {
     "heading-order": { enabled: true },
@@ -573,17 +561,14 @@ axe.run(document, {
   if (err) throw err;
   console.log(results);
 });
-
-</code></pre>
-</div>
-
+```
 ### API Name: axe.registerPlugin
 
-Register a plugin with the aXe plugin system. See [implementing a plugin](../plugins.html) for more information on the plugin system
+Register a plugin with the aXe plugin system. See [implementing a plugin](plugins.html) for more information on the plugin system
 
 ### API Name: axe.cleanup
 
-Call the plugin system's cleanup function. See [implementing a plugin](../plugins.html).
+Call the plugin system's cleanup function. See [implementing a plugin](plugins.html).
 
 ### API Name: axe.a11yCheck
 
