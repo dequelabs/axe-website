@@ -12,11 +12,11 @@ fs.readFile( // Copy the API docs to docs/index
  'utf8',
   function (err, content) {
     frontLoad(
-      path.join(root, './docs.md'),
+      path.join(root, './docs/index.md'),
       { layout: 'page', title: 'Axe API Documentation' },
       content
     )
-    console.log('saved to file docs.md')
+    console.log('saved to file docs/index.md')
   }
 )
 
@@ -25,11 +25,11 @@ fs.readFile( // Copy the API docs to docs/index
  'utf8',
   function (err, content) {
     frontLoad(
-      path.join(root, './plugins.md'),
+      path.join(root, './docs/plugins.md'),
       { layout: 'page', title: 'Axe Plugins' },
       content
     )
-    console.log('saved to file plugins.md')
+    console.log('saved to file docs/plugins.md')
   }
 )
 
