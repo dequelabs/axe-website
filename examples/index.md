@@ -3,7 +3,7 @@ layout: page
 title: aXe Integrations
 ---
 
-aXe can be used with many test tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can only be used effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through WebDriver. And somewhere must come a link to the<a class="dqpl-link" href="https://www.deque.com/products/axe-core/">productpage</a>.
+aXe can be used with many testing tools. Because many of aXe tests require a rendered web page to test things like the position of elements, aXe can be used most effectively within a browser. For testing this is often either a headless browser, such as PhantomJS, or a browser controlled through Selenium WebDriver. More information can be found on Deque's <a class="dqpl-link" href="https://www.deque.com/products/axe-core/">axe-core product page</a>.
 
 <div class="allblocks">
 	<div class="block">
@@ -51,7 +51,7 @@ aXe can be used with many test tools. Because many of aXe tests require a render
 
 ## More integrations! Try and test.
 
-When you click on one of the integrations you'll be directed to WorldSpace Attest. This is an automated accessibility testing solution for developers.
+The integrations below are available as part of <a href="https://www.deque.com/products/worldspace-attest/">WorldSpace Attest</a>, an automated accessibility testing solution for developers.
 
 <div class="allblocks">
 	<a class="dqpl-link" href="https://www.deque.com/products/worldspace-attest/" target="_blank">
