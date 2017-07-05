@@ -37,29 +37,32 @@ h1 {
 }
 
 h2 {
-  font-size: 34px;
+  font-size: 45px;
   font-weight: 300;
   margin: 10px 0px 0px 0px;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 34px;
   font-weight: 300;
   margin: 0px;
   margin-top: 10px;
 }
 
 h4 {
+  font-size: 24px;
   font-weight: 400;
   margin: 10px 0px 0px 0px;
 }
 
 h5 {
+  font-size: 20px;
   margin: 10px 0px 0px 0px;
   font-weight: 500;
 }
 
 h6 {
+  font-size: 18px;
   margin: 10px 0px 10px 0px;
   font-weight: 300;
   font-style: italic;
@@ -309,6 +312,15 @@ hr {
 
 .post-content {
   padding: 0px 25px 20px;
+}
+.post-content h2,
+.post-content h3 {
+  margin-top: 22px;
+}
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  margin-top: 16.5px;
 }
 
 .post-title {
