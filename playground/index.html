@@ -15,7 +15,7 @@ title: aXe Playground
 			<p><label for="markup-area">Edit the HTML code:</label></p>
 			<div id="markup"></div>
 		  <div class="dqpl-flexr">
-		  	<button class="dqpl-button-primary" id="render">Analyze HTML</button>
+		  	<button class="dqpl-button-primary" id="analyze">Analyze HTML</button>
 		  	<button class="dqpl-button-secondary" id="clear-field">Clear field</button>
 		  </div>
 		</div>
@@ -38,55 +38,21 @@ title: aXe Playground
 		          <label class="dqpl-label" id="rulelabel" for="rule-name">Rule</label>
 		          <div class="dqpl-field-wrap">
 		            <div class="dqpl-select">
-		        			<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="rulelabel" aria-required="true" aria-activedescendant="yes">
+		        			<div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="rule-presets" aria-expanded="false" aria-labelledby="rulelabel" aria-required="true">
 		        			</div>
 			            <ul class="dqpl-listbox" role="listbox" id="rule-presets" aria-labelledby="name-legend">
-			              <li class="dqpl-option" id="default" role="option" value="accesskeys">accesskeys</li>
-			              <li class="dqpl-option" role="option" value="area-alt">area-alt</li>
-			              <li class="dqpl-option" role="option" value="aria-allowed-attr">aria-allowed-attr</li>
-			              <li class="dqpl-option" role="option" value="aria-required-attr">aria-required-attr</li>
-			              <li class="dqpl-option" role="option" value="aria-required-children">aria-required-children</li>
-			              <li class="dqpl-option" role="option" value="aria-required-parent">aria-required-parent</li>
-			              <li class="dqpl-option" role="option" value="aria-roles">aria-roles</li>
-			              <li class="dqpl-option" role="option" value="aria-valid-attr-value">aria-valid-attr-value</li>
-			              <li class="dqpl-option" role="option" value="aria-valid-attr">aria-valid-attr</li>
-			              <li class="dqpl-option" role="option" value="audio-caption">audio-caption</li>
-			              <li class="dqpl-option" role="option" value="blink">blink</li>
-			              <li class="dqpl-option" role="option" value="button-name">button-name</li>
-			              <li class="dqpl-option" role="option" value="bypass">bypass</li>
-			              <li class="dqpl-option" role="option" value="checkboxgroup">checkboxgroup</li>
-			              <li class="dqpl-option" role="option" value="color-contrast">color-contrast</li>
-			              <li class="dqpl-option" role="option" value="definition-list">definition-list</li>
-			              <li class="dqpl-option" role="option" value="dlitem">dlitem</li>
-			              <li class="dqpl-option" role="option" value="document-title">document-title</li>
-			              <li class="dqpl-option" role="option" value="duplicate-id">duplicate-id</li>
-			              <li class="dqpl-option" role="option" value="empty-heading">empty-heading</li>
-			              <li class="dqpl-option" role="option" value="frame-title">frame-title</li>
-			              <li class="dqpl-option" role="option" value="heading-order">heading-order</li>
-			              <li class="dqpl-option" role="option" value="image-alt">image-alt</li>
-			              <li class="dqpl-option" role="option" value="input-image-alt">input-image-alt</li>
-			              <li class="dqpl-option" role="option" value="label-title-only">label-title-only</li>
-			              <li class="dqpl-option" role="option" value="label">label</li>
-			              <li class="dqpl-option" role="option" value="layout-table">layout-table</li>
-			              <li class="dqpl-option" role="option" value="link-name">link-name</li>
-			              <li class="dqpl-option" role="option" value="list">list</li>
-			              <li class="dqpl-option" role="option" value="listitem">listitem</li>
-			              <li class="dqpl-option" role="option" value="marquee">marquee</li>
-			              <li class="dqpl-option" role="option" value="meta-refresh">meta-refresh</li>
-			              <li class="dqpl-option" role="option" value="meta-viewport">meta-viewport</li>
-			              <li class="dqpl-option" role="option" value="object-alt">object-alt</li>
-			              <li class="dqpl-option" role="option" value="radiogroup">radiogroup</li>
-			              <li class="dqpl-option" role="option" value="region">region</li>
-			              <li class="dqpl-option" role="option" value="server-side-image-map">server-side-image-map</li>
-			              <li class="dqpl-option" role="option" value="skip-link">skip-link</li>
-			              <li class="dqpl-option" role="option" value="tabindex">tabindex</li>
-			              <li class="dqpl-option" role="option" value="valid-lang">valid-lang</li>
-			              <li class="dqpl-option" role="option" value="video-caption">video-caption</li>
-			              <li class="dqpl-option" role="option" value="video-description">video-description</li>
-			            </ul>
+										{% for fixture in site.fixtures %}
+											<li class="dqpl-option" role="option" value={{fixture.title}}>{{ fixture.title }}</li>
+										{% endfor %}
+									</ul>
 			          </div>
 			        </div>
 			        <div class="dqpl-error-wrap"></div>
+							<div id="fixture-store" class="hidden" aria-hidden="true">
+								{% for fixture in site.fixtures %}
+									<div data-title={{fixture.title}}>{{fixture.content | escape}}</div>
+								{% endfor %}
+							</div>
 		        </div>
 		      </div>
 	      </div>

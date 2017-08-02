@@ -2,10 +2,12 @@
 
 const fs = require('fs-extra')
 const path = require('path')
+const glob = require('glob')
 
 const root = path.join(__dirname, '../')
 const axeDocs = path.join(root, './node_modules/axe-core/doc/')
 const exampleDocs = path.join(axeDocs, './examples/')
+const axe = require('axe-core')
 
 fs.readFile( // Copy the API docs to docs/index
   path.join(axeDocs, './API.md'),
@@ -108,6 +110,21 @@ examples.forEach(example => {
     exampleBody + '\n\n'
   )
   console.log('saved to file examples/' + fileName)
+})
+
+// Remove any playground fixtures that have no corresponding aXe rule
+glob('_fixtures/*.html', (err, files) => {
+  const ruleIds = axe.getRules().map(rule => rule.ruleId)
+
+  files
+    .map(file => path.basename(file).replace('.html', ''))
+    .filter(name => ruleIds.indexOf(name) < 0)
+    .forEach(name => {
+      const file = path.join(root, '_fixtures', name) + '.html'
+
+      fs.unlinkSync(file)
+      console.warn(file + ' removed - has no aXe rule')
+    })
 })
 
 function frontLoad (file, metaData, content) {
