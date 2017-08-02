@@ -166,7 +166,8 @@ CodeFlask.prototype.handleScroll = function(textarea, highlightPre) {
             this.scrollTop = roundedScroll;
         }
 
-        highlightPre.style.top = "-" + roundedScroll + "px";
+        // https://github.com/kazzkiq/CodeFlask.js/pull/41/files
+        highlightPre.scrollTop = roundedScroll;
     });
 }
 
