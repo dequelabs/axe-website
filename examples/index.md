@@ -42,7 +42,7 @@ aXe can be used with many testing tools. Because many of aXe tests require a ren
 	</div>
 	
 	<div class="block">
-	  <a class="dqpl-link" href="../cucumber/">
+	  <a class="dqpl-link" href="./cucumber/">
 	  	<img src="../assets/images/cucumber.png" alt="" class="examplelogo">
 			Cucumber Ruby
 		</a>
