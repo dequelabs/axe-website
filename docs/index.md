@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Axe API Documentation
+title: aXe API Documentation
 ---
 
 
