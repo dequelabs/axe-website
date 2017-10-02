@@ -1,6 +1,6 @@
 ---
 layout: page
-title: aXe future tools
+title: aXe Future Tools
 ---
 
 <h2><a href="https://chrome.google.com/webstore/detail/axe-coconut/iobddmbdndbbbfjopjdgadphaoihpojp" class="dqpl-link">
