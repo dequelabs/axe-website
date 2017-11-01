@@ -2,7 +2,7 @@
 layout: page
 title: Example Cucumber
 ---
-[Back to integrations](/examples/)
+[Back to integrations](../)
 
 The axe-matchers gem below demonstrates how to use aXe with Cucumber.
 
