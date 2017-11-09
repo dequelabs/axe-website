@@ -8,22 +8,24 @@ title: Easy Accessibility Testing with aXe
 The quickest way to pick up the aXe, is by using the extensions, available for Chrome and Firefox. For developers, we recommend installing axe-core directly and using it in your projects.
 
 <div class="allblocks">
+	<div class="browser"><h3>aXe Browser Extensions</h3></div>
 	<div class="block integration">
-		<a class="dqpl-link" href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd"  target="_blank"><img src="../assets/images/chrome.png" alt="" class="examplelogo">
-	  	<br/>
-	    <br/>
-	    aXe for Chrome
+		<a class="dqpl-link" href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd"  target="_blank">
+			<span>
+				<img src="../assets/images/chrome.png" alt="" class="examplelogo">
+		    aXe for Chrome
+		  </span>
 	  </a>
 	</div>
 
 	<div class="block integration">
-		<a class="dqpl-link" href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/"  target="_blank"><img src="../assets/images/firefox.png" alt="" class="examplelogo"> 
-			<br/>
-			<br/>
-			aXe for Firefox
+		<a class="dqpl-link" href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/"  target="_blank">
+			<span>
+				<img src="../assets/images/firefox.png" alt="" class="examplelogo">
+				aXe for Firefox 53+
+			</span>
 		</a>	
 	</div>
-	<div class="browser">aXe Browser Extensions</div>
 	<p>Using Firefox ~52, or NVDA with Firefox? Download our <a href="../assets/addons/axe_developer_tools-2.0.5-fx.xpi">legacy addon</a>.</p>
 </div>
 
