@@ -26,7 +26,7 @@ The quickest way to pick up the aXe, is by using the extensions, available for C
 			</span>
 		</a>	
 	</div>
-	<p>Using Firefox ~52, or NVDA with Firefox? Download our <a href="../assets/addons/axe_developer_tools-2.0.5-fx.xpi">legacy addon</a>.</p>
+	<p>Using Firefox ~53, or NVDA with Firefox? Install our <a href="./install-xpi.html">legacy addon</a>.</p>
 </div>
 
 
