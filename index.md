@@ -22,7 +22,7 @@ The quickest way to pick up the aXe, is by using the extensions, available for C
 		<a class="dqpl-link" href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/"  target="_blank">
 			<span>
 				<img src="../assets/images/firefox.png" alt="" class="examplelogo">
-				aXe for Firefox 53+
+				aXe for Firefox 54+
 			</span>
 		</a>	
 	</div>
