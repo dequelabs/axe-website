@@ -580,4 +580,4 @@ In axe-core v1 the main method for axe was `axe.a11yCheck()`. This method was re
 
 ## Section 3: Example Reference
 
-This package contains examples for [jasmine](examples/jasmine), [mocha](examples/mocha), [phantomjs](examples/phantomjs), [qunit](examples/qunit), [selenium using javascript](examples/selenium), and [generating HTML from the violations array](examples/html-handlebars.html). Each of these examples is in the [doc/examples](examples) folder. In each folder, there is a README.md file which contains specific information about each example.
+This package contains examples for [jasmine](../examples/jasmine), [mocha](../examples/mocha), [phantomjs](../examples/phantomjs), [qunit](../examples/qunit), [selenium using javascript](../examples/selenium), and [generating HTML from the violations array](../examples/html-handlebars.html). Each of these examples is in the [doc/examples](../examples) folder. In each folder, there is a README.md file which contains specific information about each example.
