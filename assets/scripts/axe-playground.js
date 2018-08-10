@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   markup.onUpdate(function (code) {
+    console.log(code);
     fixture.innerHTML = code
   })
 
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
    * @api private
    */
   function analyze() {
-    axe.a11yCheck('#fixture', options, function (res) {
+    axe.run('#fixture', options, function (err, res) {
       var str = JSON.stringify(res.violations, null, 2)
       resultsTextbox.innerHTML = safeTags(str)
       resultsTextbox.scrollIntoView()
